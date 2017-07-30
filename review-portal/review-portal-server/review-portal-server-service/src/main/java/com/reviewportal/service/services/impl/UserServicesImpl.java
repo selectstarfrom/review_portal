@@ -25,4 +25,13 @@ public class UserServicesImpl extends AbstractCommonServiceImpl<User, UserDTO> i
 		return (UserConverter) super.getConverter();
 	}
 
+	@Override
+	public boolean isExist(UserDTO pDto) {
+		int lCount = getDao().getCount(pDto.getUsername());
+		if (lCount > 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

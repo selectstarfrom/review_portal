@@ -41,7 +41,7 @@ public class TestUserService {
 	private IUserServices userServices;
 
 	@Test
-	public void testSaveUser1() {
+	public void testSaveUser1() throws Exception {
 
 		String lEmail = "test_user@testmail.com";
 		String lPassword = "12345";
@@ -79,7 +79,7 @@ public class TestUserService {
 	}
 
 	@Test
-	public void testSaveUser2() {
+	public void testSaveUser2() throws Exception {
 
 		String lEmail1 = "test_user1@testmail.com";
 		String lPassword1 = "pass111";

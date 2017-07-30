@@ -3,10 +3,14 @@ package com.reviewportal.model.entities;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.reviewportal.model.enums.UserStatus;
@@ -32,7 +36,10 @@ public class User extends AbstractEntity {
 
 	private String displayPicture;
 
-	@OneToMany
+	// @Column(name = "ID")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "MAP_USER_USER_ROLES", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
+			@JoinColumn(name = "USER_ROLE_ID") })
 	private Set<UserRole> userRoles;
 
 	public User() {

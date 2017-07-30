@@ -10,26 +10,77 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.reviewportal.model.entities.User;
 import com.reviewportal.model.entities.UserRole;
 import com.reviewportal.model.enums.UserStatus;
+import com.reviewportal.service.config.ServiceApplication;
 import com.reviewportal.service.converter.UserConverter;
 import com.reviewportal.service.dto.UserDTO;
+import com.reviewportal.service.dto.UserRoleDTO;
 
 /**
  * @author imfroz
  *
  */
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = ServiceApplication.class)
 public class TestUserMapper {
+
+	@Autowired
+	private UserConverter converter;
 
 	static Logger LOGGER = Logger.getLogger(TestUserMapper.class.getName());
 
 	/**
 	 * Test for converting User Entity to User TO
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void testUserEntityToUserTO1() {
+	public void testUserEntityToUserTO0() throws Exception {
+
+		String lEmail = "test_user@testmail.com";
+		String lPassword = "12345";
+		String lPhone = "223213";
+		String lPhoto = "pic_1";
+		Long lId = 101L;
+		String lCreatedBy = "admin";
+		String lModifiedBy = "admin";
+		String lName = "user_1";
+
+		Date lCreatedDate = getDateInstance();
+		Date lModifiedDate = getDateInstance();
+
+		Set<UserRoleDTO> lUserRoles = new HashSet<>();
+		UserRoleDTO lUserRoleDTO = new UserRoleDTO(lId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, "ADMIN",
+				"Admin of the system");
+		lUserRoles.add(lUserRoleDTO);
+
+		UserDTO lUser = new UserDTO(lId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, lName, lEmail, lPassword,
+				UserStatus.ACTIVE, lPhone, lPhoto, lUserRoles);
+
+		LOGGER.debug("testUserEntityToUserTO: User: " + lUser);
+
+		User lUserDto = converter.getEnity(lUser);
+
+		LOGGER.debug("testUserEntityToUserTO: UserTO: " + lUserDto);
+
+		assertEquals("User Entity to User DTO Convertion Failed", lUser.getId(), lUser.getId());
+
+	}
+
+	/**
+	 * Test for converting User Entity to User TO
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testUserEntityToUserTO1() throws Exception {
 
 		String lEmail = "test_user@testmail.com";
 		String lPassword = "12345";
@@ -67,7 +118,7 @@ public class TestUserMapper {
 	}
 
 	@Test
-	public void testUserEntityToUserTOList() {
+	public void testUserEntityToUserTOList() throws Exception {
 
 		String lEmail1 = "test_user1@testmail.com";
 		String lPassword1 = "pass111";

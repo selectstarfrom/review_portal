@@ -40,4 +40,9 @@ public class UserRoleDTO extends AbstractDTO {
 		description = pDescription;
 	}
 
+	@Override
+	public String toString() {
+		return "UserRoleDTO [role=" + role + ", description=" + description + "]";
+	}
+
 }

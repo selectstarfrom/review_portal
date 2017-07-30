@@ -103,7 +103,5 @@ public class UserDTO extends AbstractDTO {
 		return "UserDTO [name=" + name + ", username=" + username + ", password=" + password + ", status=" + status
 				+ ", telephone=" + telephone + ", displayPicture=" + displayPicture + ", userRoles=" + userRoles + "]";
 	}
-	
-	
 
 }
