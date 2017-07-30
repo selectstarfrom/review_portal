@@ -1,0 +1,151 @@
+<div class="col-lg-12">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">New user</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-4">
+              <form role="form" ng-submit="vm.createUser()">
+
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" class="form-control" placeholder="Please type your email" ng-model="vm.clubMember.email" ng-required="true">
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input class="form-control" placeholder="Please create a password" name="password" type="password" ng-model="vm.clubMember.user.password"
+                    ng-required="true">
+                </div>
+                <div class="form-group">
+                  <label>Password (repeat)</label>
+                  <input class="form-control" placeholder="Please repeat the password" name="password" type="password" ng-model="vm.clubMember.user.passwordConfirm"
+                    ng-required="true">
+                </div>
+
+                <div ng-show='vm.clubMember.user.password !== vm.clubMember.user.passwordConfirm'>
+                  <span class='red-label-normal' ng-show='vm.clubMember.user.password !== vm.clubMember.user.passwordConfirm'>Passwords don't match.</span>
+                </div>
+
+
+                <div class="form-group">
+                  </br>
+                  <h3>Personal data</h3>
+                </div>
+                <div class="form-group">
+                  <label>Complete name</label>
+                  <input class="form-control" placeholder="Please type your complete name" ng-model="vm.clubMember.name" ng-required="true">
+                </div>
+                <div class="form-group">
+                  <label>Birthday date</label>
+
+                  <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="dd-MMM-yyyy" ng-model="vm.clubMember.birthdayDate" is-open="opened"
+                      max-date="maxDate" close-text="Close" ng-required="true" />
+                    <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                  </p>
+
+                </div>
+                <div class="form-group">
+                  <label>Gender</label>
+                  <select class="form-control" ng-model="vm.clubMember.gender" ng-required="true">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                    </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Display Picture</label>
+                  <input id="input-id" type="file" class="file" ng-file-model='uploadFile' ng-required="true" />
+                </div>
+
+
+
+                <div class="form-group">
+                  </br>
+                  <h3>Address</h3>
+                </div>
+                <div class="form-group">
+                  <label>Zip code</label>
+                  <input class="form-control" placeholder="Please inform the zip code of your residence" ng-model="vm.clubMember.zipCode" ng-required="true">
+                </div>
+
+                <div class="form-group">
+                  <label>State</label>
+                  <input class="form-control" placeholder="Please inform the zip code of your residence" ng-model="vm.clubMember.zipCode" ng-required="true">
+                </div>
+
+                <div class="form-group">
+                  <label>City</label>
+                  <input class="form-control" placeholder="Please inform the zip code of your residence" ng-model="vm.clubMember.zipCode" ng-required="true">
+                </div>
+
+                <div class="form-group">
+                  <label>Complete address</label>
+                  <input class="form-control" placeholder="Inform the street, number, complement and neighborhood" ng-model="vm.clubMember.completeAddress"
+                    ng-required="true">
+                </div>
+
+                <div class="form-group">
+                  <label>Type</label>
+                  <div class="radio">
+                    <input type="checkbox">  I'm a review writer
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Profession</label>
+                  <select class="form-control" ng-model="vm.clubMember.gender" ng-required="true">
+                                        <option>Actuary</option>
+                                        <option>Biochemist</option>
+                                        <option>Chartered accountant</option>
+                                        <option>Doctor</option>
+                                    </select>
+                </div>
+
+                <div class="form-group">
+                  </br>
+                  <h3>Terms and conditions</h3>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" rows="10" disabled>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dolor magna, molestie commodo elit a, rutrum tincidunt mauris. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean id dui rhoncus nulla ornare pellentesque vehicula et eros. Nunc vitae erat justo. Aenean molestie sagittis magna. Nam ac massa feugiat, maximus nulla scelerisque, feugiat dolor. Cras at feugiat ante. Mauris pretium diam massa, efficitur pulvinar arcu facilisis non. Vestibulum volutpat lacus ut ex feugiat lacinia.
+
+    Nullam egestas, quam eget vulputate dapibus, augue metus placerat lectus, ornare fermentum dolor odio ut nisi. Aliquam vulputate massa sed viverra luctus. Nullam leo ex, aliquet vitae auctor eu, varius a risus. Aliquam lacinia nisl a nibh ornare rutrum. Nullam fermentum ante et felis bibendum pretium. Proin aliquet velit eget lobortis consectetur. Donec et quam finibus, laoreet lacus sit amet, vulputate magna. Morbi consequat neque ut nibh vestibulum fermentum. Vestibulum at tempus ligula. Sed rhoncus sapien id diam dapibus dignissim.
+
+    Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus vehicula, diam vitae suscipit congue, ex velit rutrum leo, vitae imperdiet sapien leo sit amet ligula. Ut iaculis metus ac mollis hendrerit. Sed at turpis nec dolor fermentum pulvinar sit amet sit amet est. Ut condimentum mattis suscipit. Vestibulum tempor metus lobortis turpis ultrices auctor. Curabitur ut nisi ut dolor sollicitudin cursus quis vitae nulla. Integer nec auctor augue. Ut imperdiet mauris et turpis tincidunt, eu sagittis ex varius. Cras iaculis consequat neque nec commodo. Proin sit amet auctor justo, bibendum pretium ipsum. Donec non scelerisque metus, sed pulvinar ligula. Nunc eu euismod neque. Pellentesque aliquet ultricies dui, nec vehicula erat vestibulum quis. Nulla ac neque sit amet enim elementum vulputate non vitae nibh.
+esque dapibus non orci et pretium. Mauris tellus ante, ullamcorper tincidunt ultrices vitae, volutpat porttitor diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam congue lectus a libero pretium auctor. Suspendisse et ipsum leo. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                    </textarea>
+                </div>
+                <div class="form-group">
+                  <label>Acceptance of terms and conditions</label>
+                  </br>
+                  <label class="checkbox-inline">
+                                        <input type="checkbox" ng-model="vm.acceptedTermsAndConditions">I had read and accept all the terms and conditions.
+                                    </label>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary" ng-disabled="!vm.acceptedTermsAndConditions">Save</button>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
