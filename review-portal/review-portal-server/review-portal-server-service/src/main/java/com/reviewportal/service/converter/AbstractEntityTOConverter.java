@@ -226,7 +226,7 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 		case "com.reviewportal.model.entities.User":
 			return converterFactory.getMapper(UserConverter.class);
 
-		case "com.reviewportal.service.dto.UserRoleDTOs":
+		case "com.reviewportal.service.dto.UserRoleDTO":
 			return converterFactory.getMapper(UserRoleConverter.class);
 
 		case "com.reviewportal.model.entities.UserRole":
