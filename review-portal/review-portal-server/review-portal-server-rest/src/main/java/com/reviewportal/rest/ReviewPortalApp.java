@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = { "com.reviewportal" })
-public class SpringBootRestApiApp {
+public class ReviewPortalApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootRestApiApp.class, args);
+		SpringApplication.run(ReviewPortalApp.class, args);
 	}
 }
