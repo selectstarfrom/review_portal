@@ -8,14 +8,15 @@
 	<name>review-portal-server</name>
 	<description>review-portal-server</description>
 	<modules>
-		<module>review-portal-server-model</module>
-		<module>review-portal-server-dao</module>
-		<module>review-portal-server-service</module>
-		<module>review-portal-server-rest</module>
+		<module>review-portal-model</module>
+		<module>review-portal-dao</module>
+		<module>review-portal-service</module>
+		<module>review-portal-service-impl</module>
+		<module>review-portal-rest</module>
 	</modules>
 
 	<build>
-		<finalName>ParentPOMProj</finalName>
+		<finalName>review-portal</finalName>
 
 		<pluginManagement>
 			<plugins>
