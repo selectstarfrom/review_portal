@@ -41,7 +41,7 @@ public class CommonServices {
 		List<UserRole> lFindAll = userRoleDao.findAll(lExample);
 		UserRoleConverter lConverter = converterFactory.getCoverter(UserRole.class);
 		List<UserRoleDTO> lDtos = lConverter.getDtos(lFindAll);
-		return new HashSet(lDtos);
+		return new HashSet<UserRoleDTO>(lDtos);
 	}
 
 	public String getEncodedPassword(String pPassword, String pSalt) {
