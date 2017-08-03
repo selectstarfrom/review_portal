@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @MappedSuperclass
 public abstract class AbstractEntity {
 
@@ -14,10 +17,12 @@ public abstract class AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected Long id;
 
+	@CreationTimestamp
 	protected Date createdDate;
 
 	protected String createdBy;
 
+	@UpdateTimestamp
 	protected Date modifiedDate;
 
 	protected String modifiedBy;

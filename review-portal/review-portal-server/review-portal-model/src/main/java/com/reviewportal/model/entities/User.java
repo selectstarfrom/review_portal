@@ -28,6 +28,8 @@ public class User extends AbstractEntity {
 
 	private String username;
 
+	private String email;
+
 	private String password;
 
 	private UserStatus status;
@@ -37,7 +39,7 @@ public class User extends AbstractEntity {
 	private String displayPicture;
 
 	// @Column(name = "ID")
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JoinTable(name = "MAP_USER_USER_ROLES", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "USER_ROLE_ID") })
 	private Set<UserRole> userRoles;
@@ -46,17 +48,18 @@ public class User extends AbstractEntity {
 		super();
 	}
 
-	public User(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy, String pName,
-			String pUsername, String pPassword, UserStatus pStatus, String pTelephone, String pDisplayPicture,
-			Set<UserRole> pUserRoles) {
+	public User(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy, String name,
+			String username, String email, String password, UserStatus status, String telephone, String displayPicture,
+			Set<UserRole> userRoles) {
 		super(pId, pCreatedDate, pCreatedBy, pModifiedDate, pModifiedBy);
-		name = pName;
-		username = pUsername;
-		password = pPassword;
-		status = pStatus;
-		telephone = pTelephone;
-		displayPicture = pDisplayPicture;
-		userRoles = pUserRoles;
+		this.name = name;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.status = status;
+		this.telephone = telephone;
+		this.displayPicture = displayPicture;
+		this.userRoles = userRoles;
 	}
 
 	public String getName() {
@@ -115,10 +118,19 @@ public class User extends AbstractEntity {
 		userRoles = pUserRoles;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", username=" + username + ", password=" + password + ", status=" + status
-				+ ", telephone=" + telephone + ", displayPicture=" + displayPicture + ", userRoles=" + userRoles + "]";
+		return "User [name=" + name + ", username=" + username + ", email=" + email + ", password=" + password
+				+ ", status=" + status + ", telephone=" + telephone + ", displayPicture=" + displayPicture
+				+ ", userRoles=" + userRoles + "]";
 	}
 
 }

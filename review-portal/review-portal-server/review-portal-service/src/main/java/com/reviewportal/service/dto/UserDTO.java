@@ -15,9 +15,11 @@ public class UserDTO extends AbstractDTO {
 
 	private String username;
 
+	private String email;
+
 	private String password;
 
-	private UserStatus status;
+	private UserStatus status = UserStatus.NEW;
 
 	private String telephone;
 
@@ -29,17 +31,18 @@ public class UserDTO extends AbstractDTO {
 		super();
 	}
 
-	public UserDTO(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy, String pName,
-			String pUsername, String pPassword, UserStatus pStatus, String pTelephone, String pDisplayPicture,
-			Set<UserRoleDTO> pUserRoles) {
+	public UserDTO(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy, String name,
+			String username, String email, String password, UserStatus status, String telephone, String displayPicture,
+			Set<UserRoleDTO> userRoles) {
 		super(pId, pCreatedDate, pCreatedBy, pModifiedDate, pModifiedBy);
-		name = pName;
-		username = pUsername;
-		password = pPassword;
-		status = pStatus;
-		telephone = pTelephone;
-		displayPicture = pDisplayPicture;
-		userRoles = pUserRoles;
+		this.name = name;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.status = status;
+		this.telephone = telephone;
+		this.displayPicture = displayPicture;
+		this.userRoles = userRoles;
 	}
 
 	public String getName() {
@@ -98,10 +101,19 @@ public class UserDTO extends AbstractDTO {
 		userRoles = pUserRoles;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
-		return "UserDTO [name=" + name + ", username=" + username + ", password=" + password + ", status=" + status
-				+ ", telephone=" + telephone + ", displayPicture=" + displayPicture + ", userRoles=" + userRoles + "]";
+		return "UserDTO [name=" + name + ", username=" + username + ", email=" + email + ", password=" + password
+				+ ", status=" + status + ", telephone=" + telephone + ", displayPicture=" + displayPicture
+				+ ", userRoles=" + userRoles + "]";
 	}
 
 }

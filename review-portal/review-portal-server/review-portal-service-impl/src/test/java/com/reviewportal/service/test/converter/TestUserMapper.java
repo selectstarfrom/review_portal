@@ -45,6 +45,7 @@ public class TestUserMapper {
 	public void testUserEntityToUserTO0() throws Exception {
 
 		String lEmail = "test_user@testmail.com";
+		String lUsername = "test_user";
 		String lPassword = "12345";
 		String lPhone = "223213";
 		String lPhoto = "pic_1";
@@ -61,8 +62,8 @@ public class TestUserMapper {
 				"Admin of the system");
 		lUserRoles.add(lUserRoleDTO);
 
-		UserDTO lUser = new UserDTO(lId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, lName, lEmail, lPassword,
-				UserStatus.ACTIVE, lPhone, lPhoto, lUserRoles);
+		UserDTO lUser = new UserDTO(lId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, lName, lUsername, lEmail,
+				lPassword, UserStatus.ACTIVE, lPhone, lPhoto, lUserRoles);
 
 		LOGGER.debug("testUserEntityToUserTO: User: " + lUser);
 
@@ -82,6 +83,7 @@ public class TestUserMapper {
 	@Test
 	public void testUserEntityToUserTO1() throws Exception {
 
+		String lUsername = "test_user";
 		String lEmail = "test_user@testmail.com";
 		String lPassword = "12345";
 		String lPhone = "223213";
@@ -98,8 +100,8 @@ public class TestUserMapper {
 		lUserRoles.add(new UserRole(lId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, "ADMIN",
 				"Admin of the system"));
 
-		User lUser = new User(lId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, lName, lEmail, lPassword,
-				UserStatus.ACTIVE, lPhone, lPhoto, lUserRoles);
+		User lUser = new User(lId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, lName, lUsername, lEmail,
+				lPassword, UserStatus.ACTIVE, lPhone, lPhoto, lUserRoles);
 
 		LOGGER.debug("testUserEntityToUserTO: User: " + lUser);
 
@@ -120,6 +122,7 @@ public class TestUserMapper {
 	@Test
 	public void testUserEntityToUserTOList() throws Exception {
 
+		String lUsername1 = "test_user_1";
 		String lEmail1 = "test_user1@testmail.com";
 		String lPassword1 = "pass111";
 		String lPhone1 = "1111";
@@ -136,10 +139,11 @@ public class TestUserMapper {
 		lUserRoles1.add(new UserRole(lId1, lCreatedDate1, lCreatedBy1, lModifiedDate1, lModifiedBy1, "ADMIN",
 				"Admin of the system"));
 
-		User lUser1 = new User(lId1, lCreatedDate1, lCreatedBy1, lModifiedDate1, lModifiedBy1, lName1, lEmail1,
-				lPassword1, UserStatus.ACTIVE, lPhone1, lPhoto1, lUserRoles1);
+		User lUser1 = new User(lId1, lCreatedDate1, lCreatedBy1, lModifiedDate1, lModifiedBy1, lName1, lUsername1,
+				lEmail1, lPassword1, UserStatus.ACTIVE, lPhone1, lPhoto1, lUserRoles1);
 
 		String lEmail2 = "test_user2@testmail.com";
+		String lUsername2 = "test_user_1";
 		String lPassword2 = "pass222";
 		String lPhone2 = "2222";
 		String lPhoto2 = "pic_2";
@@ -155,8 +159,8 @@ public class TestUserMapper {
 		lUserRoles2.add(new UserRole(lId2, lCreatedDate2, lCreatedBy2, lModifiedDate2, lModifiedBy2, "ADMIN",
 				"Admin of the system"));
 
-		User lUser2 = new User(lId2, lCreatedDate2, lCreatedBy2, lModifiedDate2, lModifiedBy2, lName2, lEmail2,
-				lPassword2, UserStatus.ACTIVE, lPhone2, lPhoto2, lUserRoles2);
+		User lUser2 = new User(lId2, lCreatedDate2, lCreatedBy2, lModifiedDate2, lModifiedBy2, lName2, lUsername2,
+				lEmail2, lPassword2, UserStatus.ACTIVE, lPhone2, lPhoto2, lUserRoles2);
 
 		List<User> lUsers = Arrays.asList(lUser1, lUser2);
 		LOGGER.debug("testUserEntityToUserTO List: User Entity 1: " + lUser1);

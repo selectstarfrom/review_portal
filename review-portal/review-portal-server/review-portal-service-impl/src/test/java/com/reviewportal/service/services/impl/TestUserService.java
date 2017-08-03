@@ -43,6 +43,7 @@ public class TestUserService {
 	@Test
 	public void testSaveUser1() throws Exception {
 
+		String lUsername = "test_user_123";
 		String lEmail = "test_user@testmail.com";
 		String lPassword = "12345";
 		String lPhone = "223213";
@@ -59,8 +60,8 @@ public class TestUserService {
 		lUserRoles.add(new UserRoleDTO(null, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, "ADMIN",
 				"Admin of the system"));
 
-		UserDTO lUser = new UserDTO(lUserId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, lName, lEmail,
-				lPassword, UserStatus.ACTIVE, lPhone, lPhoto, null);
+		UserDTO lUser = new UserDTO(lUserId, lCreatedDate, lCreatedBy, lModifiedDate, lModifiedBy, lName, lUsername,
+				lEmail, lPassword, UserStatus.ACTIVE, lPhone, lPhoto, null);
 
 		LOGGER.debug("testUserEntityToUserTO: User: " + lUser);
 
@@ -81,6 +82,7 @@ public class TestUserService {
 	@Test
 	public void testSaveUser2() throws Exception {
 
+		String lUsername1 = "test_user_1";
 		String lEmail1 = "test_user1@testmail.com";
 		String lPassword1 = "pass111";
 		String lPhone1 = "1111";
@@ -97,9 +99,10 @@ public class TestUserService {
 		lUserRoles1.add(new UserRole(lId1, lCreatedDate1, lCreatedBy1, lModifiedDate1, lModifiedBy1, "ADMIN",
 				"Admin of the system"));
 
-		UserDTO lUser1 = new UserDTO(null, lCreatedDate1, lCreatedBy1, lModifiedDate1, lModifiedBy1, lName1, lEmail1,
-				lPassword1, UserStatus.ACTIVE, lPhone1, lPhoto1, null);
+		UserDTO lUser1 = new UserDTO(null, lCreatedDate1, lCreatedBy1, lModifiedDate1, lModifiedBy1, lName1, lUsername1,
+				lEmail1, lPassword1, UserStatus.ACTIVE, lPhone1, lPhoto1, null);
 
+		String lUsername2 = "test_user_2";
 		String lEmail2 = "test_user2@testmail.com";
 		String lPassword2 = "pass222";
 		String lPhone2 = "2222";
@@ -116,8 +119,8 @@ public class TestUserService {
 		lUserRoles2.add(new UserRole(lId2, lCreatedDate2, lCreatedBy2, lModifiedDate2, lModifiedBy2, "ADMIN",
 				"Admin of the system"));
 
-		UserDTO lUser2 = new UserDTO(null, lCreatedDate2, lCreatedBy2, lModifiedDate2, lModifiedBy2, lName2, lEmail2,
-				lPassword2, UserStatus.ACTIVE, lPhone2, lPhoto2, null);
+		UserDTO lUser2 = new UserDTO(null, lCreatedDate2, lCreatedBy2, lModifiedDate2, lModifiedBy2, lName2, lUsername2,
+				lEmail2, lPassword2, UserStatus.ACTIVE, lPhone2, lPhoto2, null);
 
 		List<UserDTO> lUsers = Arrays.asList(lUser1, lUser2);
 		LOGGER.debug("testUserEntityToUserTO List: User Entity 1: " + lUser1);

@@ -2,6 +2,7 @@ package com.reviewportal.service.impl.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,9 @@ import com.reviewportal.service.services.ICommonService;
 public class AbstractCommonServiceImpl<E extends AbstractEntity, D extends AbstractDTO>
 		implements ICommonService<E, D> {
 
+	@Autowired
+	private CommonServices commonServices;
+	
 	private ICommonDao<E> dao;
 
 	private AbstractEntityTOConverter<E, D> converter;
@@ -123,5 +127,11 @@ public class AbstractCommonServiceImpl<E extends AbstractEntity, D extends Abstr
 			throw new SystemServiceException("Error occured in deleteAll service", pException);
 		}
 	}
+
+	public CommonServices getCommonServices() {
+		return commonServices;
+	}
+	
+	
 
 }

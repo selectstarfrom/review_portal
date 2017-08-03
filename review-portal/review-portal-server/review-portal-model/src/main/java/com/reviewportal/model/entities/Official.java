@@ -1,5 +1,6 @@
 package com.reviewportal.model.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "OFFICIAL")
 public class Official extends AbstractMember {
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private Profession profession;
 
 	public Official() {

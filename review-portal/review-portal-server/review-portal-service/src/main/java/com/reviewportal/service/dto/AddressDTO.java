@@ -1,17 +1,12 @@
-package com.reviewportal.model.entities;
+package com.reviewportal.service.dto;
 
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * @author imfroz
  *
  */
-@Entity
-@Table(name = "ADDRESS")
-public class Address extends AbstractEntity {
+public class AddressDTO extends AbstractDTO {
 
 	private String city;
 
@@ -23,11 +18,11 @@ public class Address extends AbstractEntity {
 
 	private String address;
 
-	public Address() {
+	public AddressDTO() {
 		super();
 	}
 
-	public Address(String pCity, String pState, String pZip, String pCountry, String pAddress) {
+	public AddressDTO(String pCity, String pState, String pZip, String pCountry, String pAddress) {
 		super();
 		city = pCity;
 		state = pState;
@@ -36,7 +31,7 @@ public class Address extends AbstractEntity {
 		address = pAddress;
 	}
 
-	public Address(String pCity, String pState, String pZip, String pCountry, String pAddress, Long pId,
+	public AddressDTO(String pCity, String pState, String pZip, String pCountry, String pAddress, Long pId,
 			Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy) {
 		super(pId, pCreatedDate, pCreatedBy, pModifiedDate, pModifiedBy);
 		city = pCity;

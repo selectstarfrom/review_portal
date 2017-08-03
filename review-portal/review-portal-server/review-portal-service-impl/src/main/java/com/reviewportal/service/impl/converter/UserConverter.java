@@ -22,6 +22,7 @@ public class UserConverter extends AbstractEntityTOConverter<User, UserDTO> {
 		return new User();
 	}
 
+	@Override
 	public String[] getComplexTypes() {
 		return new String[] { "userRoles" };
 	}

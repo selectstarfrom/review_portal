@@ -1,32 +1,17 @@
-package com.reviewportal.model.entities;
+package com.reviewportal.service.dto;
 
 import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
 
 /**
  * @author imfroz
  *
  */
-@MappedSuperclass
-public abstract class AbstractMember extends AbstractEntity {
+public class ReviewWriterDTO extends AbstractMemberDTO {
 
-	private String name;
-
-	private Date dateofBirth;
-
-	private String mobile;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
-
-	private String membershipType;
-
-	@OneToOne(cascade=CascadeType.ALL)
-	private User user;
-
+	public ReviewWriterDTO() {
+		super();
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -51,11 +36,11 @@ public abstract class AbstractMember extends AbstractEntity {
 		mobile = pMobile;
 	}
 
-	public Address getAddress() {
+	public AddressDTO getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address pAddress) {
+	public void setAddress(AddressDTO pAddress) {
 		address = pAddress;
 	}
 
@@ -67,12 +52,12 @@ public abstract class AbstractMember extends AbstractEntity {
 		membershipType = pMembershipType;
 	}
 
-	public User getUser() {
+	public UserDTO getUser() {
 		return user;
 	}
 
-	public void setUser(User pUser) {
-		user = pUser;
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 
 }

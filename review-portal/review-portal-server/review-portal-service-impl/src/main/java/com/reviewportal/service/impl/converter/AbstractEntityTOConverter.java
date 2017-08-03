@@ -56,10 +56,10 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 	}
 
 	public List<D> getDtos(List<E> pEntity) throws SystemServiceException {
-		
-//		if(pEntity==null){
-//			throw new SystemServiceException("Argument cannot be NULL");
-//		}
+
+		// if(pEntity==null){
+		// throw new SystemServiceException("Argument cannot be NULL");
+		// }
 
 		List<D> lTargets = new ArrayList<>();
 
@@ -80,7 +80,11 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 			Field lField;
 			try {
 
-				lField = pEntity.getClass().getDeclaredField(lFieldName);
+				try {
+					lField = pEntity.getClass().getDeclaredField(lFieldName);
+				} catch (NoSuchFieldException e) {
+					lField = pEntity.getClass().getSuperclass().getDeclaredField(lFieldName);
+				}
 				lField.setAccessible(true);
 				Object lObject = lField.get(pEntity);
 				lField.setAccessible(false);
@@ -99,14 +103,24 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 					} else {
 						lEnities = lMapper.getDtos(lObject2, lCollectionType);
 					}
-					Field lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+					Field lEntityField = null;
+					try {
+						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+					} catch (NoSuchFieldException e) {
+						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+					}
 					lEntityField.setAccessible(true);
 					lEntityField.set(lTarget, lEnities);
 					lEntityField.setAccessible(false);
 				} else {
 					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lCollectionType);
 					AbstractEntity lEnity = lMapper.getEnity((AbstractDTO) lObject);
-					Field lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+					Field lEntityField = null;
+					try {
+						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+					} catch (NoSuchFieldException e) {
+						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+					}
 					lEntityField.setAccessible(true);
 
 					lEntityField.set(lTarget, lEnity);
@@ -143,7 +157,11 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 			Field lField;
 			try {
 
-				lField = pDto.getClass().getDeclaredField(lFieldName);
+				try {
+					lField = pDto.getClass().getDeclaredField(lFieldName);
+				} catch (NoSuchFieldException e) {
+					lField = pDto.getClass().getSuperclass().getDeclaredField(lFieldName);
+				}
 				lField.setAccessible(true);
 				Object lObject = lField.get(pDto);
 				if (lObject == null) {
@@ -157,14 +175,24 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lClass);
 					Iterable<AbstractDTO> lObject2 = (Iterable<AbstractDTO>) lObject;
 					Collection<AbstractEntity> lEnities = lMapper.getEnities(lObject2, lCollectionType);
-					Field lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+					Field lEntityField = null;
+					try {
+						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+					} catch (NoSuchFieldException e) {
+						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+					}
 					lEntityField.setAccessible(true);
 					lEntityField.set(lTarget, lEnities);
 					lEntityField.setAccessible(false);
 				} else {
 					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lCollectionType);
 					AbstractEntity lEnity = lMapper.getEnity((AbstractDTO) lObject);
-					Field lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+					Field lEntityField = null;
+					try {
+						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+					} catch (NoSuchFieldException e) {
+						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+					}
 					lEntityField.setAccessible(true);
 
 					lEntityField.set(lTarget, lEnity);
@@ -235,6 +263,36 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 
 		case "com.reviewportal.model.entities.UserRole":
 			return converterFactory.getMapper(UserRoleConverter.class);
+
+		case "com.reviewportal.service.dto.ProfessionReviewDTO":
+			return converterFactory.getMapper(ProfessionReviewConverter.class);
+
+		case "com.reviewportal.model.entities.ProfessionReview":
+			return converterFactory.getMapper(UserRoleConverter.class);
+
+		case "com.reviewportal.service.dto.ReviewWriterDTO":
+			return converterFactory.getMapper(ReviewWriterConverter.class);
+
+		case "com.reviewportal.model.entities.ReviewWriter":
+			return converterFactory.getMapper(ReviewWriterConverter.class);
+
+		case "com.reviewportal.service.dto.AddressDTO":
+			return converterFactory.getMapper(AddressConverter.class);
+
+		case "com.reviewportal.model.entities.Address":
+			return converterFactory.getMapper(AddressConverter.class);
+
+		case "com.reviewportal.service.dto.OfficialDTO":
+			return converterFactory.getMapper(EmployeeConverter.class);
+
+		case "com.reviewportal.model.entities.Official":
+			return converterFactory.getMapper(EmployeeConverter.class);
+
+		case "com.reviewportal.service.dto.ProfessionDTO":
+			return converterFactory.getMapper(ProfessionConverter.class);
+
+		case "com.reviewportal.model.entities.Profession":
+			return converterFactory.getMapper(ProfessionConverter.class);
 
 		default:
 			throw new Exception("No AbstractEntityTOConverter found for class: " + pClass.getName());
