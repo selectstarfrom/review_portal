@@ -14,7 +14,7 @@ import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/api/member/professionals")
-@Api(tags = { "Profession Member Operations" })
+@Api(tags = { "Member Operations [Profession]" })
 public class ProfessionMemberResource extends AbstractMemberResource<Official, OfficialDTO> {
 
 	public static final Logger logger = LoggerFactory.getLogger(ProfessionMemberResource.class);

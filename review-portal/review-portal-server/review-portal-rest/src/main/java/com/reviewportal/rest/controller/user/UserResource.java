@@ -1,4 +1,4 @@
-package com.reviewportal.rest.controller;
+package com.reviewportal.rest.controller.user;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.reviewportal.model.entities.User;
+import com.reviewportal.rest.controller.AbstractResource;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.service.impl.services.UserServicesImpl;
 

@@ -13,7 +13,7 @@ import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping("/api/member/review_writer")
-@Api(tags = { "Review Writer Member Operations" })
+@Api(tags = { "Member Operations [Review Writer]" })
 public class ReviewWriterMemberResource extends AbstractMemberResource<ReviewWriter, ReviewWriterDTO> {
 
 	public ReviewWriterMemberResource() {
