@@ -10,6 +10,11 @@
 	<name>review-portal-rest</name>
 	<description>complaint portal rest api</description>
 
+	<properties>
+		<java.version>1.8</java.version>
+
+	</properties>
+
 	<dependencies>
 
 		<dependency>
@@ -35,6 +40,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>review-portal-web</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -48,4 +54,96 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+
+		<profile>
+			<id>dev-h2</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<artifact-packaging>jar</artifact-packaging>
+				<startClass>com.reviewportal.rest.ReviewPortalApp</startClass>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<mainClass>com.reviewportal.rest.ReviewPortalApp</mainClass>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>repackage</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<artifact-packaging>jar</artifact-packaging>
+				<startClass>com.reviewportal.rest.ReviewPortalApp</startClass>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<mainClass>com.reviewportal.rest.ReviewPortalApp</mainClass>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>repackage</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<artifact-packaging>war</artifact-packaging>
+				<startClass>com.reviewportal.rest.ReviewPortalAppWebXml</startClass>
+
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>repackage</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

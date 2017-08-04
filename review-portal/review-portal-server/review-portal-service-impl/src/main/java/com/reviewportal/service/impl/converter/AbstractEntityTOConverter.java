@@ -97,11 +97,11 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 					Class<?> lClass = (Class<?>) lParameterizedType.getActualTypeArguments()[0];
 					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = this.getMapper(lClass);
 					Iterable<AbstractEntity> lObject2 = (Iterable<AbstractEntity>) lObject;
-					Collection<AbstractDTO> lEnities = null;
+					Collection<AbstractDTO> lDtos = null;
 					if (lObject instanceof PersistentSet) {
-						lEnities = lMapper.getDtos(lObject2, HashSet.class);
+						lDtos = lMapper.getDtos(lObject2, HashSet.class);
 					} else {
-						lEnities = lMapper.getDtos(lObject2, lCollectionType);
+						lDtos = lMapper.getDtos(lObject2, lCollectionType);
 					}
 					Field lEntityField = null;
 					try {
@@ -110,11 +110,11 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
 					}
 					lEntityField.setAccessible(true);
-					lEntityField.set(lTarget, lEnities);
+					lEntityField.set(lTarget, lDtos);
 					lEntityField.setAccessible(false);
 				} else {
 					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lCollectionType);
-					AbstractEntity lEnity = lMapper.getEnity((AbstractDTO) lObject);
+					AbstractDTO lDto = lMapper.getDto((AbstractEntity) lObject);
 					Field lEntityField = null;
 					try {
 						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
@@ -123,7 +123,7 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 					}
 					lEntityField.setAccessible(true);
 
-					lEntityField.set(lTarget, lEnity);
+					lEntityField.set(lTarget, lDto);
 					lEntityField.setAccessible(false);
 				}
 

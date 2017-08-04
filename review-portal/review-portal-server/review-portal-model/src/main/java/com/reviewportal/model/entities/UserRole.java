@@ -2,6 +2,7 @@ package com.reviewportal.model.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,6 +17,7 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class UserRole extends AbstractEntity {
 
+	@Column(unique = true)
 	private String role;
 
 	private String description;

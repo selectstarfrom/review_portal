@@ -54,12 +54,12 @@ public abstract class AbstractResource<E extends AbstractEntity, D extends Abstr
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ApiOperation(value = "Create object", notes = "Create object")
-	public ResponseEntity<?> createObject(@RequestBody D lObject, UriComponentsBuilder ucBuilder) {
-		logger.info("Creating Object : {}", lObject);
-		service.save(lObject);
+	public ResponseEntity<?> createObject(@RequestBody D pObject, UriComponentsBuilder ucBuilder) {
+		logger.info("Creating Object : {}", pObject);
+		service.save(pObject);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ucBuilder.path("/api/object/{id}").buildAndExpand(lObject.getId()).toUri());
+		headers.setLocation(ucBuilder.path("/api/object/{id}").buildAndExpand(pObject.getId()).toUri());
 		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	}
 

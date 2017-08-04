@@ -1,5 +1,6 @@
 package com.reviewportal.model.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -11,8 +12,10 @@ import javax.persistence.Table;
 @Table(name = "PROFESSION")
 public class Profession extends AbstractEntity {
 
+	@Column(unique = true, nullable = false)
 	private String title;
 
+	@Column(length=200)
 	private String description;
 
 	public String getTitle() {

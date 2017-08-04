@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:review_portal_h2;DB_CLOSE_DELAY=-1
+    username: null
+    password: null
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    openInView: false
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: true
+  thymeleaf:
+    mode: XHTML
+    cache: false
+    viewNames: error
