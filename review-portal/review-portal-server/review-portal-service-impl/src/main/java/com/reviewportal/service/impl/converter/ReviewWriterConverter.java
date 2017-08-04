@@ -24,7 +24,7 @@ public class ReviewWriterConverter extends AbstractEntityTOConverter<ReviewWrite
 
 	@Override
 	public String[] getComplexTypes() {
-		return new String[] { "address" };
+		return new String[] { "address", "user" };
 	}
 
 }

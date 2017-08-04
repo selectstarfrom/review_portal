@@ -35,8 +35,16 @@ public class CommonServices {
 	private EntityTOConverterFactory converterFactory;
 
 	public Set<UserRoleDTO> getDefaultUserRolesForOfficials() throws SystemServiceException {
+		return getRoles(UserRoleEnums.USER_MEMBER_OFFICIAL);
+	}
+
+	public Set<UserRoleDTO> getDefaultUserRolesForReviewWriters() throws SystemServiceException {
+		return getRoles(UserRoleEnums.USER_MEMBER_REVIEW_WRITER);
+	}
+
+	private Set<UserRoleDTO> getRoles(UserRoleEnums pUserRoleEnums) {
 		UserRole lUserRole = new UserRole();
-		lUserRole.setRole(UserRoleEnums.USER_MEMBER_OFFICIAL.name());
+		lUserRole.setRole(pUserRoleEnums.name());
 		Example<UserRole> lExample = Example.of(lUserRole);
 		List<UserRole> lFindAll = userRoleDao.findAll(lExample);
 		UserRoleConverter lConverter = converterFactory.getCoverter(UserRole.class);

@@ -24,6 +24,7 @@ public class ReviewWriterMemberResource extends AbstractMemberResource<ReviewWri
 	@Autowired
 	public ReviewWriterMemberResource(ReviewWriterMemberServicesImpl pService) {
 		super(pService);
+		logger = LoggerFactory.getLogger(ReviewWriterMemberResource.class);
 	}
 
 }

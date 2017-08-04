@@ -1,18 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.6.RELEASE</version>
 	</parent>
+
 	<artifactId>review-portal-server-rest</artifactId>
 	<name>review-portal-rest</name>
 	<description>complaint portal rest api</description>
 
+	<packaging>${packaging.type}</packaging>
+
 	<properties>
 		<java.version>1.8</java.version>
-
 	</properties>
 
 	<dependencies>
@@ -39,6 +42,7 @@
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<finalName>review-portal-web</finalName>
 		<plugins>
@@ -54,14 +58,15 @@
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
 
+	<profiles>
 		<profile>
 			<id>dev-h2</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
+				<packaging.type>jar</packaging.type>
 				<artifact-packaging>jar</artifact-packaging>
 				<startClass>com.reviewportal.rest.ReviewPortalApp</startClass>
 			</properties>
@@ -84,12 +89,14 @@
 				</plugins>
 			</build>
 		</profile>
+
 		<profile>
 			<id>dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
+				<packaging.type>jar</packaging.type>
 				<artifact-packaging>jar</artifact-packaging>
 				<startClass>com.reviewportal.rest.ReviewPortalApp</startClass>
 			</properties>
@@ -112,12 +119,13 @@
 				</plugins>
 			</build>
 		</profile>
+
 		<profile>
 			<id>prod</id>
 			<properties>
+				<packaging.type>war</packaging.type>
 				<artifact-packaging>war</artifact-packaging>
 				<startClass>com.reviewportal.rest.ReviewPortalAppWebXml</startClass>
-
 			</properties>
 			<dependencies>
 				<dependency>
