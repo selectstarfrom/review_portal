@@ -2,7 +2,6 @@ package com.reviewportal.rest.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +19,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-public abstract class AbstractResource<E extends AbstractEntity, D extends AbstractDTO> {
-
-	public static Logger logger = null;
+public abstract class AbstractResource<E extends AbstractEntity, D extends AbstractDTO> extends AbstractBaseResource {
 
 	protected ICommonService<E, D> service;
 
