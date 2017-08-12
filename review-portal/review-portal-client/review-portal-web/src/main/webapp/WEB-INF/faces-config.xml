@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+	<name>primefaces_avalon</name>
+
+	<component>
+		<component-type>org.primefaces.component.AvalonMenu</component-type>
+		<component-class>org.primefaces.avalon.component.menu.AvalonMenu</component-class>
+	</component>
+
+	<render-kit>
+		<renderer>
+			<component-family>org.primefaces.component</component-family>
+			<renderer-type>org.primefaces.component.AvalonMenuRenderer</renderer-type>
+			<renderer-class>org.primefaces.avalon.component.menu.AvalonMenuRenderer</renderer-class>
+		</renderer>
+	</render-kit>
+
+	<navigation-rule>
+		<display-name>aa</display-name>
+		<from-view-id>/*</from-view-id>
+
+
+		<navigation-case>
+			<display-name>userLogin</display-name>
+			<from-outcome>/userLogin</from-outcome>
+			<to-view-id>/views/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<display-name>userRegistration</display-name>
+			<from-outcome>/userRegistration</from-outcome>
+			<to-view-id>/views/user-registration/pg-user-registration.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<display-name>landing</display-name>
+			<from-outcome>/landing</from-outcome>
+			<to-view-id>/views/pg-landing.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<display-name>dashboard</display-name>
+			<from-outcome>/dashboard</from-outcome>
+			<to-view-id>/views/dashboard/pg-dashboard.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+
+		<navigation-case>
+			<display-name>searchProfessionals</display-name>
+			<from-outcome>/searchProfessionals</from-outcome>
+			<to-view-id>/views/professionals/pg-search-professionals.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>

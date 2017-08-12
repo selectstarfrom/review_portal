@@ -12,6 +12,6 @@
 	<description>A portal for complaint registration</description>
 	<modules>
 		<module>review-portal-server</module>
-		<module>review-portal-web</module>
+		<module>review-portal-client</module>
 	</modules>
 </project>
