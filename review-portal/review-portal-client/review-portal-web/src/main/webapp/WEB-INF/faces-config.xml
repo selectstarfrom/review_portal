@@ -42,7 +42,7 @@
 			<to-view-id>/views/pg-landing.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+
 		<navigation-case>
 			<display-name>dashboard</display-name>
 			<from-outcome>/dashboard</from-outcome>
@@ -54,7 +54,34 @@
 		<navigation-case>
 			<display-name>searchProfessionals</display-name>
 			<from-outcome>/searchProfessionals</from-outcome>
-			<to-view-id>/views/professionals/pg-search-professionals.xhtml</to-view-id>
+			<to-view-id>/views/professionals/pg-search.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<display-name>searchReviewsProfessionals</display-name>
+			<from-outcome>/searchReviewsProfessionals</from-outcome>
+			<to-view-id>/views/reviews/professionals/pg-search.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<display-name>searchReviewsAboutMe</display-name>
+			<from-outcome>/searchReviewsAboutMe</from-outcome>
+			<to-view-id>/views/reviews/professionals/review-about-me/pg-search.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<display-name>searchReviewsByMe</display-name>
+			<from-outcome>/searchReviewsByMe</from-outcome>
+			<to-view-id>/views/reviews/professionals/review-by-me/pg-search.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<display-name>writeReview</display-name>
+			<from-outcome>/writeReview</from-outcome>
+			<to-view-id>/views/reviews/professionals/new/pg-review.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

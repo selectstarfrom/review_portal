@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+	<div class="contacts">
+
+		<p:panel header="Search Result">
+
+			<p:dataList value="#{searchReviewProfessionalsMBean.searchResult}" var="item" type="unordered" itemType="none" paginator="true" rows="7"
+				styleClass="cars-datalist" paginatorPosition="bottom">
+
+
+				<div class="clearfix">
+
+
+					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
+
+						<!-- review-by -->
+						<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+							<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
+								<p:outputLabel value="Review by:" for="review-by" styleClass="text-gray" />
+							</div>
+							<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
+								<p:outputLabel class="name" id="review-by" value="#{item.reviewBy.name}" style="color:#147df0" />
+							</div>
+						</div>
+						<!-- review-by -->
+
+						<!-- review-date -->
+						<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+							<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
+								<p:outputLabel value="Review date" for="review-date" styleClass="text-gray" />
+							</div>
+							<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
+								<p:outputLabel class="name" id="review-date" value="#{item.createdDate}" style="color:#3e9018" />
+							</div>
+						</div>
+						<!-- review-date -->
+
+
+						<!-- review -->
+						<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+							<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
+								<p:outputLabel value="Review" for="review" styleClass="text-gray" />
+							</div>
+							<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
+								<p:outputLabel class="name" id="review" value="#{item.review}" style="color:#ed3c76" />
+							</div>
+						</div>
+						<!-- review -->
+					</div>
+
+					<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
+						<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
+							<div class="">
+								<p:commandLink value="View more" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</p:dataList>
+
+		</p:panel>
+
+	</div>
+
+
+</ui:composition>

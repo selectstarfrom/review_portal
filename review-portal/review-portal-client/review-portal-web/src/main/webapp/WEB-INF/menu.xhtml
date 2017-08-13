@@ -44,11 +44,13 @@
 
 					<pu:menu widgetVar="me">
 						<p:menuitem id="om_user_registration" value="User Registration" icon="fa fa-fw fa-home" outcome="/userRegistration" />
-						<p:menuitem id="om_dashboard" value="Dashboard" icon="fa fa-fw fa-home" outcome="/dashboard" />
-						<p:menuitem id="om_reviews_by_me" value="Reviews By Me" icon="fa fa-fw fa-home" outcome="/dashboard" />
-						<p:menuitem id="om_reviews_about_me" value="Reviews abouty Me" icon="fa fa-fw fa-home" outcome="/dashboard" />
-						<p:menuitem id="om_search_reviews" value="Search Reviews" icon="fa fa-fw fa-home" outcome="/dashboard" />
-						<p:menuitem id="om_search_professionals" value="Search Professionals" icon="fa fa-fw fa-home" outcome="/searchProfessionals" />
+						<p:menuitem id="om_dashboard" value="Dashboard" icon="fa fa-dashboard" outcome="/dashboard" />
+						<p:menuitem id="om_reviews_new" value="Write a Reviews" icon="fa fa-quote-left" outcome="/writeReview" />
+						<p:menuitem id="om_reviews_by_me" value="Reviews by Me" icon="fa fa-quote-left" outcome="/searchReviewsByMe" />
+						<p:menuitem id="om_reviews_about_me" value="Reviews about Me" icon="fa fa-quote-right" outcome="/searchReviewsAboutMe" />
+						<p:menuitem id="om_search_reviews" value="Search Reviews" icon="fa fa-search" outcome="/searchReviewsProfessionals" />
+						<p:menuitem id="om_search_professionals" value="Search Professionals" icon="fa fa-search" outcome="/searchProfessionals" />
+						<p:menuitem id="om_question_n_answers" value="Question &#38; Answers" icon="fa fa-comments-o" outcome="/searchProfessionals" />
 					</pu:menu>
 				</div>
 			</div>
