@@ -11,7 +11,7 @@
 		</div>
 
 
-		<div class="ui-grid-row">
+		<h:panelGroup styleClass="ui-grid-row" id="grp-user-sing-up">
 
 
 
@@ -27,7 +27,7 @@
 
 				<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info"
 					style="padding: 0px 0px 0px 0px">
-					<p:inputText id="user-username"/>
+					<p:inputText id="user-username" value="#{landingPageBean.accessor.signupUser.username}"/>
 				</div>
 
 			</div>
@@ -107,10 +107,10 @@
 
 				<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info"
 					style="padding: 0px 0px 0px 0px">
-					<p:button outcome="/dashboard" value="Sign up"
+					<p:commandButton outcome="/dashboard" value="Sign up" action="#{landingPageBean.actions.registerUser}" process="grp-user-sing-up" 
 						styleClass="blue-btn raised-btn" />
 				</div>
 			</div>
-		</div>
+		</h:panelGroup>
 	</div>
 </ui:composition>
