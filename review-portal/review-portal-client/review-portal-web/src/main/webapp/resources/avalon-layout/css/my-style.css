@@ -4,3 +4,45 @@
 	color: #777777;
 	font-size: 0.9em;
 }
+
+/* STAR-OF: LANDING-USER-SIGNUP */
+.user-singup-lbl {
+	color: #777777;
+	font-size: 12px;
+}
+
+.user-singup-segment {
+	width: 1200px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 60px 0 75px 0;
+	color: #292b2c;
+}
+
+.user-singup-segment>div .user-singup-content {
+	text-align: left;
+}
+
+.user-singup-content .user-singup-header {
+	height: 47px;
+	position: relative;
+}
+
+.user-singup-segment>div .user-singup-content user-singup-header img {
+	position: absolute;
+	bottom: 0;
+}
+
+.user-singup-segment>div .user-singup-content h3 {
+	font-size: 18px;
+}
+
+.user-singup-segment>div .user-singup-content p {
+	font-size: 14px;
+	margin: 6px 0 0 0;
+}
+
+.user-singup-segment>div .user-singup-content .ui-g-12 {
+	padding: 20px;
+}
+/* END-OF: LANDING-USER-SIGNUP */

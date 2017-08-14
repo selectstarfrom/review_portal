@@ -1,0 +1,116 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="ui-g-12 ui-md-12 ui-lg-12">
+
+		<div class="user-singup-header">
+			<i class="fa fa-user-plus" style="font-size:48px; color: #a83279"/>
+		</div>
+
+
+		<div class="ui-grid-row">
+
+
+
+			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12"
+				style="padding-left: 0px">
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info "
+					style="padding: 0px 0px 0px 0px">
+					<p:outputLabel value="Username:" for="user-username"
+						styleClass="user-singup-lbl" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:inputText id="user-username"/>
+				</div>
+
+			</div>
+
+			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12"
+				style="padding-left: 0px">
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:outputLabel value="Email:" for="user-email"
+						styleClass="user-singup-lbl" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:inputText id="user-email" />
+				</div>
+
+			</div>
+
+			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12"
+				style="padding-left: 0px">
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:outputLabel value="Password:" for="user-password"
+						styleClass="user-singup-lbl" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:password id="user-password" />
+				</div>
+
+			</div>
+
+			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12"
+				style="padding-left: 0px">
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:outputLabel value="Repeat Password:" for="user-rpt-password"
+						styleClass="user-singup-lbl" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:password id="user-rpt-password" />
+				</div>
+			</div>
+
+			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12"
+				style="padding-left: 0px">
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:outputLabel value="Membership Type:" for="user-member-type"
+						styleClass="user-singup-lbl" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:selectOneRadio id="user-member-type">
+						<f:selectItem itemLabel="Review Writer" itemValue="1" />
+						<f:selectItem itemLabel="Professional" itemValue="2" />
+					</p:selectOneRadio>
+				</div>
+			</div>
+
+			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12"
+				style="padding-left: 0px">
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info"
+					style="padding: 0px 0px 0px 0px">
+					<p:button outcome="/dashboard" value="Sign up"
+						styleClass="blue-btn raised-btn" />
+				</div>
+			</div>
+		</div>
+	</div>
+</ui:composition>
