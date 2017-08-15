@@ -4,13 +4,13 @@ package com.reviewportal.model.enums;
  * @author imfroz
  *
  */
-public enum MembershipType {
-    PROFESSIONAL("PROFESSIONAL", "PROFESSIONAL"), REVIEW_WRITER("REVIEW_WRITER", "Review Writer");
+public enum Gender {
+    MALE("MALE", "Male"), FEMALE("FEMALE", "Female");
 
     private String value;
     private String label;
 
-    private MembershipType(String pValue, String pLabel) {
+    private Gender(String pValue, String pLabel) {
         value = pValue;
         label = pLabel;
     }
