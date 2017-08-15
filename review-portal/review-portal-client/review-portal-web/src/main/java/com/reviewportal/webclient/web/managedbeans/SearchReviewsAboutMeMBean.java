@@ -13,7 +13,7 @@ import com.reviewportal.service.dto.ProfessionReviewDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
 
-@ManagedBean(name = "searchReviewProfessionalsMBean")
+@ManagedBean(name = "searchReviewsAboutMeMBean")
 public class SearchReviewsAboutMeMBean extends AbstractMBean {
 
     private static final long serialVersionUID = -2350610396008037477L;
