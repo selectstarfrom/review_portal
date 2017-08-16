@@ -5,7 +5,8 @@ package com.reviewportal.model.enums;
  *
  */
 public enum MembershipType {
-    PROFESSIONAL("PROFESSIONAL", "PROFESSIONAL"), REVIEW_WRITER("REVIEW_WRITER", "Review Writer");
+
+    PROFESSIONAL("PROFESSIONAL", "Professional"), REVIEW_WRITER("REVIEW_WRITER", "Review Writer");
 
     private String value;
     private String label;

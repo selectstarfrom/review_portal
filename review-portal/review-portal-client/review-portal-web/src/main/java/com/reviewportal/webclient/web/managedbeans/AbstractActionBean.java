@@ -1,15 +1,17 @@
 package com.reviewportal.webclient.web.managedbeans;
 
-public abstract class AbstractActionBean {
+public abstract class AbstractActionBean extends AbstractMBean {
 
-	protected AbstractViewBean parent;
+    private static final long serialVersionUID = 1564225107131672288L;
 
-	@SuppressWarnings("unchecked")
-	public <T extends AbstractViewBean> T getParent() {
-		return (T) parent;
-	}
+    protected AbstractViewBean parent;
 
-	public void setParent(AbstractViewBean parent) {
-		this.parent = parent;
-	}
+    @SuppressWarnings("unchecked")
+    public <T extends AbstractViewBean> T getParent() {
+        return (T) parent;
+    }
+
+    public void setParent(AbstractViewBean parent) {
+        this.parent = parent;
+    }
 }

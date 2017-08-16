@@ -8,19 +8,19 @@ import javax.persistence.ManyToOne;
  */
 public class OfficialDTO extends AbstractMemberDTO {
 
-	@ManyToOne
-	private ProfessionDTO profession;
+    private ProfessionDTO profession;
 
-	public OfficialDTO() {
-		super();
-	}
+    public OfficialDTO() {
+        super();
+        profession = new ProfessionDTO();
+    }
 
-	public ProfessionDTO getProfession() {
-		return profession;
-	}
+    public ProfessionDTO getProfession() {
+        return profession;
+    }
 
-	public void setProfession(ProfessionDTO pProfession) {
-		profession = pProfession;
-	}
+    public void setProfession(ProfessionDTO pProfession) {
+        profession = pProfession;
+    }
 
 }

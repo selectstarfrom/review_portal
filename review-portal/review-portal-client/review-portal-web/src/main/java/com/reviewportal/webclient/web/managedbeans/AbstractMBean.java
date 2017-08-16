@@ -8,54 +8,58 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
+import org.slf4j.Logger;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 public abstract class AbstractMBean implements Serializable {
 
-	private static final long serialVersionUID = 8824642391700640480L;
+    private static final long serialVersionUID = 8824642391700640480L;
 
-	public void init() {
+    protected Logger logger = null;
+
+    public void init() {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         ServletContext servletContext = (ServletContext) externalContext.getContext();
         WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext).getAutowireCapableBeanFactory()
                 .autowireBean(this);
     }
-	protected String getLoggedInUsername() {
-		return "syed_firoze";
-	}
 
-	protected String getLoggedInUserFullName() {
-		return "Syed Firoze";
-	}
+    protected String getLoggedInUsername() {
+        return "syed_firoze";
+    }
 
-	protected AbstractMBean getViewScoppedBean(String pViewScopedBean) {
-		Map<String, Object> viewMap = getContext().getViewRoot().getViewMap();
-		Object lObject = viewMap.get(pViewScopedBean);
-		if (lObject != null) {
-			AbstractMBean viewScopedBean = (AbstractMBean) lObject;
-			return viewScopedBean;
-		} else {
-			// throw exception
-			return null;
-		}
-	}
+    protected String getLoggedInUserFullName() {
+        return "Syed Firoze";
+    }
 
-	protected IPropertyAccessor getPropertyAccessorBean(String pViewScopedBean) {
-		String lExpression = "#{" + pViewScopedBean + "}";
-		return getApplication().evaluateExpressionGet(getContext(), lExpression, IPropertyAccessor.class);
-	}
+    protected AbstractMBean getViewScoppedBean(String pViewScopedBean) {
+        Map<String, Object> viewMap = getContext().getViewRoot().getViewMap();
+        Object lObject = viewMap.get(pViewScopedBean);
+        if (lObject != null) {
+            AbstractMBean viewScopedBean = (AbstractMBean) lObject;
+            return viewScopedBean;
+        } else {
+            // throw exception
+            return null;
+        }
+    }
 
-	protected AbstractActionBean getActionBean(String pViewScopedBean) {
-		String lExpression = "#{" + pViewScopedBean + "}";
-		return getApplication().evaluateExpressionGet(getContext(), lExpression, AbstractActionBean.class);
-	}
+    protected IPropertyAccessor getPropertyAccessorBean(String pViewScopedBean) {
+        String lExpression = "#{" + pViewScopedBean + "}";
+        return getApplication().evaluateExpressionGet(getContext(), lExpression, IPropertyAccessor.class);
+    }
 
-	private Application getApplication() {
-		return getContext().getApplication();
-	}
+    protected AbstractActionBean getActionBean(String pViewScopedBean) {
+        String lExpression = "#{" + pViewScopedBean + "}";
+        return getApplication().evaluateExpressionGet(getContext(), lExpression, AbstractActionBean.class);
+    }
 
-	private FacesContext getContext() {
-		return FacesContext.getCurrentInstance();
-	}
+    private Application getApplication() {
+        return getContext().getApplication();
+    }
+
+    private FacesContext getContext() {
+        return FacesContext.getCurrentInstance();
+    }
 
 }

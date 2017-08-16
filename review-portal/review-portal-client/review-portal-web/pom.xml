@@ -16,15 +16,10 @@
 
 	<properties>
 		<java.version>8</java.version>
-
 		<tomcat.version>8.5.16</tomcat.version>
-
 		<jsf-mojarra.version>2.2.11</jsf-mojarra.version>
 		<primefaces.version>6.1</primefaces.version>
-
-		<start-class>com.reviewportal.ReviewHubApplication</start-class>
-
-
+		<start-class>com.reviewportal.webclient.web.app.ReviewHubApplication</start-class>
 	</properties>
 
 
@@ -34,23 +29,28 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Explicitly define tomcat dependencies as provided to exclude them from war-file. But the war-file still stays executable as Spring Boot 
-			Plugin will keep provided dependencies under /WEB-INF/lib-provided -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Jasper is needed for Mojarra -->
+
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
+			<artifactId>tomcat-embed-core</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-logging-juli</artifactId>
+			<version>7.0.56</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -59,11 +59,6 @@
 			<version>${primefaces.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>${jsf-mojarra.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -71,17 +66,45 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>com.review-portal</groupId>
 			<artifactId>review-portal-service-impl</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+
 		<dependency>
-			<groupId>org.jolokia</groupId>
-			<artifactId>jolokia-core</artifactId>
+			<groupId>net.bootsfaces</groupId>
+			<artifactId>bootsfaces</artifactId>
+			<version>0.7.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.2.7</version>
+		</dependency>
+
 	</dependencies>
+
 	<build>
 		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
 		<finalName>review-portal-web</finalName>
@@ -98,10 +121,44 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<!-- Eclipse: If Eclipse configured to refresh the workspace automatically, "mvn spring-boot:run" can fail in some rare cases. -->
-					<addResources>false</addResources>
+					<addResources>true</addResources>
+					<mainClass>${start-class}}</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+
+		<profile>
+			<id>tomcat-localhost</id>
+			<activation>
+				<property>
+					<name>tomcat</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>3.1.0</version>
+						<configuration>
+							<packagingExcludes>WEB-INF/lib/tomcat*.jar</packagingExcludes>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
 </project>

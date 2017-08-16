@@ -21,64 +21,76 @@ import com.reviewportal.model.entities.ReviewWriter;
 //@formatter:on
 public abstract class AbstractMemberDTO extends AbstractDTO {
 
-	protected String name;
+    protected String name;
 
-	protected Date dateofBirth;
+    protected Date dateofBirth;
 
-	protected String mobile;
+    protected String mobile;
 
-	protected AddressDTO address;
+    protected AddressDTO address;
 
-	protected String membershipType;
+    protected String membershipType;
 
-	protected UserDTO user;
+    protected UserDTO user;
 
-	public String getName() {
-		return name;
-	}
+    public AbstractMemberDTO() {
+        super();
+        user = new UserDTO();
+        address = new AddressDTO();
+    }
 
-	public void setName(String pName) {
-		name = pName;
-	}
+    public AbstractMemberDTO(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy) {
+        super(pId, pCreatedDate, pCreatedBy, pModifiedDate, pModifiedBy);
+        user = new UserDTO();
+        address = new AddressDTO();
+    }
 
-	public Date getDateofBirth() {
-		return dateofBirth;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setDateofBirth(Date pDateofBirth) {
-		dateofBirth = pDateofBirth;
-	}
+    public void setName(String pName) {
+        name = pName;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public Date getDateofBirth() {
+        return dateofBirth;
+    }
 
-	public void setMobile(String pMobile) {
-		mobile = pMobile;
-	}
+    public void setDateofBirth(Date pDateofBirth) {
+        dateofBirth = pDateofBirth;
+    }
 
-	public AddressDTO getAddress() {
-		return address= address==null? new AddressDTO(): address;
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public void setAddress(AddressDTO pAddress) {
-		address = pAddress;
-	}
+    public void setMobile(String pMobile) {
+        mobile = pMobile;
+    }
 
-	public String getMembershipType() {
-		return membershipType;
-	}
+    public AddressDTO getAddress() {
+        return address;
+    }
 
-	public void setMembershipType(String pMembershipType) {
-		membershipType = pMembershipType;
-	}
+    public void setAddress(AddressDTO pAddress) {
+        address = pAddress;
+    }
 
-	public UserDTO getUser() {
-		return user;
-	}
+    public String getMembershipType() {
+        return membershipType;
+    }
 
-	public void setUser(UserDTO user) {
-		this.user = user;
-	}
+    public void setMembershipType(String pMembershipType) {
+        membershipType = pMembershipType;
+    }
+
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
 
 }
