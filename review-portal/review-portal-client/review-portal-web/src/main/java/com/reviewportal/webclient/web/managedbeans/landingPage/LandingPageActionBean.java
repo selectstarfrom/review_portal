@@ -37,15 +37,18 @@ public class LandingPageActionBean extends AbstractActionBean {
             lReviewWriterMemberService.save((ReviewWriterDTO) lSignupUser);
         }
 
+        info(getBundle().getString("landing.user-signup.success"), "user-singup-msg");
         logger.info("Created new user: " + lSignupUser.getId());
 
         boolean lSendEmail = sendRegistrationConfirmationEmail(lSignupUser);
-        if (lSendEmail)
+        if (lSendEmail) {
             logger.info("Sent email: " + lSignupUser.getId());
+            info(getBundle().getString("landing.user-signup.email.confirm"), "user-singup-msg-email");
+        }
     }
 
     private boolean sendRegistrationConfirmationEmail(AbstractMemberDTO pSignupUser) {
-        return false;
+        return true;
     }
 
     public void membershipTypeActionListner() {
@@ -68,4 +71,5 @@ public class LandingPageActionBean extends AbstractActionBean {
     public LandingPageViewBean getParent() {
         return super.getParent();
     }
+
 }
