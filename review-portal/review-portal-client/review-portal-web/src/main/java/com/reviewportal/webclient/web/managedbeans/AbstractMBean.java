@@ -71,6 +71,10 @@ public abstract class AbstractMBean implements Serializable {
     protected void info(String pMessage, String pClientId) {
         message(new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", pMessage), pClientId);
     }
+    
+    protected void error(String pMessage, String pClientId) {
+    	message(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", pMessage), pClientId);
+    }
 
     private void message(FacesMessage pMessage, String pClientId) {
         getContext().addMessage(pClientId, pMessage);

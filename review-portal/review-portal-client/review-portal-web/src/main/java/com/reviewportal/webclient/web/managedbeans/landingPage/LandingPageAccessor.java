@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.OfficialDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
+import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractMBean;
@@ -24,6 +25,7 @@ public class LandingPageAccessor extends AbstractMBean implements IPropertyAcces
     private String membershipType;
 
     private AbstractMemberDTO signupUser;
+    private UserDTO signInUser;
 
     private OfficialDTO signupOfficial;
     private ReviewWriterDTO signupReviewWriter;
@@ -89,5 +91,13 @@ public class LandingPageAccessor extends AbstractMBean implements IPropertyAcces
     public void setRepeatPassword(String pRepeatPassword) {
         repeatPassword = pRepeatPassword;
     }
+
+	public UserDTO getSignInUser() {
+		return signInUser;
+	}
+
+	public void setSignInUser(UserDTO signInUser) {
+		this.signInUser = signInUser;
+	}
 
 }

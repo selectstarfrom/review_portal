@@ -18,13 +18,16 @@
 
 <h:outputScript target="head">
 
-  function gotoUserSingup() {
+  function gotoUserSignUp() {
     document.getElementById("a-user-signup").click();
+  }
+  function gotoUserSignIn() {
+    document.getElementById("a-user-signin").click();
   }
 </h:outputScript>
 
 <h:body styleClass="landing-body">
-	<h:form>
+	<h:form id="form-landing-page" prependId="false">
 		<div class="landing-wrapper">
 			<div id="header">
 				<div class="header-top">
@@ -37,13 +40,17 @@
 						<li><a href="#statistics">Events</a></li>
 						<li><a href="#pricing">Pricing</a></li>
 						<li><a href="#video">Video</a></li>
-						<li style="display: none"><a href="#user-sing-up"
-							id="a-user-signup">User-Singup</a></li>
+						<li style="display: none"><a href="#user-sign-up"
+							id="a-user-signup">User-Singup</a>
+						</li>
+						<li style="display: none"><a href="#user-sign-in"
+							id="a-user-signin">User-Singin</a>
+						</li>
 					</ul>
 
 					<div class="sign-up-buttonpane">
-						<p:commandButton value="Login" action="/userLogin" />
-						<p:commandButton value="Register" onclick="gotoUserSingup();" />
+						<p:commandButton value="Login" onclick="gotoUserSignIn();" />
+						<p:commandButton value="Register" onclick="gotoUserSignUp();" />
 					</div>
 				</div>
 
@@ -102,10 +109,11 @@
 				</div>
 			</div>
 
-			<div id="user-sing-up" class="user-singup-segment">
+			<div id="user-div" class="user-singup-segment">
 				<div>
 					<div class="ui-g user-singup-content">
 						<ui:include src="frg-user-sign-up.xhtml" />
+						<ui:include src="frg-user-sign-in.xhtml" />
 					</div>
 				</div>
 			</div>

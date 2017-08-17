@@ -17,59 +17,63 @@ import com.reviewportal.webclient.web.managedbeans.AbstractActionBean;
 @ViewScoped
 public class LandingPageActionBean extends AbstractActionBean {
 
-    private static final long serialVersionUID = -3705215744787931486L;
+	private static final long serialVersionUID = -3705215744787931486L;
 
-    public LandingPageActionBean() {
-        super();
-        logger = LoggerFactory.getLogger(LandingPageActionBean.class);
-    }
+	public LandingPageActionBean() {
+		super();
+		logger = LoggerFactory.getLogger(LandingPageActionBean.class);
+	}
 
-    public void registerUser() {
-        AbstractMemberDTO lSignupUser = getAccessor().getSignupUser();
+	public void signInUser() {
+		error(getBundle().getString("landing.user-signin.error"), "user-singin-msg-error");
+	}
 
-        if (lSignupUser instanceof OfficialDTO) {
-            EmployeeMemberServicesImpl lEmployeeMemberServicesImpl = getAccessor().getEmployeeMemberService();
+	public void registerUser() {
+		AbstractMemberDTO lSignupUser = getAccessor().getSignupUser();
 
-            lEmployeeMemberServicesImpl.save((OfficialDTO) lSignupUser);
-        } else {
-            ReviewWriterMemberServicesImpl lReviewWriterMemberService = getAccessor().getReviewWriterMemberService();
+		if (lSignupUser instanceof OfficialDTO) {
+			EmployeeMemberServicesImpl lEmployeeMemberServicesImpl = getAccessor().getEmployeeMemberService();
 
-            lReviewWriterMemberService.save((ReviewWriterDTO) lSignupUser);
-        }
+			lEmployeeMemberServicesImpl.save((OfficialDTO) lSignupUser);
+		} else {
+			ReviewWriterMemberServicesImpl lReviewWriterMemberService = getAccessor().getReviewWriterMemberService();
 
-        info(getBundle().getString("landing.user-signup.success"), "user-singup-msg");
-        logger.info("Created new user: " + lSignupUser.getId());
+			lReviewWriterMemberService.save((ReviewWriterDTO) lSignupUser);
+		}
 
-        boolean lSendEmail = sendRegistrationConfirmationEmail(lSignupUser);
-        if (lSendEmail) {
-            logger.info("Sent email: " + lSignupUser.getId());
-            info(getBundle().getString("landing.user-signup.email.confirm"), "user-singup-msg-email");
-        }
-    }
+		info(getBundle().getString("landing.user-signup.success"), "user-singup-msg-success");
+		logger.info("Created new user: " + lSignupUser.getId());
 
-    private boolean sendRegistrationConfirmationEmail(AbstractMemberDTO pSignupUser) {
-        return true;
-    }
+		boolean lSendEmail = sendRegistrationConfirmationEmail(lSignupUser);
+		if (lSendEmail) {
+			logger.info("Sent email: " + lSignupUser.getId());
+			info(getBundle().getString("landing.user-signup.email.confirm"), "user-singup-msg-email");
+		}
+	}
 
-    public void membershipTypeActionListner() {
+	private boolean sendRegistrationConfirmationEmail(AbstractMemberDTO pSignupUser) {
+		return true;
+	}
 
-        String lMembershipType = getAccessor().getMembershipType();
+	public void membershipTypeActionListner() {
 
-        if (MembershipType.PROFESSIONAL.name().equals(lMembershipType)) {
-            getAccessor().setSignupUser(getParent().getNewSignupOfficialInstance());
-        } else {
-            getAccessor().setSignupUser(getParent().getNewSignupReviewWriterInstance());
-        }
-    }
+		String lMembershipType = getAccessor().getMembershipType();
 
-    private LandingPageAccessor getAccessor() {
-        return getParent().getAccessor();
-    }
+		if (MembershipType.PROFESSIONAL.name().equals(lMembershipType)) {
+			getAccessor().setSignupUser(getParent().getNewSignupOfficialInstance());
+		} else {
+			getAccessor().setSignupUser(getParent().getNewSignupReviewWriterInstance());
+		}
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public LandingPageViewBean getParent() {
-        return super.getParent();
-    }
+	private LandingPageAccessor getAccessor() {
+		return getParent().getAccessor();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public LandingPageViewBean getParent() {
+		return super.getParent();
+	}
 
 }

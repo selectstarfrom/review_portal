@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.OfficialDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
+import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.webclient.web.managedbeans.AbstractViewBean;
 
 @ManagedBean(name = "landingPageBean")
@@ -22,11 +23,17 @@ public class LandingPageViewBean extends AbstractViewBean {
         super.actions = getActionBean("landingPageActionBean");
         getActions().setParent(this);
         getAccessor().setSignupUser(getNewSignupReviewWriterInstance());
+        getAccessor().setSignInUser(getNewSignInUserInstance());
     }
 
     public AbstractMemberDTO getNewSignupReviewWriterInstance() {
         ReviewWriterDTO lInstance = new ReviewWriterDTO();
         return lInstance;
+    }
+    
+    public UserDTO getNewSignInUserInstance() {
+    	UserDTO lInstance = new UserDTO();
+    	return lInstance;
     }
 
     public AbstractMemberDTO getNewSignupOfficialInstance() {
