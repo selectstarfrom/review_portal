@@ -3,12 +3,14 @@ package com.reviewportal.webclient.web.managedbeans.landingPage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
 
 import com.reviewportal.model.enums.MembershipType;
 import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.OfficialDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
+import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractActionBean;
@@ -24,8 +26,17 @@ public class LandingPageActionBean extends AbstractActionBean {
 		logger = LoggerFactory.getLogger(LandingPageActionBean.class);
 	}
 
-	public void signInUser() {
-		error(getBundle().getString("landing.user-signin.error"), "user-singin-msg-error");
+	public String signInUser() {
+
+		UserDTO lSignInUser = getAccessor().getSignInUser();
+		String lUsername = lSignInUser.getUsername();
+		String lPassword = lSignInUser.getPassword();
+		if (StringUtils.equalsAnyIgnoreCase("demo", lUsername) && StringUtils.equalsAnyIgnoreCase("demo", lPassword)) {
+			return "/dashboard";
+		} else {
+			error(getBundle().getString("landing.user-signin.error"), "user-singin-msg-error");
+			return "";
+		}
 	}
 
 	public void registerUser() {
