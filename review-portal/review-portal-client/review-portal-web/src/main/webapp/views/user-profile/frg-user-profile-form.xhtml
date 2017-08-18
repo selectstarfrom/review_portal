@@ -71,15 +71,23 @@
 							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
 								<p:outputLabel value="DOB:" for="basic-dob" styleClass="text-gray" />
 								<p:calendar id="basic-dob" value="#{userProfilePageViewBean.accessor.member.dateofBirth}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" pattern="dd-MMM-yyyy" maxdate="#{now}"
+									rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}" />
+								<p:inputText id="basic-dob-read" value="#{userProfilePageViewBean.accessor.member.dateofBirth}" readonly="true"
+									rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}">
+									<f:convertDateTime pattern="dd-MMM-yyyy" type="date" />
+								</p:inputText>
 							</div>
 
 							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
 								<p:outputLabel value="Gender:" for="basic-gender" styleClass="text-gray"
 									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-								<p:selectOneRadio id="basic-gender" value="#{userProfilePageViewBean.accessor.member.gender}">
+								<p:selectOneRadio id="basic-gender" value="#{userProfilePageViewBean.accessor.member.gender}"
+									rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}">
 									<f:selectItems value="#{appCache.genders}" />
 								</p:selectOneRadio>
+								<p:inputText id="basic-gender-read" value="#{userProfilePageViewBean.accessor.member.gender}" readonly="true"
+									rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}"/>
 							</div>
 
 							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
@@ -91,9 +99,12 @@
 							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
 
 								<p:outputLabel value="Profession:" for="basic-prof" styleClass="text-gray" />
-								<p:selectOneMenu id="basic-prof" value="#{userProfilePageViewBean.accessor.member.profession.title}">
+								<p:selectOneMenu id="basic-prof" value="#{userProfilePageViewBean.accessor.member.profession.title}"
+									rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}">
 									<f:selectItems value="#{appCache.professions}" />
 								</p:selectOneMenu>
+								<p:inputText id="basic-prof-read" value="#{userProfilePageViewBean.accessor.member.profession.title}" readonly="true"
+									rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
 							</div>
 
 						</h:panelGroup>
