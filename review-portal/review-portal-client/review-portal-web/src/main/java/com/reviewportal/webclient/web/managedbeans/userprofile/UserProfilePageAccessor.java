@@ -8,6 +8,7 @@ import org.primefaces.model.StreamedContent;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.reviewportal.model.enums.MembershipType;
 import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
@@ -91,9 +92,14 @@ public class UserProfilePageAccessor extends AbstractMBean implements IPropertyA
     public boolean isEditProfileEnabled() {
         return editProfileEnabled;
     }
+    
+    public boolean isRenderAutoCompleteProfessions() {
+        return isEditProfileEnabled() && getMember().getMembershipType().equals(MembershipType.PROFESSIONAL.name());
+    }
 
     public void setEditProfileEnabled(boolean pEditProfileEnabled) {
         editProfileEnabled = pEditProfileEnabled;
     }
+    
 
 }

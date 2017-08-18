@@ -3,7 +3,6 @@ package com.reviewportal.webclient.web.managedbeans.landingPage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
 
 import com.reviewportal.model.enums.MembershipType;
@@ -35,7 +34,11 @@ public class LandingPageActionBean extends AbstractActionBean {
         UserDTO lSignInUser = getAccessor().getSignInUser();
         String lUsername = lSignInUser.getUsername();
         String lPassword = lSignInUser.getPassword();
-        if (StringUtils.equalsAnyIgnoreCase("demo", lUsername) && StringUtils.equalsAnyIgnoreCase("demo", lPassword)) {
+
+        UserDTO lByUsername = getAccessor().getUserServices().getByUsername(lUsername);
+
+        if (lByUsername != null && getAccessor().getUserServices().checkPassword(lPassword, lByUsername)) {
+            getSessionCache().setLoggedInUser(lByUsername);
             return "/dashboard";
         } else {
             error(getBundle().getString("landing.user-signin.error"), "user-singin-msg-error");

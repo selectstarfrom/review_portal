@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+	<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12">
+
+		<div class="ui-sm-12 ui-md-12 ui-g-4 ui-lg-2">
+
+			<div class="ui-grid-row">
+				<p:graphicImage value="#{userProfilePageViewBean.accessor.graphicText}" stream="false" />
+			</div>
+			<div class="ui-grid-row">
+				<p:fileUpload mode="simple" skinSimple="true" label="Profile Photo" />
+			</div>
+		</div>
+
+		<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-6">
+
+			<div class="card card-w-title">
+				<h1>A brief description about you</h1>
+				<p:inputTextarea rows="5" />
+			</div>
+		</div>
+		<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-2">
+
+			<p:commandButton value="Cancel Edit" style="margin-bottom:10px; width:100px;"
+				action="#{userProfilePageViewBean.actions.makeNonEditableAction}" update="frg-user-profile" process="@this"
+				rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}" />
+
+			<p:commandButton value="Edit" style="margin-bottom:10px; width:100px;" action="#{userProfilePageViewBean.actions.makeEditableAction}"
+				update="frg-user-profile" process="@this" rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+
+			<p:commandButton value="Save" actionListener="#{userProfilePageViewBean.actions.saveProfileActionListener}" process="@form"
+				style="margin-bottom:10px; width:100px;" styleClass="blue-btn raised-btn" update="frg-user-profile" rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}"/>
+		</div>
+	</div>
+
+</ui:composition>

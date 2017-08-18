@@ -9,199 +9,20 @@
 				<p:messages autoUpdate="false" showDetail="true" id="profile-save-msg-success" closable="true" showSummary="false" />
 			</div>
 			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-4">
-				<div class="card card-w-title">
-					<h1>Basic Detail</h1>
-
-					<div class="ui-grid-row">
-
-						<h:panelGroup styleClass="form-group ui-panelgrid-blank" layout="block">
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Username:" for="user-username" styleClass="text-gray" />
-								<p:inputText id="user-username" value="#{userProfilePageViewBean.accessor.member.user.username}"
-									readonly="true" />
-
-							</div>
-
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Email:" for="user-email" styleClass="text-gray" />
-								<p:inputText id="user-email" value="#{userProfilePageViewBean.accessor.member.user.email}"
-									readonly="true" />
-
-							</div>
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Password:" for="user-password" styleClass="text-gray" />
-								<p:password id="user-password" value="123" readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" match="user-rpt-password" required="true"
-								requiredMessage="#{msg['profile.required.password']}"/>
-							</div>
-
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Repeat Password:" for="user-rpt-password" styleClass="text-gray" />
-								<p:password id="user-rpt-password" value="123" readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Membership Type:" for="user-member-type" styleClass="text-gray" />
-								<p:inputText id="user-member-type" value="#{userProfilePageViewBean.accessor.member.membershipType}" readonly="true" />
-							</div>
-						</h:panelGroup>
-					</div>
-				</div>
+				<ui:include src="frg-user-profile-basic.xhtml" />
 			</div>
 
 			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-4">
-				<div class="card card-w-title">
-
-					<h1>Personal Information</h1>
-
-					<div class="ui-grid-row">
-
-						<h:panelGroup styleClass="form-group ui-panelgrid-blank" layout="block">
-
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Name:" for="basic-name" styleClass="text-gray" />
-								<p:inputText id="basic-name" value="#{userProfilePageViewBean.accessor.member.name}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="DOB:" for="basic-dob" styleClass="text-gray" />
-								<p:calendar id="basic-dob" value="#{userProfilePageViewBean.accessor.member.dateofBirth}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" pattern="dd-MMM-yyyy" maxdate="#{now}"
-									rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}" readonlyInput="true"/>
-								<p:inputText id="basic-dob-read" value="#{userProfilePageViewBean.accessor.member.dateofBirth}" readonly="true"
-									rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}">
-									<f:convertDateTime pattern="dd-MMM-yyyy" type="date" />
-								</p:inputText>
-							</div>
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Gender:" for="basic-gender" styleClass="text-gray"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-								<p:selectOneRadio id="basic-gender" value="#{userProfilePageViewBean.accessor.member.gender}"
-									rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}">
-									<f:selectItems value="#{appCache.genders}" />
-								</p:selectOneRadio>
-								<p:inputText id="basic-gender-read" value="#{userProfilePageViewBean.accessor.member.gender}" readonly="true"
-									rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Mobile:" for="basic-mobile" styleClass="text-gray" />
-								<p:inputText id="basic-mobile" value="#{userProfilePageViewBean.accessor.member.mobile}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-
-								<p:outputLabel value="Profession:" for="basic-prof" styleClass="text-gray" />
-								<!-- 								<p:selectOneMenu id="basic-prof" value="#{userProfilePageViewBean.accessor.member.profession.title}" -->
-								<!-- 									rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}"> -->
-								<!-- 									<f:selectItems value="#{appCache.professions}" /> -->
-								<!-- 								</p:selectOneMenu> -->
-
-
-
-
-								<p:autoComplete id="basic-prof" value="#{userProfilePageViewBean.accessor.member.profession.title}"
-									label="#{userProfilePageViewBean.accessor.member.profession.title}"
-									completeMethod="#{userProfilePageViewBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item}" itemValue="#{item}"
-									forceSelection="true" required="true" requiredMessage="#{msg['profile.required.profession']}" dropdown="true" rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}">
-								</p:autoComplete>
-
-
-
-
-								<p:inputText id="basic-prof-read" value="#{userProfilePageViewBean.accessor.member.profession.title}" readonly="true"
-									rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-						</h:panelGroup>
-					</div>
-				</div>
+				<ui:include src="frg-user-profile-personal.xhtml" />
 			</div>
 
 
 			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-4">
-				<div class="card card-w-title">
-					<h1>Address</h1>
-					<div class="ui-grid-row">
-						<h:panelGroup styleClass="form-group ui-panelgrid-blank" layout="block">
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Adress:" for="adddress-address" styleClass="text-gray" />
-								<p:inputText id="adddress-address" value="#{userProfilePageViewBean.accessor.member.address.address}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="City:" for="adddress-city" styleClass="text-gray" />
-								<p:inputText id="adddress-city" value="#{userProfilePageViewBean.accessor.member.address.city}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="State:" for="adddress-state" styleClass="text-gray" />
-								<p:inputText id="adddress-state" value="#{userProfilePageViewBean.accessor.member.address.state}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Country:" for="adddress-country" styleClass="text-gray" />
-								<p:inputText id="adddress-country" value="#{userProfilePageViewBean.accessor.member.address.country}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-							<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
-								<p:outputLabel value="Zip:" for="adddress-zip" styleClass="text-gray" />
-								<p:inputText id="adddress-zip" value="#{userProfilePageViewBean.accessor.member.address.zip}"
-									readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-							</div>
-
-						</h:panelGroup>
-					</div>
-				</div>
+				<ui:include src="frg-user-profile-address.xhtml" />
 			</div>
 
 			<div class="ui-grid-row">
-				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12">
-
-					<div class="ui-sm-12 ui-md-12 ui-g-4 ui-lg-2">
-
-						<div class="ui-grid-row">
-							<p:graphicImage value="#{userProfilePageViewBean.accessor.graphicText}" stream="false" />
-						</div>
-						<div class="ui-grid-row">
-							<p:fileUpload mode="simple" skinSimple="true" label="Profile Photo" />
-						</div>
-					</div>
-
-					<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-6">
-
-						<div class="card card-w-title">
-							<h1>A brief description about you</h1>
-							<p:inputTextarea rows="5" />
-						</div>
-					</div>
-					<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-2">
-
-						<p:commandButton value="Cancel Edit" style="margin-bottom:10px; width:100px;"
-							action="#{userProfilePageViewBean.actions.makeNonEditableAction}" update="frg-user-profile" process="@this"
-							rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}" />
-
-						<p:commandButton value="Edit" style="margin-bottom:10px; width:100px;" action="#{userProfilePageViewBean.actions.makeEditableAction}"
-							update="frg-user-profile" process="@this" rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
-
-						<p:commandButton value="Save" actionListener="#{userProfilePageViewBean.actions.saveProfileActionListener}" process="@form"
-							style="margin-bottom:10px; width:100px;" styleClass="blue-btn raised-btn" update="frg-user-profile" />
-					</div>
-				</div>
+				<ui:include src="frg-user-profile-other.xhtml" />
 			</div>
 		</div>
 

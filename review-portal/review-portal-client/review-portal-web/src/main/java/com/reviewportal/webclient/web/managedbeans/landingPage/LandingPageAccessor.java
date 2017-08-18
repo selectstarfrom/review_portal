@@ -10,6 +10,7 @@ import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.OfficialDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
+import com.reviewportal.service.impl.services.UserServicesImpl;
 import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractMBean;
@@ -43,6 +44,8 @@ public class LandingPageAccessor extends AbstractMBean implements IPropertyAcces
     protected transient EmployeeMemberServicesImpl employeeMemberService;
     @Autowired
     protected transient ReviewWriterMemberServicesImpl reviewWriterMemberService;
+    @Autowired
+    protected transient UserServicesImpl userServices;
 
     public LandingPageAccessor() {
         super();
@@ -103,5 +106,15 @@ public class LandingPageAccessor extends AbstractMBean implements IPropertyAcces
     public void setSignInUser(UserDTO signInUser) {
         this.signInUser = signInUser;
     }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    public UserServicesImpl getUserServices() {
+        return userServices;
+    }
+    
+    
 
 }

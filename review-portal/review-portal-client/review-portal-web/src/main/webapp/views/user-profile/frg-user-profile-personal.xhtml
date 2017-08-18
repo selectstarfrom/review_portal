@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+	<div class="card card-w-title">
+
+		<h1>Personal Information</h1>
+
+		<div class="ui-grid-row">
+
+			<h:panelGroup styleClass="form-group ui-panelgrid-blank" layout="block">
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Name:" for="basic-name" styleClass="text-gray" />
+					<p:inputText id="basic-name" value="#{userProfilePageViewBean.accessor.member.name}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="DOB:" for="basic-dob" styleClass="text-gray" />
+					<p:calendar id="basic-dob" value="#{userProfilePageViewBean.accessor.member.dateofBirth}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" pattern="dd-MMM-yyyy" maxdate="#{now}"
+						rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}" readonlyInput="true" />
+					<p:inputText id="basic-dob-read" value="#{userProfilePageViewBean.accessor.member.dateofBirth}" readonly="true"
+						rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}">
+						<f:convertDateTime pattern="dd-MMM-yyyy" type="date" />
+					</p:inputText>
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Gender:" for="basic-gender" styleClass="text-gray"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+					<p:selectOneRadio id="basic-gender" value="#{userProfilePageViewBean.accessor.member.gender}"
+						rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}">
+						<f:selectItems value="#{appCache.genders}" />
+					</p:selectOneRadio>
+					<p:inputText id="basic-gender-read" value="#{userProfilePageViewBean.accessor.member.gender}" readonly="true"
+						rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Mobile:" for="basic-mobile" styleClass="text-gray" />
+					<p:inputText id="basic-mobile" value="#{userProfilePageViewBean.accessor.member.mobile}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+				<h:panelGroup layout="block" styleClass="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px"
+					rendered="#{userProfilePageViewBean.accessor.member.membershipType eq 'PROFESSIONAL'}">
+
+					<p:outputLabel value="Profession:" for="basic-prof" styleClass="text-gray" />
+
+					<p:autoComplete id="basic-prof" value="#{userProfilePageViewBean.accessor.member.profession.title}"
+						label="#{userProfilePageViewBean.accessor.member.profession.title}"
+						completeMethod="#{userProfilePageViewBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item}" itemValue="#{item}"
+						forceSelection="true" required="true" requiredMessage="#{msg['profile.required.profession']}" dropdown="true"
+						rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}">
+					</p:autoComplete>
+
+					<p:inputText id="basic-prof-read" value="#{userProfilePageViewBean.accessor.member.profession.title}" readonly="true"
+						rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+
+				</h:panelGroup>
+			</h:panelGroup>
+		</div>
+	</div>
+
+</ui:composition>

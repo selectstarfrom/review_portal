@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+
+	<div class="card card-w-title">
+		<h1>Basic Detail</h1>
+
+		<div class="ui-grid-row">
+
+			<h:panelGroup styleClass="form-group ui-panelgrid-blank" layout="block">
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Username:" for="user-username" styleClass="text-gray" />
+					<p:inputText id="user-username" value="#{userProfilePageViewBean.accessor.member.user.username}" readonly="true" />
+
+				</div>
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Email:" for="user-email" styleClass="text-gray" />
+					<p:inputText id="user-email" value="#{userProfilePageViewBean.accessor.member.user.email}" readonly="true" />
+
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Password:" for="user-password" styleClass="text-gray" />
+					<p:password id="user-password" value="#{userProfilePageViewBean.accessor.member.user.password}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" match="user-rpt-password" required="true"
+						requiredMessage="#{msg['profile.required.password']}" />
+				</div>
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Repeat Password:" for="user-rpt-password" styleClass="text-gray" />
+					<p:password id="user-rpt-password" value="#{userProfilePageViewBean.accessor.member.user.password}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Membership Type:" for="user-member-type" styleClass="text-gray" />
+					<p:inputText id="user-member-type" value="#{userProfilePageViewBean.accessor.member.membershipType}" readonly="true" />
+				</div>
+			</h:panelGroup>
+		</div>
+	</div>
+
+</ui:composition>

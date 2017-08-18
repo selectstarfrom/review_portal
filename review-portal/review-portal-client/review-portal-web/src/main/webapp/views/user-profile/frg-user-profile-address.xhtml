@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+	<div class="card card-w-title">
+		<h1>Address</h1>
+		<div class="ui-grid-row">
+			<h:panelGroup styleClass="form-group ui-panelgrid-blank" layout="block">
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Adress:" for="adddress-address" styleClass="text-gray" />
+					<p:inputText id="adddress-address" value="#{userProfilePageViewBean.accessor.member.address.address}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="City:" for="adddress-city" styleClass="text-gray" />
+					<p:inputText id="adddress-city" value="#{userProfilePageViewBean.accessor.member.address.city}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="State:" for="adddress-state" styleClass="text-gray" />
+					<p:inputText id="adddress-state" value="#{userProfilePageViewBean.accessor.member.address.state}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Country:" for="adddress-country" styleClass="text-gray" />
+					<p:inputText id="adddress-country" value="#{userProfilePageViewBean.accessor.member.address.country}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+					<p:outputLabel value="Zip:" for="adddress-zip" styleClass="text-gray" />
+					<p:inputText id="adddress-zip" value="#{userProfilePageViewBean.accessor.member.address.zip}"
+						readonly="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
+				</div>
+
+			</h:panelGroup>
+		</div>
+	</div>
+
+</ui:composition>

@@ -44,8 +44,20 @@ public class UserServicesImpl extends AbstractCommonServiceImpl<User, UserDTO> i
     @Transactional(readOnly = true)
     public UserDTO getByUsername(String pString) {
         User lUser = getDao().getByUsername(pString);
-        UserDTO lDto = getConverter().getDto(lUser);
-        return lDto;
+        if (lUser != null) {
+            UserDTO lDto = getConverter().getDto(lUser);
+            return lDto;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean checkPassword(String pRawPassword, UserDTO pUser) {
+        String lEncodedPassword = getCommonServices().getEncodedPassword(pRawPassword, pUser.getUsername());
+        if (lEncodedPassword.equals(pUser.getPassword())) {
+            return true;
+        }
+        return false;
     }
 
 }

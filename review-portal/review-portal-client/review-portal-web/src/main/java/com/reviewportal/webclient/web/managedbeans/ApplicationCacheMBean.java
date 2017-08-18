@@ -36,18 +36,11 @@ public class ApplicationCacheMBean extends AbstractBaseBean {
     private List<SelectItem> genders;
     private List<SelectItem> professions;
 
-    private UserDTO loggedInUser;
+    //private UserDTO loggedInUser;
 
     @PostConstruct
     public void init() {
         super.init();
-
-        try {
-            UserDTO lDemoUser = userServices.getByUsername("demo_prof");
-            setLoggedInUser(lDemoUser);
-        } catch (Exception pException) {
-
-        }
 
         membershipTypes = new ArrayList<>();
         for (MembershipType lEnum : MembershipType.values()) {
@@ -63,6 +56,15 @@ public class ApplicationCacheMBean extends AbstractBaseBean {
         professions = new ArrayList<>();
         for (String lValueObject : lAllProfessions) {
             professions.add(new SelectItem(lValueObject, lValueObject));
+        }
+    }
+
+    private void testUser() {
+        try {
+            UserDTO lDemoUser = userServices.getByUsername("demo_prof");
+            //setLoggedInUser(lDemoUser);
+        } catch (Exception pException) {
+
         }
     }
 
@@ -90,12 +92,12 @@ public class ApplicationCacheMBean extends AbstractBaseBean {
         professions = pProfessions;
     }
 
-    public UserDTO getLoggedInUser() {
-        return loggedInUser;
-    }
-
-    public void setLoggedInUser(UserDTO pLoggedInUser) {
-        loggedInUser = pLoggedInUser;
-    }
+//    public UserDTO getLoggedInUser() {
+//        return loggedInUser;
+//    }
+//
+//    public void setLoggedInUser(UserDTO pLoggedInUser) {
+//        loggedInUser = pLoggedInUser;
+//    }
 
 }
