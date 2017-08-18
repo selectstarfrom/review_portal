@@ -2,23 +2,13 @@ package com.reviewportal.service.dto;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.reviewportal.model.entities.ReviewWriter;
+import com.reviewportal.model.enums.Gender;
+import com.reviewportal.model.enums.MembershipType;
 
 /**
  * @author imfroz
  *
  */
-// @formatter:off
-//@JsonIgnoreProperties(ignoreUnknown = true)
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
-//@JsonSubTypes({
-//    @JsonSubTypes.Type(value = OfficialDTO.class, name = "Official"),
-//    @JsonSubTypes.Type(value = ReviewWriter.class, name = "ReviewWriter") }
-//)
-//@formatter:on
 public abstract class AbstractMemberDTO extends AbstractDTO {
 
     protected String name;
@@ -29,7 +19,9 @@ public abstract class AbstractMemberDTO extends AbstractDTO {
 
     protected AddressDTO address;
 
-    protected String membershipType;
+    protected MembershipType membershipType;
+
+    protected Gender gender;
 
     protected UserDTO user;
 
@@ -77,11 +69,11 @@ public abstract class AbstractMemberDTO extends AbstractDTO {
         address = pAddress;
     }
 
-    public String getMembershipType() {
+    public MembershipType getMembershipType() {
         return membershipType;
     }
 
-    public void setMembershipType(String pMembershipType) {
+    public void setMembershipType(MembershipType pMembershipType) {
         membershipType = pMembershipType;
     }
 
@@ -91,6 +83,14 @@ public abstract class AbstractMemberDTO extends AbstractDTO {
 
     public void setUser(UserDTO user) {
         this.user = user;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender pGender) {
+        gender = pGender;
     }
 
 }

@@ -8,15 +8,13 @@ import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.OfficialDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
-import com.reviewportal.webclient.web.core.ViewBase;
 import com.reviewportal.webclient.web.managedbeans.AbstractViewBean;
 
 @ManagedBean(name = "dashboardPageBean")
 @ViewScoped
-@ViewBase(baseName="dashboard")
 public class DashboardPageViewBean extends AbstractViewBean {
 
-    private static final long serialVersionUID = -2350610396008037477L;
+    private static final long serialVersionUID = 2189754068583227672L;
 
     @PostConstruct
     public void init() {
@@ -29,10 +27,10 @@ public class DashboardPageViewBean extends AbstractViewBean {
         ReviewWriterDTO lInstance = new ReviewWriterDTO();
         return lInstance;
     }
-    
+
     public UserDTO getNewSignInUserInstance() {
-    	UserDTO lInstance = new UserDTO();
-    	return lInstance;
+        UserDTO lInstance = new UserDTO();
+        return lInstance;
     }
 
     public AbstractMemberDTO getNewSignupOfficialInstance() {

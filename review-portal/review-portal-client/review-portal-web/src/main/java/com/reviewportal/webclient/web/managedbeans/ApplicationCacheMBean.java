@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.reviewportal.model.enums.Gender;
 import com.reviewportal.model.enums.MembershipType;
+import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.service.impl.services.MasterDataServices;
+import com.reviewportal.service.impl.services.UserServicesImpl;
 
 /**
  * @author imfroz
@@ -20,20 +22,32 @@ import com.reviewportal.service.impl.services.MasterDataServices;
  */
 @ManagedBean(name = "appCache")
 @ApplicationScoped
-public class ApplicationCacheMBean extends AbstractMBean {
+public class ApplicationCacheMBean extends AbstractBaseBean {
 
-    private static final long serialVersionUID = -2350610396008037477L;
+    private static final long serialVersionUID = 8718218500596390833L;
 
     @Autowired
     protected transient MasterDataServices masterDataService;
+
+    @Autowired
+    protected transient UserServicesImpl userServices;
 
     private List<SelectItem> membershipTypes;
     private List<SelectItem> genders;
     private List<SelectItem> professions;
 
+    private UserDTO loggedInUser;
+
     @PostConstruct
     public void init() {
         super.init();
+
+        try {
+            UserDTO lDemoUser = userServices.getByUsername("demo_prof");
+            setLoggedInUser(lDemoUser);
+        } catch (Exception pException) {
+
+        }
 
         membershipTypes = new ArrayList<>();
         for (MembershipType lEnum : MembershipType.values()) {
@@ -74,6 +88,14 @@ public class ApplicationCacheMBean extends AbstractMBean {
 
     public void setProfessions(List<SelectItem> pProfessions) {
         professions = pProfessions;
+    }
+
+    public UserDTO getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public void setLoggedInUser(UserDTO pLoggedInUser) {
+        loggedInUser = pLoggedInUser;
     }
 
 }

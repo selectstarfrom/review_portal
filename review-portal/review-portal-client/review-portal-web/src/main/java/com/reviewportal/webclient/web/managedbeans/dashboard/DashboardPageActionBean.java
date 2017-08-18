@@ -19,72 +19,72 @@ import com.reviewportal.webclient.web.managedbeans.AbstractActionBean;
 @ViewScoped
 public class DashboardPageActionBean extends AbstractActionBean {
 
-	private static final long serialVersionUID = -3705215744787931486L;
+    private static final long serialVersionUID = 5732712445567750944L;
 
-	public DashboardPageActionBean() {
-		super();
-		logger = LoggerFactory.getLogger(DashboardPageActionBean.class);
-	}
+    public DashboardPageActionBean() {
+        super();
+        logger = LoggerFactory.getLogger(DashboardPageActionBean.class);
+    }
 
-	public String signInUser() {
+    public String signInUser() {
 
-		UserDTO lSignInUser = getAccessor().getSignInUser();
-		String lUsername = lSignInUser.getUsername();
-		String lPassword = lSignInUser.getPassword();
-		if (StringUtils.equalsAnyIgnoreCase("demo", lUsername) && StringUtils.equalsAnyIgnoreCase("demo", lPassword)) {
-			return "/dashboard";
-		} else {
-			error(getBundle().getString("landing.user-signin.error"), "user-singin-msg-error");
-			return "";
-		}
-	}
+        UserDTO lSignInUser = getAccessor().getSignInUser();
+        String lUsername = lSignInUser.getUsername();
+        String lPassword = lSignInUser.getPassword();
+        if (StringUtils.equalsAnyIgnoreCase("demo", lUsername) && StringUtils.equalsAnyIgnoreCase("demo", lPassword)) {
+            return "/dashboard";
+        } else {
+            error(getBundle().getString("landing.user-signin.error"), "user-singin-msg-error");
+            return "";
+        }
+    }
 
-	public void registerUser() {
-		AbstractMemberDTO lSignupUser = getAccessor().getSignupUser();
+    public void registerUser() {
+        AbstractMemberDTO lSignupUser = getAccessor().getSignupUser();
 
-		if (lSignupUser instanceof OfficialDTO) {
-			EmployeeMemberServicesImpl lEmployeeMemberServicesImpl = getAccessor().getEmployeeMemberService();
+        if (lSignupUser instanceof OfficialDTO) {
+            EmployeeMemberServicesImpl lEmployeeMemberServicesImpl = getAccessor().getEmployeeMemberService();
 
-			lEmployeeMemberServicesImpl.save((OfficialDTO) lSignupUser);
-		} else {
-			ReviewWriterMemberServicesImpl lReviewWriterMemberService = getAccessor().getReviewWriterMemberService();
+            lEmployeeMemberServicesImpl.save((OfficialDTO) lSignupUser);
+        } else {
+            ReviewWriterMemberServicesImpl lReviewWriterMemberService = getAccessor().getReviewWriterMemberService();
 
-			lReviewWriterMemberService.save((ReviewWriterDTO) lSignupUser);
-		}
+            lReviewWriterMemberService.save((ReviewWriterDTO) lSignupUser);
+        }
 
-		info(getBundle().getString("landing.user-signup.success"), "user-singup-msg-success");
-		logger.info("Created new user: " + lSignupUser.getId());
+        info(getBundle().getString("landing.user-signup.success"), "user-singup-msg-success");
+        logger.info("Created new user: " + lSignupUser.getId());
 
-		boolean lSendEmail = sendRegistrationConfirmationEmail(lSignupUser);
-		if (lSendEmail) {
-			logger.info("Sent email: " + lSignupUser.getId());
-			info(getBundle().getString("landing.user-signup.email.confirm"), "user-singup-msg-email");
-		}
-	}
+        boolean lSendEmail = sendRegistrationConfirmationEmail(lSignupUser);
+        if (lSendEmail) {
+            logger.info("Sent email: " + lSignupUser.getId());
+            info(getBundle().getString("landing.user-signup.email.confirm"), "user-singup-msg-email");
+        }
+    }
 
-	private boolean sendRegistrationConfirmationEmail(AbstractMemberDTO pSignupUser) {
-		return true;
-	}
+    private boolean sendRegistrationConfirmationEmail(AbstractMemberDTO pSignupUser) {
+        return true;
+    }
 
-	public void membershipTypeActionListner() {
+    public void membershipTypeActionListner() {
 
-		String lMembershipType = getAccessor().getMembershipType();
+        String lMembershipType = getAccessor().getMembershipType();
 
-		if (MembershipType.PROFESSIONAL.name().equals(lMembershipType)) {
-			getAccessor().setSignupUser(getParent().getNewSignupOfficialInstance());
-		} else {
-			getAccessor().setSignupUser(getParent().getNewSignupReviewWriterInstance());
-		}
-	}
+        if (MembershipType.PROFESSIONAL.name().equals(lMembershipType)) {
+            getAccessor().setSignupUser(getParent().getNewSignupOfficialInstance());
+        } else {
+            getAccessor().setSignupUser(getParent().getNewSignupReviewWriterInstance());
+        }
+    }
 
-	private DashboardPageAccessor getAccessor() {
-		return getParent().getAccessor();
-	}
+    private DashboardPageAccessor getAccessor() {
+        return getParent().getAccessor();
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public DashboardPageViewBean getParent() {
-		return super.getParent();
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public DashboardPageViewBean getParent() {
+        return super.getParent();
+    }
 
 }

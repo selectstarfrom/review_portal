@@ -19,7 +19,7 @@ import com.reviewportal.webclient.web.managedbeans.IPropertyAccessor;
 @ViewScoped
 public class DashboardPageAccessor extends AbstractMBean implements IPropertyAccessor {
 
-    private static final long serialVersionUID = -1306742840520779183L;
+    private static final long serialVersionUID = 5447408542145300135L;
 
     private String repeatPassword;
     private String membershipType;
@@ -92,12 +92,12 @@ public class DashboardPageAccessor extends AbstractMBean implements IPropertyAcc
         repeatPassword = pRepeatPassword;
     }
 
-	public UserDTO getSignInUser() {
-		return signInUser;
-	}
+    public UserDTO getSignInUser() {
+        return signInUser;
+    }
 
-	public void setSignInUser(UserDTO signInUser) {
-		this.signInUser = signInUser;
-	}
+    public void setSignInUser(UserDTO signInUser) {
+        this.signInUser = signInUser;
+    }
 
 }

@@ -15,11 +15,15 @@ import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesI
 import com.reviewportal.webclient.web.managedbeans.AbstractMBean;
 import com.reviewportal.webclient.web.managedbeans.IPropertyAccessor;
 
+/**
+ * @author imfroz
+ *
+ */
 @ManagedBean(name = "landingPageAccessor")
 @ViewScoped
 public class LandingPageAccessor extends AbstractMBean implements IPropertyAccessor {
 
-    private static final long serialVersionUID = -1306742840520779183L;
+    private static final long serialVersionUID = 6503910852856630182L;
 
     private String repeatPassword;
     private String membershipType;
@@ -92,12 +96,12 @@ public class LandingPageAccessor extends AbstractMBean implements IPropertyAcces
         repeatPassword = pRepeatPassword;
     }
 
-	public UserDTO getSignInUser() {
-		return signInUser;
-	}
+    public UserDTO getSignInUser() {
+        return signInUser;
+    }
 
-	public void setSignInUser(UserDTO signInUser) {
-		this.signInUser = signInUser;
-	}
+    public void setSignInUser(UserDTO signInUser) {
+        this.signInUser = signInUser;
+    }
 
 }

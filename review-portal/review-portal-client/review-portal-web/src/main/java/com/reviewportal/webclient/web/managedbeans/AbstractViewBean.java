@@ -5,39 +5,44 @@ import javax.faces.bean.ManagedBean;
 import com.reviewportal.webclient.web.core.PropertyAccessor;
 import com.reviewportal.webclient.web.core.ViewAction;
 
+/**
+ * @author imfroz
+ *
+ */
 public abstract class AbstractViewBean extends AbstractMBean {
 
-	private static final long serialVersionUID = -7200539642566386438L;
-	protected IPropertyAccessor accessor;
-	protected AbstractActionBean actions;
+    private static final long serialVersionUID = -5572507092613379421L;
 
-	public void init() {
+    protected IPropertyAccessor accessor;
+    protected AbstractActionBean actions;
 
-		PropertyAccessor lPropertyAccessorAnnotation = this.getClass().getAnnotation(PropertyAccessor.class);
-		Class<? extends IPropertyAccessor> lPropertyAccessorClassName = lPropertyAccessorAnnotation.className();
-		ManagedBean lPropertyAccessorBeanAnnotation = lPropertyAccessorClassName.getAnnotation(ManagedBean.class);
-		String lPropertyAccessorBeanName = lPropertyAccessorBeanAnnotation.name();
-		this.accessor = getPropertyAccessorBean(lPropertyAccessorBeanName);
+    public void init() {
 
-		ViewAction lViewActionAnnotation = this.getClass().getAnnotation(ViewAction.class);
-		Class<? extends AbstractActionBean> llViewActionClass = lViewActionAnnotation.className();
-		ManagedBean lViewActionBeanAnnotation = llViewActionClass.getAnnotation(ManagedBean.class);
-		String lViewActionBeanName = lViewActionBeanAnnotation.name();
-		this.actions = getActionBean(lViewActionBeanName);
+        PropertyAccessor lPropertyAccessorAnnotation = this.getClass().getAnnotation(PropertyAccessor.class);
+        Class<? extends IPropertyAccessor> lPropertyAccessorClassName = lPropertyAccessorAnnotation.className();
+        ManagedBean lPropertyAccessorBeanAnnotation = lPropertyAccessorClassName.getAnnotation(ManagedBean.class);
+        String lPropertyAccessorBeanName = lPropertyAccessorBeanAnnotation.name();
+        this.accessor = getPropertyAccessorBean(lPropertyAccessorBeanName);
 
-		getActions().setParent(this);
-	}
+        ViewAction lViewActionAnnotation = this.getClass().getAnnotation(ViewAction.class);
+        Class<? extends AbstractActionBean> llViewActionClass = lViewActionAnnotation.className();
+        ManagedBean lViewActionBeanAnnotation = llViewActionClass.getAnnotation(ManagedBean.class);
+        String lViewActionBeanName = lViewActionBeanAnnotation.name();
+        this.actions = getActionBean(lViewActionBeanName);
 
-	public abstract IPropertyAccessor getAccessor();
+        getActions().setParent(this);
+    }
 
-	public abstract AbstractActionBean getActions();
+    public abstract IPropertyAccessor getAccessor();
 
-	public void setAccessor(IPropertyAccessor accessor) {
-		this.accessor = accessor;
-	}
+    public abstract AbstractActionBean getActions();
 
-	public void setActions(AbstractActionBean actions) {
-		this.actions = actions;
-	}
+    public void setAccessor(IPropertyAccessor accessor) {
+        this.accessor = accessor;
+    }
+
+    public void setActions(AbstractActionBean actions) {
+        this.actions = actions;
+    }
 
 }

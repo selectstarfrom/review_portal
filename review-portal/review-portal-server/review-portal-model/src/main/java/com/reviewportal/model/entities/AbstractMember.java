@@ -3,8 +3,13 @@ package com.reviewportal.model.entities;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+
+import com.reviewportal.model.enums.Gender;
+import com.reviewportal.model.enums.MembershipType;
 
 /**
  * @author imfroz
@@ -13,66 +18,78 @@ import javax.persistence.OneToOne;
 @MappedSuperclass
 public abstract class AbstractMember extends AbstractEntity {
 
-	private String name;
+    private String name;
 
-	private Date dateofBirth;
+    private Date dateofBirth;
 
-	private String mobile;
+    private String mobile;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
-	private String membershipType;
+    @Enumerated(EnumType.STRING)
+    private MembershipType membershipType;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	private User user;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
-	public String getName() {
-		return name;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 
-	public void setName(String pName) {
-		name = pName;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Date getDateofBirth() {
-		return dateofBirth;
-	}
+    public void setName(String pName) {
+        name = pName;
+    }
 
-	public void setDateofBirth(Date pDateofBirth) {
-		dateofBirth = pDateofBirth;
-	}
+    public Date getDateofBirth() {
+        return dateofBirth;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public void setDateofBirth(Date pDateofBirth) {
+        dateofBirth = pDateofBirth;
+    }
 
-	public void setMobile(String pMobile) {
-		mobile = pMobile;
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public Address getAddress() {
-		return address;
-	}
+    public void setMobile(String pMobile) {
+        mobile = pMobile;
+    }
 
-	public void setAddress(Address pAddress) {
-		address = pAddress;
-	}
+    public Address getAddress() {
+        return address;
+    }
 
-	public String getMembershipType() {
-		return membershipType;
-	}
+    public void setAddress(Address pAddress) {
+        address = pAddress;
+    }
 
-	public void setMembershipType(String pMembershipType) {
-		membershipType = pMembershipType;
-	}
+    public MembershipType getMembershipType() {
+        return membershipType;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public void setMembershipType(MembershipType pMembershipType) {
+        membershipType = pMembershipType;
+    }
 
-	public void setUser(User pUser) {
-		user = pUser;
-	}
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User pUser) {
+        user = pUser;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender pGender) {
+        gender = pGender;
+    }
 
 }

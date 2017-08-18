@@ -51,7 +51,7 @@
 
 					<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-8 sign-up-value" style="padding: 0px 0px 0px 0px">
 						<p:password id="user-password" value="#{landingPageBean.accessor.signupUser.user.password}" required="true"
-							requiredMessage="#{msg['user-signup.required.password']}" />
+							requiredMessage="#{msg['user-signup.required.password']}" match="user-rpt-password" />
 					</div>
 
 				</div>

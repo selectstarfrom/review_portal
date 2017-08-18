@@ -10,55 +10,57 @@ import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.webclient.web.core.PropertyAccessor;
 import com.reviewportal.webclient.web.core.ViewAction;
-import com.reviewportal.webclient.web.core.ViewBase;
 import com.reviewportal.webclient.web.managedbeans.AbstractViewBean;
 
+/**
+ * @author imfroz
+ *
+ */
 @ManagedBean(name = "landingPageBean")
 @ViewScoped
-@ViewBase(baseName = "landing")
 @PropertyAccessor(className = LandingPageAccessor.class)
-@ViewAction(className=LandingPageActionBean.class)
+@ViewAction(className = LandingPageActionBean.class)
 public class LandingPageViewBean extends AbstractViewBean {
 
-	private static final long serialVersionUID = -2350610396008037477L;
+    private static final long serialVersionUID = -8553614341511083383L;
 
-	@PostConstruct
-	public void init() {
-		super.init();
-		mock();
-		getAccessor().setSignupUser(getNewSignupReviewWriterInstance());
-		getAccessor().setSignInUser(getNewSignInUserInstance());
-	}
+    @PostConstruct
+    public void init() {
+        super.init();
+        mock();
+        getAccessor().setSignupUser(getNewSignupReviewWriterInstance());
+        getAccessor().setSignInUser(getNewSignInUserInstance());
+    }
 
-	public AbstractMemberDTO getNewSignupReviewWriterInstance() {
-		ReviewWriterDTO lInstance = new ReviewWriterDTO();
-		return lInstance;
-	}
+    public AbstractMemberDTO getNewSignupReviewWriterInstance() {
+        ReviewWriterDTO lInstance = new ReviewWriterDTO();
+        return lInstance;
+    }
 
-	public UserDTO getNewSignInUserInstance() {
-		UserDTO lInstance = new UserDTO();
-		return lInstance;
-	}
+    public UserDTO getNewSignInUserInstance() {
+        UserDTO lInstance = new UserDTO();
+        return lInstance;
+    }
 
-	public AbstractMemberDTO getNewSignupOfficialInstance() {
+    public AbstractMemberDTO getNewSignupOfficialInstance() {
 
-		OfficialDTO lInstance = new OfficialDTO();
+        OfficialDTO lInstance = new OfficialDTO();
 
-		return lInstance;
-	}
+        return lInstance;
+    }
 
-	private void mock() {
+    private void mock() {
 
-	}
+    }
 
-	@Override
-	public LandingPageAccessor getAccessor() {
-		return (LandingPageAccessor) this.accessor;
-	}
+    @Override
+    public LandingPageAccessor getAccessor() {
+        return (LandingPageAccessor) this.accessor;
+    }
 
-	@Override
-	public LandingPageActionBean getActions() {
-		return (LandingPageActionBean) super.actions;
-	}
+    @Override
+    public LandingPageActionBean getActions() {
+        return (LandingPageActionBean) super.actions;
+    }
 
 }

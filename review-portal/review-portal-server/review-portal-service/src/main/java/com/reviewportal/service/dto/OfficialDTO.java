@@ -1,6 +1,6 @@
 package com.reviewportal.service.dto;
 
-import javax.persistence.ManyToOne;
+import com.reviewportal.model.enums.MembershipType;
 
 /**
  * @author imfroz
@@ -12,6 +12,7 @@ public class OfficialDTO extends AbstractMemberDTO {
 
     public OfficialDTO() {
         super();
+        setMembershipType(MembershipType.PROFESSIONAL);
         profession = new ProfessionDTO();
     }
 

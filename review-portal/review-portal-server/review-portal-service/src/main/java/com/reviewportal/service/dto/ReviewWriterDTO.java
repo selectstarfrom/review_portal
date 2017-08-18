@@ -2,62 +2,65 @@ package com.reviewportal.service.dto;
 
 import java.util.Date;
 
+import com.reviewportal.model.enums.MembershipType;
+
 /**
  * @author imfroz
  *
  */
 public class ReviewWriterDTO extends AbstractMemberDTO {
 
-	public ReviewWriterDTO() {
-		super();
-	}
-	
-	public String getName() {
-		return name;
-	}
+    public ReviewWriterDTO() {
+        super();
+        setMembershipType(MembershipType.REVIEW_WRITER);
+    }
 
-	public void setName(String pName) {
-		name = pName;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Date getDateofBirth() {
-		return dateofBirth;
-	}
+    public void setName(String pName) {
+        name = pName;
+    }
 
-	public void setDateofBirth(Date pDateofBirth) {
-		dateofBirth = pDateofBirth;
-	}
+    public Date getDateofBirth() {
+        return dateofBirth;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public void setDateofBirth(Date pDateofBirth) {
+        dateofBirth = pDateofBirth;
+    }
 
-	public void setMobile(String pMobile) {
-		mobile = pMobile;
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public AddressDTO getAddress() {
-		return address;
-	}
+    public void setMobile(String pMobile) {
+        mobile = pMobile;
+    }
 
-	public void setAddress(AddressDTO pAddress) {
-		address = pAddress;
-	}
+    public AddressDTO getAddress() {
+        return address;
+    }
 
-	public String getMembershipType() {
-		return membershipType;
-	}
+    public void setAddress(AddressDTO pAddress) {
+        address = pAddress;
+    }
 
-	public void setMembershipType(String pMembershipType) {
-		membershipType = pMembershipType;
-	}
+    public MembershipType getMembershipType() {
+        return membershipType;
+    }
 
-	public UserDTO getUser() {
-		return user;
-	}
+    public void setMembershipType(MembershipType pMembershipType) {
+        membershipType = pMembershipType;
+    }
 
-	public void setUser(UserDTO user) {
-		this.user = user;
-	}
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
 
 }

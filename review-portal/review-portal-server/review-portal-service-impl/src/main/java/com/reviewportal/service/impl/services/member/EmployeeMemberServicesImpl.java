@@ -7,36 +7,42 @@ import org.springframework.stereotype.Service;
 
 import com.reviewportal.dao.dao.IOfficialsDao;
 import com.reviewportal.model.entities.Official;
+import com.reviewportal.model.enums.UserType;
 import com.reviewportal.service.dto.OfficialDTO;
 import com.reviewportal.service.dto.ProfessionDTO;
 import com.reviewportal.service.dto.UserRoleDTO;
 import com.reviewportal.service.impl.converter.OfficialConverter;
 
+/**
+ * @author imfroz
+ *
+ */
 @Service
 public class EmployeeMemberServicesImpl extends AbstractMemberServicesImpl<Official, OfficialDTO> {
 
-	@Autowired
-	public EmployeeMemberServicesImpl(IOfficialsDao pDao, OfficialConverter pConverter) {
-		super(pDao, pConverter);
-	}
+    @Autowired
+    public EmployeeMemberServicesImpl(IOfficialsDao pDao, OfficialConverter pConverter) {
+        super(pDao, pConverter);
+    }
 
-	public IOfficialsDao getDao() {
-		return (IOfficialsDao) super.getDao();
-	}
+    public IOfficialsDao getDao() {
+        return (IOfficialsDao) super.getDao();
+    }
 
-	public OfficialConverter getConverter() {
-		return (OfficialConverter) super.getConverter();
-	}
+    public OfficialConverter getConverter() {
+        return (OfficialConverter) super.getConverter();
+    }
 
-	@Override
-	protected void doMemberSpecificLogics(OfficialDTO pDto) {
+    @Override
+    protected void doMemberSpecificLogics(OfficialDTO pDto) {
 
-		ProfessionDTO lDto = getCommonServices().getProfessionByName(pDto.getProfession().getTitle());
-		pDto.setProfession(lDto);
-	}
+        ProfessionDTO lDto = getCommonServices().getProfessionByName(pDto.getProfession().getTitle());
+        pDto.setProfession(lDto);
+        pDto.getUser().setUserType(UserType.PROFESSIONAL);
+    }
 
-	protected Set<UserRoleDTO> getDefaultRolesBasedOnMemberType() {
-		return getCommonServices().getDefaultUserRolesForOfficials();
-	}
+    protected Set<UserRoleDTO> getDefaultRolesBasedOnMemberType() {
+        return getCommonServices().getDefaultUserRolesForOfficials();
+    }
 
 }

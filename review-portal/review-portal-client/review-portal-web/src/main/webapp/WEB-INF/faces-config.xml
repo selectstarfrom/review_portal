@@ -37,6 +37,12 @@
 		</navigation-case>
 
 		<navigation-case>
+			<display-name>profile</display-name>
+			<from-outcome>/profile</from-outcome>
+			<to-view-id>/views/user-profile/pg-user-profile.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<display-name>userRegistration</display-name>
 			<from-outcome>/userRegistration</from-outcome>
 			<to-view-id>/views/user-registration/pg-user-registration.xhtml</to-view-id>

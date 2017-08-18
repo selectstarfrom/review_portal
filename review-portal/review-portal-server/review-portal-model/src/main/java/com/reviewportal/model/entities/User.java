@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -14,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.reviewportal.model.enums.UserStatus;
+import com.reviewportal.model.enums.UserType;
 
 /**
  * @author imfroz
@@ -32,11 +35,15 @@ public class User extends AbstractEntity {
 
 	private String password;
 
+	@Enumerated(EnumType.STRING)
 	private UserStatus status;
 
 	private String telephone;
 
 	private String displayPicture;
+	
+	@Enumerated(EnumType.STRING)
+	private UserType userType;
 
 	// @Column(name = "ID")
 	@ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
@@ -49,7 +56,7 @@ public class User extends AbstractEntity {
 	}
 
 	public User(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy, String name,
-			String username, String email, String password, UserStatus status, String telephone, String displayPicture,
+			String username, String email, String password, UserStatus status, String telephone, String displayPicture, UserType pUserType,
 			Set<UserRole> userRoles) {
 		super(pId, pCreatedDate, pCreatedBy, pModifiedDate, pModifiedBy);
 		this.name = name;
@@ -59,6 +66,7 @@ public class User extends AbstractEntity {
 		this.status = status;
 		this.telephone = telephone;
 		this.displayPicture = displayPicture;
+		this.userType = pUserType;
 		this.userRoles = userRoles;
 	}
 
@@ -126,11 +134,19 @@ public class User extends AbstractEntity {
 		this.email = email;
 	}
 
-	@Override
-	public String toString() {
-		return "User [name=" + name + ", username=" + username + ", email=" + email + ", password=" + password
-				+ ", status=" + status + ", telephone=" + telephone + ", displayPicture=" + displayPicture
-				+ ", userRoles=" + userRoles + "]";
-	}
+	public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType pUserType) {
+        userType = pUserType;
+    }
+
+    @Override
+    public String toString() {
+        return "User [name=" + name + ", username=" + username + ", email=" + email + ", password=" + password
+                + ", status=" + status + ", telephone=" + telephone + ", displayPicture=" + displayPicture
+                + ", userType=" + userType + ", userRoles=" + userRoles + "]";
+    }
 
 }
