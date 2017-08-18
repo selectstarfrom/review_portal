@@ -1,12 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.review-portal</groupId>
-	<artifactId>review-portal-web</artifactId>
-	<packaging>war</packaging>
-	<version>1.0.0</version>
-	<name>review-portal-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -14,13 +9,23 @@
 		<version>1.5.6.RELEASE</version>
 	</parent>
 
+
+	<groupId>com.review-portal</groupId>
+	<artifactId>review-portal-web</artifactId>
+	<version>1.0.0</version>
+	<name>review-portal-web Maven Webapp</name>
+
+
 	<properties>
 		<java.version>8</java.version>
 		<tomcat.version>8.5.16</tomcat.version>
 		<jsf-mojarra.version>2.2.11</jsf-mojarra.version>
 		<primefaces.version>6.1</primefaces.version>
 		<start-class>com.reviewportal.webclient.web.app.ReviewHubApplication</start-class>
+		<project.package>jar</project.package>
 	</properties>
+
+	<packaging>${project.package}</packaging>
 
 
 	<dependencies>
@@ -122,7 +127,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<addResources>true</addResources>
-					<mainClass>${start-class}}</mainClass>
+					<mainClass>${start-class}</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -138,7 +143,10 @@
 	<profiles>
 
 		<profile>
-			<id>tomcat-localhost</id>
+			<id>war</id>
+			<properties>
+				<project.package>war</project.package>
+			</properties>
 			<activation>
 				<property>
 					<name>tomcat</name>
@@ -155,6 +163,18 @@
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 						</configuration>
 					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>jar</id>
+			<properties>
+				<project.package>jar</project.package>
+			</properties>
+			<build>
+				<plugins>
+
 				</plugins>
 			</build>
 		</profile>
