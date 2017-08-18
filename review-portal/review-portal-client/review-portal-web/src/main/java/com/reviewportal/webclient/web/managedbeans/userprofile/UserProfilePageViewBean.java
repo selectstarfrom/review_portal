@@ -39,7 +39,7 @@ public class UserProfilePageViewBean extends AbstractViewBean {
     @PostConstruct
     public void init() {
         super.init();
-        mock();
+        //mock();
         UserDTO lLoggedInUser = getLoggedInUser();
 
         Long lLoggedInUserId = lLoggedInUser.getId();
