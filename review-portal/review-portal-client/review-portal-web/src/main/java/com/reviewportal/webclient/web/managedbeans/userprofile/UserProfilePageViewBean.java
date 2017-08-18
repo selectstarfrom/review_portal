@@ -76,19 +76,25 @@ public class UserProfilePageViewBean extends AbstractViewBean {
 
     private void mock() {
 
-        URL lResource = StyleImages.class.getResource("profile_pic.png");
-        File imgPath = new File(lResource.getPath());
-
-        BufferedImage bufferedImage;
         try {
+            
+            ClassLoader classLoader = getClass().getClassLoader();
+            File imgPath = new File(classLoader.getResource("profile_pic.png").getFile());
+            
+            //URL lResource = StyleImages.class.getResource("profile_pic.png");
+            //File imgPath = new File(lResource.getPath());
+
+            BufferedImage bufferedImage;
+
             bufferedImage = ImageIO.read(imgPath);
 
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             ImageIO.write(bufferedImage, "png", os);
             getAccessor().setGraphicText(
                     new DefaultStreamedContent(new ByteArrayInputStream(os.toByteArray()), "image/png"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.error("IMAGE NOT-FOUND: profile_pic.png");
+            System.out.println("------------------IMAGE NOT-FOUND: profile_pic.png");
         }
 
     }

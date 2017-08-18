@@ -184,7 +184,7 @@
 						<p:commandButton value="Edit" style="margin-bottom:10px; width:100px;" action="#{userProfilePageViewBean.actions.makeEditableAction}"
 							update="frg-user-profile" process="@this" rendered="#{!userProfilePageViewBean.accessor.editProfileEnabled}" />
 
-						<p:commandButton value="Save" actionListener="#{userProfilePageViewBean.actions.saveProfileActionListener}" process="@form"
+						<p:commandButton value="Save" actionListener="#{userProfilePageViewBean.actions.saveProfileActionListener}" process="@form" style="margin-bottom:10px; width:100px;"
 							styleClass="blue-btn raised-btn" update="frg-user-profile" />
 					</div>
 				</div>
