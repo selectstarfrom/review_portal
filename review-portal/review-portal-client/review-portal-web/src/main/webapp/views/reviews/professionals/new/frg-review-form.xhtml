@@ -13,10 +13,10 @@
 						<p:messages autoUpdate="false" showDetail="true" id="review-save-msg-success" closable="true" showSummary="false" />
 					</div>
 					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-2 contact-info">
+						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-3 contact-info">
 							<p:outputLabel value="Professional" />
 						</div>
-						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-10 contact-info">
+						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-9 contact-info">
 							<p:autoComplete id="ac-prof" value="#{addReviewPageViewBean.accessor.review.reviewAbout}"
 								label="#{addReviewPageViewBean.accessor.review.reviewAbout.name}" converter="professionalConverter"
 								completeMethod="#{addReviewPageViewBean.actions.autoCompleteProfessionals}" var="item" itemLabel="#{item.name}"
@@ -28,10 +28,10 @@
 					</div>
 
 					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-2 contact-info">
+						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-3 contact-info">
 							<p:outputLabel value="Review" />
 						</div>
-						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-10 contact-info">
+						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-9 contact-info">
 							<p:inputTextarea rows="15" cols="10" value="#{addReviewPageViewBean.accessor.review.review}" required="true"
 								requiredMessage="#{msg['review.professional.required.review.review']}" />
 						</div>

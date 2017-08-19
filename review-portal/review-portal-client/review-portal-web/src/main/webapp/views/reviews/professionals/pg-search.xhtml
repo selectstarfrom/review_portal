@@ -10,10 +10,16 @@
 
 				<h:panelGroup layout="block" class="ui-g-12 dashboard" id="frg-search-review">
 
-					<ui:include src="frg-search.xhtml" />
-
-					<ui:include src="frg-search-result.xhtml" />
-
+					<div class="ui-grid-row">
+						<div class="ui-g-12 ui-md-12 ui-lg-12">
+							<ui:include src="frg-search.xhtml" />
+						</div>
+					</div>
+					<div class="ui-grid-row">
+						<div class="ui-g-12 ui-md-12 ui-lg-12">
+							<ui:include src="frg-search-result.xhtml" />
+						</div>
+					</div>
 				</h:panelGroup>
 			</div>
 		</h:form>
