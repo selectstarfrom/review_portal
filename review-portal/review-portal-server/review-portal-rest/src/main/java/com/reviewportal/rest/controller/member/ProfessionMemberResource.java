@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.reviewportal.model.entities.Professional;
 import com.reviewportal.service.dto.ProfessionalDTO;
-import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
+import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
 
 import io.swagger.annotations.Api;
 
@@ -22,7 +22,7 @@ public class ProfessionMemberResource extends AbstractMemberResource<Professiona
 	}
 
 	@Autowired
-	public ProfessionMemberResource(EmployeeMemberServicesImpl memberServices) {
+	public ProfessionMemberResource(ProfessionalMemberServicesImpl memberServices) {
 		super(memberServices);
 		logger = LoggerFactory.getLogger(ProfessionMemberResource.class);
 	}

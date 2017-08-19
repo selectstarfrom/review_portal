@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
-import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
+import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractActionBean;
 import com.reviewportal.webclient.web.managedbeans.ApplicationCacheMBean;
@@ -55,9 +55,9 @@ public class UserProfileActionBean extends AbstractActionBean {
     public void saveProfileActionListener(ActionEvent pActionEvent) {
         AbstractMemberDTO lMember = getAccessor().getMember();
         if (lMember instanceof ProfessionalDTO) {
-            EmployeeMemberServicesImpl lEmployeeMemberService = getAccessor().getEmployeeMemberService();
+            ProfessionalMemberServicesImpl lProfessionalMemberService = getAccessor().getProfessionalMemberService();
             ProfessionalDTO lProfessional = (ProfessionalDTO) getAccessor().getMember();
-            lEmployeeMemberService.update(lProfessional);
+            lProfessionalMemberService.update(lProfessional);
         } else if (lMember instanceof ReviewWriterDTO) {
             ReviewWriterMemberServicesImpl lReviewWriterMemberService = getAccessor().getReviewWriterMemberService();
             ReviewWriterDTO lReviewWriterDTO = (ReviewWriterDTO) getAccessor().getMember();

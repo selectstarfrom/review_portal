@@ -10,7 +10,7 @@ import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
-import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
+import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractMBean;
 import com.reviewportal.webclient.web.managedbeans.IPropertyAccessor;
@@ -36,7 +36,7 @@ public class DashboardPageAccessor extends AbstractMBean implements IPropertyAcc
     }
 
     @Autowired
-    protected transient EmployeeMemberServicesImpl employeeMemberService;
+    protected transient ProfessionalMemberServicesImpl professionalMemberService;
     @Autowired
     protected transient ReviewWriterMemberServicesImpl reviewWriterMemberService;
 
@@ -76,8 +76,8 @@ public class DashboardPageAccessor extends AbstractMBean implements IPropertyAcc
         signupReviewWriter = pSignupReviewWriter;
     }
 
-    public EmployeeMemberServicesImpl getEmployeeMemberService() {
-        return employeeMemberService;
+    public ProfessionalMemberServicesImpl getProfessionalMemberService() {
+        return professionalMemberService;
     }
 
     public ReviewWriterMemberServicesImpl getReviewWriterMemberService() {

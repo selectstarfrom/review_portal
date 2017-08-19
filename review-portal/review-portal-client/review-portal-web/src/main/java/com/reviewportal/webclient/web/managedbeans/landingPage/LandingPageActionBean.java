@@ -10,7 +10,7 @@ import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
-import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
+import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractActionBean;
 
@@ -50,9 +50,9 @@ public class LandingPageActionBean extends AbstractActionBean {
         AbstractMemberDTO lSignupUser = getAccessor().getSignupUser();
 
         if (lSignupUser instanceof ProfessionalDTO) {
-            EmployeeMemberServicesImpl lEmployeeMemberServicesImpl = getAccessor().getEmployeeMemberService();
+            ProfessionalMemberServicesImpl lProfessionalMemberServicesImpl = getAccessor().getProfessionalMemberService();
 
-            lEmployeeMemberServicesImpl.save((ProfessionalDTO) lSignupUser);
+            lProfessionalMemberServicesImpl.save((ProfessionalDTO) lSignupUser);
         } else {
             ReviewWriterMemberServicesImpl lReviewWriterMemberService = getAccessor().getReviewWriterMemberService();
 

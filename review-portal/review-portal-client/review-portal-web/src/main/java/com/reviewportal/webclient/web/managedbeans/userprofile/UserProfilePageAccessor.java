@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.reviewportal.model.enums.MembershipType;
 import com.reviewportal.service.dto.AbstractMemberDTO;
-import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
+import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractMBean;
 import com.reviewportal.webclient.web.managedbeans.IPropertyAccessor;
@@ -34,7 +34,7 @@ public class UserProfilePageAccessor extends AbstractMBean implements IPropertyA
     private boolean editProfileEnabled;
 
     @Autowired
-    protected transient EmployeeMemberServicesImpl employeeMemberService;
+    protected transient ProfessionalMemberServicesImpl professionalMemberService;
 
     @Autowired
     protected transient ReviewWriterMemberServicesImpl reviewWriterMemberService;
@@ -73,12 +73,12 @@ public class UserProfilePageAccessor extends AbstractMBean implements IPropertyA
         member = pMember;
     }
 
-    public EmployeeMemberServicesImpl getEmployeeMemberService() {
-        return employeeMemberService;
+    public ProfessionalMemberServicesImpl getProfessionalMemberService() {
+        return professionalMemberService;
     }
 
-    public void setEmployeeMemberService(EmployeeMemberServicesImpl pEmployeeMemberService) {
-        employeeMemberService = pEmployeeMemberService;
+    public void setProfessionalMemberService(ProfessionalMemberServicesImpl pProfessionalMemberService) {
+        professionalMemberService = pProfessionalMemberService;
     }
 
     public ReviewWriterMemberServicesImpl getReviewWriterMemberService() {

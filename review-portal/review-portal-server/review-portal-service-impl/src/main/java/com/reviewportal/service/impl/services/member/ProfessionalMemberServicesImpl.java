@@ -20,10 +20,10 @@ import com.reviewportal.service.impl.converter.ProfessionalConverter;
  *
  */
 @Service
-public class EmployeeMemberServicesImpl extends AbstractMemberServicesImpl<Professional, ProfessionalDTO> {
+public class ProfessionalMemberServicesImpl extends AbstractMemberServicesImpl<Professional, ProfessionalDTO> {
 
     @Autowired
-    public EmployeeMemberServicesImpl(IProfessionalDao pDao, ProfessionalConverter pConverter) {
+    public ProfessionalMemberServicesImpl(IProfessionalDao pDao, ProfessionalConverter pConverter) {
         super(pDao, pConverter);
     }
 

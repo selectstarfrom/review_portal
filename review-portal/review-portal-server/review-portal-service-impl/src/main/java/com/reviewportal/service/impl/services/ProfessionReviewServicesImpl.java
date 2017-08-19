@@ -15,7 +15,7 @@ import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ProfessionReviewDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.exceptions.SystemServiceException;
-import com.reviewportal.service.impl.converter.EmployeeConverter;
+import com.reviewportal.service.impl.converter.ProfessionalConverter;
 import com.reviewportal.service.impl.converter.EntityTOConverterFactory;
 import com.reviewportal.service.impl.converter.ProfessionalConverter;
 import com.reviewportal.service.impl.converter.ProfessionReviewConverter;

@@ -283,10 +283,10 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 			return converterFactory.getMapper(AddressConverter.class);
 
 		case "com.reviewportal.service.dto.ProfessionalDTO":
-			return converterFactory.getMapper(EmployeeConverter.class);
+			return converterFactory.getMapper(ProfessionalConverter.class);
 
 		case "com.reviewportal.model.entities.Professional":
-			return converterFactory.getMapper(EmployeeConverter.class);
+			return converterFactory.getMapper(ProfessionalConverter.class);
 
 		case "com.reviewportal.service.dto.ProfessionDTO":
 			return converterFactory.getMapper(ProfessionConverter.class);

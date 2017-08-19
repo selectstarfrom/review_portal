@@ -13,7 +13,7 @@ import com.reviewportal.service.dto.ProfessionReviewDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.impl.services.ProfessionReviewServicesImpl;
 import com.reviewportal.service.impl.services.UserServicesImpl;
-import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
+import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractMBean;
 import com.reviewportal.webclient.web.managedbeans.IPropertyAccessor;
@@ -35,7 +35,7 @@ public class AddReviewPageAccessor extends AbstractMBean implements IPropertyAcc
     private List<ProfessionalDTO> filteredProfessionals;
 
     @Autowired
-    protected transient EmployeeMemberServicesImpl employeeMemberService;
+    protected transient ProfessionalMemberServicesImpl professionalMemberService;
 
     @Autowired
     protected transient ReviewWriterMemberServicesImpl reviewWriterMemberService;
@@ -79,12 +79,12 @@ public class AddReviewPageAccessor extends AbstractMBean implements IPropertyAcc
         filteredProfessionals = pFilteredProfessionals;
     }
 
-    public EmployeeMemberServicesImpl getEmployeeMemberService() {
-        return employeeMemberService;
+    public ProfessionalMemberServicesImpl getProfessionalMemberService() {
+        return professionalMemberService;
     }
 
-    public void setEmployeeMemberService(EmployeeMemberServicesImpl pEmployeeMemberService) {
-        employeeMemberService = pEmployeeMemberService;
+    public void setProfessionalMemberService(ProfessionalMemberServicesImpl pProfessionalMemberService) {
+        professionalMemberService = pProfessionalMemberService;
     }
 
     public ReviewWriterMemberServicesImpl getReviewWriterMemberService() {

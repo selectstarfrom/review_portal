@@ -45,7 +45,7 @@ public class UserProfilePageViewBean extends AbstractViewBean {
         Long lLoggedInUserId = lLoggedInUser.getId();
         String lUserTypeName = lLoggedInUser.getUserType().name();
         if (lUserTypeName.equals(MembershipType.PROFESSIONAL.name())) {
-            ProfessionalDTO lProfessionalDTO = getAccessor().getEmployeeMemberService().getByUserId(lLoggedInUserId);
+            ProfessionalDTO lProfessionalDTO = getAccessor().getProfessionalMemberService().getByUserId(lLoggedInUserId);
             getAccessor().setMember(lProfessionalDTO);
         } else if (lUserTypeName.equals(MembershipType.REVIEW_WRITER.name())) {
             ReviewWriterDTO lReviewWriterDTO = getAccessor().getReviewWriterMemberService()

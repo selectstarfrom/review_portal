@@ -40,7 +40,7 @@ public class AddReviewPageActionBean extends AbstractActionBean {
 
     public List<ProfessionalDTO> autoCompleteProfessionals(String pInput) {
 
-        List<ProfessionalDTO> lProfessionals = getAccessor().getEmployeeMemberService().getByNameLike(pInput);
+        List<ProfessionalDTO> lProfessionals = getAccessor().getProfessionalMemberService().getByNameLike(pInput);
 
         getAccessor().setFilteredProfessionals(lProfessionals);
 
