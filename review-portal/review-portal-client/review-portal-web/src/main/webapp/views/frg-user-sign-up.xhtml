@@ -108,9 +108,13 @@
 						</div>
 
 						<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-8 sign-up-value" style="padding: 0px 0px 0px 0px">
-							<p:selectOneMenu id="user-member-profession" value="#{landingPageBean.accessor.signupUser.profession.title}">
-								<f:selectItems value="#{appCache.professions}" />
-							</p:selectOneMenu>
+
+							<p:autoComplete id="user-member-profession" value="#{landingPageBean.accessor.signupUser.profession.title}"
+								label="#{landingPageBean.accessor.signupUser.profession.title}"
+								completeMethod="#{landingPageBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item}" itemValue="#{item}"
+								forceSelection="true" required="true" requiredMessage="#{msg['profile.required.profession']}" dropdown="true">
+							</p:autoComplete>
+
 						</div>
 					</h:panelGroup>
 				</div>
