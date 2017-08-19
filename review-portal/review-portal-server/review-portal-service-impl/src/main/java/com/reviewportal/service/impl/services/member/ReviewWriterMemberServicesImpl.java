@@ -35,7 +35,7 @@ public class ReviewWriterMemberServicesImpl extends AbstractMemberServicesImpl<R
 
     @Override
     protected void doMemberSpecificLogics(ReviewWriterDTO pDto) {
-        pDto.setMembershipType(MembershipType.PROFESSIONAL);
+        pDto.setMembershipType(MembershipType.REVIEW_WRITER);
         pDto.getUser().setUserType(UserType.REVIEW_WRITER);
     }
 }

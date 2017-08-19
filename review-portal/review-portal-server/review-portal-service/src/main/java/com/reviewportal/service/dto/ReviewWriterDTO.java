@@ -12,7 +12,6 @@ public class ReviewWriterDTO extends AbstractMemberDTO {
 
     public ReviewWriterDTO() {
         super();
-        setMembershipType(MembershipType.REVIEW_WRITER);
     }
 
     public String getName() {
