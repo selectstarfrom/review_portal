@@ -107,10 +107,6 @@ public class LandingPageAccessor extends AbstractMBean implements IPropertyAcces
         this.signInUser = signInUser;
     }
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
     public UserServicesImpl getUserServices() {
         return userServices;
     }

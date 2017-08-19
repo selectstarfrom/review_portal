@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -21,7 +19,6 @@ import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.webclient.web.core.PropertyAccessor;
 import com.reviewportal.webclient.web.core.ViewAction;
-import com.reviewportal.webclient.web.images.StyleImages;
 import com.reviewportal.webclient.web.managedbeans.AbstractViewBean;
 
 /**
@@ -39,13 +36,14 @@ public class UserProfilePageViewBean extends AbstractViewBean {
     @PostConstruct
     public void init() {
         super.init();
-        //mock();
+
         UserDTO lLoggedInUser = getLoggedInUser();
 
         Long lLoggedInUserId = lLoggedInUser.getId();
         String lUserTypeName = lLoggedInUser.getUserType().name();
         if (lUserTypeName.equals(MembershipType.PROFESSIONAL.name())) {
-            ProfessionalDTO lProfessionalDTO = getAccessor().getProfessionalMemberService().getByUserId(lLoggedInUserId);
+            ProfessionalDTO lProfessionalDTO = getAccessor().getProfessionalMemberService()
+                    .getByUserId(lLoggedInUserId);
             getAccessor().setMember(lProfessionalDTO);
         } else if (lUserTypeName.equals(MembershipType.REVIEW_WRITER.name())) {
             ReviewWriterDTO lReviewWriterDTO = getAccessor().getReviewWriterMemberService()
@@ -74,15 +72,15 @@ public class UserProfilePageViewBean extends AbstractViewBean {
         return lInstance;
     }
 
-    private void mock() {
+    private void graphicTemp() {
 
         try {
-            
+
             ClassLoader classLoader = getClass().getClassLoader();
             File imgPath = new File(classLoader.getResource("profile_pic.png").getFile());
-            
-            //URL lResource = StyleImages.class.getResource("profile_pic.png");
-            //File imgPath = new File(lResource.getPath());
+
+            // URL lResource = StyleImages.class.getResource("profile_pic.png");
+            // File imgPath = new File(lResource.getPath());
 
             BufferedImage bufferedImage;
 

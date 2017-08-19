@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.reviewportal.dao.dao.IReviewWriterDao;
 import com.reviewportal.model.entities.ReviewWriter;
+import com.reviewportal.model.enums.MembershipType;
 import com.reviewportal.model.enums.UserType;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserRoleDTO;
@@ -34,6 +35,7 @@ public class ReviewWriterMemberServicesImpl extends AbstractMemberServicesImpl<R
 
     @Override
     protected void doMemberSpecificLogics(ReviewWriterDTO pDto) {
+        pDto.setMembershipType(MembershipType.PROFESSIONAL);
         pDto.getUser().setUserType(UserType.REVIEW_WRITER);
     }
 }

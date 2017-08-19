@@ -1,6 +1,5 @@
 package com.reviewportal.service.dto;
 
-import java.lang.reflect.Field;
 import java.util.Date;
 
 import com.reviewportal.model.enums.Gender;

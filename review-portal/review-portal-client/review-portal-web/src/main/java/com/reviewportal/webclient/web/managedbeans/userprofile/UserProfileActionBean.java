@@ -1,14 +1,9 @@
 package com.reviewportal.webclient.web.managedbeans.userprofile;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
-import javax.faces.model.SelectItem;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.LoggerFactory;
 
 import com.reviewportal.service.dto.AbstractMemberDTO;
@@ -17,7 +12,6 @@ import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
 import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractActionBean;
-import com.reviewportal.webclient.web.managedbeans.ApplicationCacheMBean;
 
 /**
  * @author imfroz

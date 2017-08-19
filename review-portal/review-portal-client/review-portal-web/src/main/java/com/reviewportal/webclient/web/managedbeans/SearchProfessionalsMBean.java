@@ -19,23 +19,7 @@ public class SearchProfessionalsMBean extends AbstractMBean {
 
     @PostConstruct
     public void init() {
-        mock();
-    }
-
-    private void mock() {
-        searchResult = new ArrayList<>();
-        for (int lI = 0; lI < 15; lI++) {
-            ProfessionalDTO lProfessionalDTO = new ProfessionalDTO();
-            lProfessionalDTO.setName("Professional" + "-" + lI);
-            lProfessionalDTO.setProfession(new ProfessionDTO());
-            lProfessionalDTO.getProfession().setTitle("Lawyer");
-            lProfessionalDTO.setUser(new UserDTO());
-            lProfessionalDTO.getUser().setEmail("prof" + "-" + lI + "@gmail.com");
-            lProfessionalDTO.getUser().setDisplayPicture("images/avatar" + lI % 5 + ".png");
-            searchResult.add(lProfessionalDTO);
-
-        }
-
+        
     }
 
     public List<ProfessionalDTO> getSearchResult() {

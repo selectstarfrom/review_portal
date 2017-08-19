@@ -27,7 +27,6 @@ public class LandingPageViewBean extends AbstractViewBean {
     @PostConstruct
     public void init() {
         super.init();
-        mock();
         getAccessor().setSignupUser(getNewSignupReviewWriterInstance());
         getAccessor().setSignInUser(getNewSignInUserInstance());
     }
@@ -47,10 +46,6 @@ public class LandingPageViewBean extends AbstractViewBean {
         ProfessionalDTO lInstance = new ProfessionalDTO();
 
         return lInstance;
-    }
-
-    private void mock() {
-
     }
 
     @Override

@@ -29,7 +29,6 @@ public class SearchReviewPageViewBean extends AbstractViewBean {
     @PostConstruct
     public void init() {
         super.init();
-        mock();
         getAccessor().setSearchCriteria(getNewSearchCriteriaInstance());
     }
 
@@ -46,10 +45,6 @@ public class SearchReviewPageViewBean extends AbstractViewBean {
         lInstance.setReviewBy(lReviewBy);
 
         return lInstance;
-    }
-
-    private void mock() {
-
     }
 
     @Override

@@ -5,8 +5,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.reviewportal.service.dto.AbstractMemberDTO;
-import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ProfessionReviewDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.webclient.web.core.PropertyAccessor;
@@ -28,7 +28,6 @@ public class AddReviewPageViewBean extends AbstractViewBean {
     @PostConstruct
     public void init() {
         super.init();
-        mock();
 
         UserDTO lLoggedInUser = getLoggedInUser();
         ReviewWriterDTO lReviewWriterDTO = getAccessor().getReviewWriterMemberService()
@@ -46,10 +45,6 @@ public class AddReviewPageViewBean extends AbstractViewBean {
     public AbstractMemberDTO getNewSignupProfessionalInstance() {
         ProfessionalDTO lInstance = new ProfessionalDTO();
         return lInstance;
-    }
-
-    private void mock() {
-
     }
 
     @Override

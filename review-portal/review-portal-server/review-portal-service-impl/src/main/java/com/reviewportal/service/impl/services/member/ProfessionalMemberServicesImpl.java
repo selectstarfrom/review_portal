@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.reviewportal.dao.dao.IProfessionalDao;
 import com.reviewportal.model.entities.Professional;
+import com.reviewportal.model.enums.MembershipType;
 import com.reviewportal.model.enums.UserType;
 import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ProfessionDTO;
@@ -38,6 +39,7 @@ public class ProfessionalMemberServicesImpl extends AbstractMemberServicesImpl<P
     @Override
     protected void doMemberSpecificLogics(ProfessionalDTO pDto) {
 
+        pDto.setMembershipType(MembershipType.PROFESSIONAL);
         ProfessionDTO lDto = getCommonServices().getProfessionByName(pDto.getProfession().getTitle());
         pDto.setProfession(lDto);
         pDto.getUser().setUserType(UserType.PROFESSIONAL);

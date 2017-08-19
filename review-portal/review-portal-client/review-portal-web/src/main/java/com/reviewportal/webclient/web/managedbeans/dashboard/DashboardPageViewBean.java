@@ -18,7 +18,6 @@ public class DashboardPageViewBean extends AbstractViewBean {
 
     @PostConstruct
     public void init() {
-        mock();
         getAccessor().setSignupUser(getNewSignupReviewWriterInstance());
         getAccessor().setSignInUser(getNewSignInUserInstance());
     }
@@ -38,10 +37,6 @@ public class DashboardPageViewBean extends AbstractViewBean {
         ProfessionalDTO lInstance = new ProfessionalDTO();
 
         return lInstance;
-    }
-
-    private void mock() {
-
     }
 
     @Override
