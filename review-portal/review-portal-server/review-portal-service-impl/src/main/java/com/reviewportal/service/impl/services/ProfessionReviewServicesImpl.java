@@ -17,6 +17,7 @@ import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.exceptions.SystemServiceException;
 import com.reviewportal.service.impl.converter.EmployeeConverter;
 import com.reviewportal.service.impl.converter.EntityTOConverterFactory;
+import com.reviewportal.service.impl.converter.OfficialConverter;
 import com.reviewportal.service.impl.converter.ProfessionReviewConverter;
 import com.reviewportal.service.impl.converter.ReviewWriterConverter;
 import com.reviewportal.service.services.IProfessionReviewServices;
@@ -53,15 +54,15 @@ public class ProfessionReviewServicesImpl extends AbstractCommonServiceImpl<Prof
 
 		OfficialDTO lReviewAbout = pDto.getReviewAbout();
 		Long lReviewAboutId = lReviewAbout.getId();
-		Official lReviewAboutEntity = getOfficialsDao().getOne(lReviewAboutId);
+		Official lReviewAboutEntity = getOfficialsDao().findOne(lReviewAboutId);
 
-		EmployeeConverter lEmployeeConverter = converterFactory.getMapper(Official.class);
-		lReviewAbout = lEmployeeConverter.getDto(lReviewAboutEntity);
+		OfficialConverter lOfficialConverter = converterFactory.getMapper(OfficialConverter.class);
+		lReviewAbout = lOfficialConverter.getDto(lReviewAboutEntity);
 
 		ReviewWriterDTO lReviewBy = pDto.getReviewBy();
 		Long lReviewById = lReviewBy.getId();
-		ReviewWriter lReviewByEntity = getReviewWriterDao().getOne(lReviewById);
-		ReviewWriterConverter lReviewWriterConverter = converterFactory.getMapper(ReviewWriter.class);
+		ReviewWriter lReviewByEntity = getReviewWriterDao().findOne(lReviewById);
+		ReviewWriterConverter lReviewWriterConverter = converterFactory.getMapper(ReviewWriterConverter.class);
 		lReviewBy = lReviewWriterConverter.getDto(lReviewByEntity);
 
 		pDto.setReviewAbout(lReviewAbout);

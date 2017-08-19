@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
@@ -18,23 +19,23 @@ import com.reviewportal.model.enums.MembershipType;
 @MappedSuperclass
 public abstract class AbstractMember extends AbstractEntity {
 
-    private String name;
+    protected String name;
 
-    private Date dateofBirth;
+    protected Date dateofBirth;
 
-    private String mobile;
+    protected String mobile;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
-
-    @Enumerated(EnumType.STRING)
-    private MembershipType membershipType;
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    protected Address address;
 
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    protected MembershipType membershipType;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private User user;
+    @Enumerated(EnumType.STRING)
+    protected Gender gender;
+
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    protected User user;
 
     public String getName() {
         return name;

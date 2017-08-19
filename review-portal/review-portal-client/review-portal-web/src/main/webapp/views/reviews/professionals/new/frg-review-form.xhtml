@@ -1,49 +1,59 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-	<div class="contacts">
+	<h:panelGroup layout="block" class="ui-g-12 ui-lg-12" id="frg-user-profile">
 
-		<p:panel header="New Review">
+		<p:panel header="New Review" id="frg-add-review">
 
-			<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
+			<h:panelGrid columns="1" style="width:100%">
 
-				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-2 contact-info">
-						<p:outputLabel value="Professional" />
+				<h:panelGroup styleClass="ui-sm-12 ui-md-12 ui-g-6 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
+
+					<div class="ui-g-12 ui-md-12 ui-lg-12">
+						<p:messages autoUpdate="false" showDetail="true" id="review-save-msg-success" closable="true" showSummary="false" />
 					</div>
-					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-10 contact-info">
-						<p:selectOneMenu>
-							<f:selectItem itemLabel="Dr. Alex -- Doctor -- Bamberg" />
-							<f:selectItem itemLabel="Adv. Robert --Lawyer -- Westport"/>
-							<f:selectItem itemLabel="Prof. Srinivas -- Professor  --Chennai" />
-						</p:selectOneMenu>
+					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-2 contact-info">
+							<p:outputLabel value="Professional" />
+						</div>
+						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-10 contact-info">
+							<p:autoComplete id="ac-prof" value="#{addReviewPageViewBean.accessor.review.reviewAbout}"
+								label="#{addReviewPageViewBean.accessor.review.reviewAbout.name}" converter="professionalConverter"
+								completeMethod="#{addReviewPageViewBean.actions.autoCompleteProfessionals}" var="item" itemLabel="#{item.name}"
+								itemValue="#{item.id}" forceSelection="true" requiredMessage="#{msg['review.professional.required.review.reviewabout']}"
+								dropdown="true" required="true">
+								<f:attribute name="filteredProfessionals" value="#{addReviewPageViewBean.accessor.filteredProfessionals}" />
+							</p:autoComplete>
+						</div>
 					</div>
-				</div>
 
-				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-2 contact-info">
-						<p:outputLabel value="Review" />
+					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-2 contact-info">
+							<p:outputLabel value="Review" />
+						</div>
+						<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-10 contact-info">
+							<p:inputTextarea rows="15" cols="10" value="#{addReviewPageViewBean.accessor.review.review}" required="true"
+								requiredMessage="#{msg['review.professional.required.review.review']}" />
+						</div>
 					</div>
-					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-10 contact-info">
-						<p:inputTextarea rows="15" cols="10"></p:inputTextarea>
+
+					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px; float: right">
+
+
+						<p:commandButton value="Reset" style="margin-bottom:10px; width:100px;" update="frg-add-review" process="@this" type="reset" />
+
+						<p:commandButton value="Save" actionListener="#{addReviewPageViewBean.actions.saveReviewAction}" process="@form"
+							style="margin-bottom:10px; width:100px;" styleClass="blue-btn raised-btn" update="frg-add-review" />
+
+
 					</div>
-				</div>
 
-				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px; float:right">
-					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-2 contact-info" style="float:right">
-						<p:commandButton value="Reset" />
+				</h:panelGroup>
 
-					</div>
-					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-2 contact-info" style="float:right">
-						<p:commandButton value="Save" />
-					</div>
-				</div>
-
-			</div>
-
+			</h:panelGrid>
 		</p:panel>
 
-	</div>
+	</h:panelGroup>
 
 
 </ui:composition>

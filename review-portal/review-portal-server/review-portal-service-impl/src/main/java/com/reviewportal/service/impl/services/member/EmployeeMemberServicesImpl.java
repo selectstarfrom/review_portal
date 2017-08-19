@@ -1,7 +1,9 @@
 package com.reviewportal.service.impl.services.member;
 
+import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,12 @@ public class EmployeeMemberServicesImpl extends AbstractMemberServicesImpl<Offic
 
     protected Set<UserRoleDTO> getDefaultRolesBasedOnMemberType() {
         return getCommonServices().getDefaultUserRolesForOfficials();
+    }
+
+    public List<OfficialDTO> getByNameLike(String pInput) {
+        List<Official> lResult = getDao().getByNameLike(StringUtils.lowerCase(pInput));
+        List<OfficialDTO> lDtos = getConverter().getDtos(lResult);
+        return lDtos;
     }
 
 }

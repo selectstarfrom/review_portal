@@ -2,6 +2,7 @@ package com.reviewportal.model.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -13,19 +14,27 @@ import javax.persistence.Table;
 @Table(name = "OFFICIAL")
 public class Official extends AbstractMember {
 
-	@ManyToOne(cascade=CascadeType.MERGE)
-	private Profession profession;
+    @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+    private Profession profession;
 
-	public Official() {
-		super();
-	}
+    public Official() {
+        super();
+    }
 
-	public Profession getProfession() {
-		return profession;
-	}
+    public Official(Long pId, String pName, String pProfessionTitle) {
+        super();
+        this.id = pId;
+        this.name = pName;
+        profession = new Profession();
+        this.profession.setTitle(pProfessionTitle);
+    }
 
-	public void setProfession(Profession pProfession) {
-		profession = pProfession;
-	}
+    public Profession getProfession() {
+        return profession;
+    }
+
+    public void setProfession(Profession pProfession) {
+        profession = pProfession;
+    }
 
 }

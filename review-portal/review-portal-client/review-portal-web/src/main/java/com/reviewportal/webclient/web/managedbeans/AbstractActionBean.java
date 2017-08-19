@@ -21,14 +21,15 @@ public abstract class AbstractActionBean extends AbstractMBean {
     public void setParent(AbstractViewBean parent) {
         this.parent = parent;
     }
-    
+
     public List<String> autoCompleteProfession(String pInput) {
 
         List<SelectItem> lProfessions = getAppCacheBean().getProfessions();
         List<SelectItem> lFiltered = lProfessions.stream()
                 .filter(p -> StringUtils.containsIgnoreCase(p.getLabel(), pInput)).collect(Collectors.toList());
-        
+
         List<String> lMapped = lFiltered.stream().map(sc -> sc.getLabel()).collect(Collectors.toList());
         return lMapped;
     }
+
 }

@@ -20,7 +20,7 @@ public abstract class AbstractMBean extends AbstractBaseBean implements Serializ
     @ManagedProperty("#{sessionCache}")
     private SessionCacheMBean sessionCache;
 
-    protected UserDTO getLoggedInUser() {
+    public UserDTO getLoggedInUser() {
         return sessionCache.getLoggedInUser();
     }
 
