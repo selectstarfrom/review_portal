@@ -1,5 +1,6 @@
 package com.reviewportal.service.dto;
 
+import java.lang.reflect.Field;
 import java.util.Date;
 
 import com.reviewportal.model.enums.Gender;
@@ -91,6 +92,12 @@ public abstract class AbstractMemberDTO extends AbstractDTO {
 
     public void setGender(Gender pGender) {
         gender = pGender;
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractMemberDTO [name=" + name + ", dateofBirth=" + dateofBirth + ", mobile=" + mobile + ", address="
+                + address + ", membershipType=" + membershipType + ", gender=" + gender + ", user=" + user + "]";
     }
 
 }

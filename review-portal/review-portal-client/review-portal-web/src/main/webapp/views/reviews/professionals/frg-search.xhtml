@@ -5,12 +5,26 @@
 	<div class="card card-w-title">
 		<h1>Search Filter</h1>
 		<div class="ui-sm-12 ui-md-12 ui-g-16 ui-lg-6">
-			<p:panelGrid columns="5" layout="grid" styleClass="ui-panelgrid-blank form-group">
-				<p:inputText placeholder="Review By" />
-				<p:inputText placeholder="Review Date" />
-				<p:inputText placeholder="Professional's Name" />
-				<p:inputText placeholder="Profession" />
-				<p:commandButton type="button" value="Search" style="margin-bottom:10px;" />
+			<p:panelGrid columns="6" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+				<p:inputText placeholder="Review By" value="#{searchReviewPageViewBean.accessor.searchCriteria.searchReviewBy}" />
+
+				<p:calendar placeholder="Review Date" value="#{searchReviewPageViewBean.accessor.searchCriteria.searchDate}" pattern="dd-MMM-yyyy"/>
+
+				<p:inputText placeholder="Professional's Name" value="#{searchReviewPageViewBean.accessor.searchCriteria.searchReviewAbout}" />
+
+				<p:autoComplete id="user-member-profession" value="#{searchReviewPageViewBean.accessor.searchCriteria.searchProfession}"
+					label="#{searchReviewPageViewBean.accessor.searchCriteria.searchProfession}"
+					completeMethod="#{searchReviewPageViewBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item}" itemValue="#{item}"
+					forceSelection="true" dropdown="true">
+				</p:autoComplete>
+
+
+				<p:commandButton value="Reset" style="margin-bottom:10px; width:100px;" update="frg-search-review" process="@this" type="reset" />
+
+				<p:commandButton value="Search" actionListener="#{searchReviewPageViewBean.actions.searchveReviewAction}" process="@form"
+					style="margin-bottom:10px; width:100px;" styleClass="blue-btn raised-btn" update="frg-search-review-result" />
+
 			</p:panelGrid>
 		</div>
 	</div>

@@ -72,4 +72,10 @@ public abstract class AbstractDTO {
 		modifiedBy = pModifiedBy;
 	}
 
+    @Override
+    public String toString() {
+        return "AbstractDTO [id=" + id + ", createdDate=" + createdDate + ", createdBy=" + createdBy + ", modifiedDate="
+                + modifiedDate + ", modifiedBy=" + modifiedBy + "]";
+    }
+
 }

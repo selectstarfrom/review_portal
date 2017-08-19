@@ -24,4 +24,9 @@ public class ProfessionalDTO extends AbstractMemberDTO {
         profession = pProfession;
     }
 
+    @Override
+    public String toString() {
+        return "ProfessionalDTO [profession=" + profession + "]";
+    }
+
 }

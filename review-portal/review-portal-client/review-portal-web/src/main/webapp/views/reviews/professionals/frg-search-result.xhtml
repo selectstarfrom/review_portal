@@ -3,9 +3,9 @@
 
 	<div class="contacts">
 
-		<p:panel header="Search Result">
+		<p:panel header="Search Result" id="frg-search-review-result">
 
-			<p:dataList value="#{searchReviewProfessionalsMBean.searchResult}" var="item" type="unordered" itemType="none" paginator="true" rows="7"
+			<p:dataList value="#{searchReviewPageViewBean.accessor.reviews}" var="item" type="unordered" itemType="none" paginator="true" rows="7"
 				styleClass="cars-datalist" paginatorPosition="bottom">
 
 
