@@ -18,7 +18,7 @@ public class ProfessionReview extends AbstractEntity {
 	private ReviewWriter reviewBy;
 
 	@ManyToOne
-	private Official reviewAbout;
+	private Professional reviewAbout;
 
 	private Long views;
 
@@ -38,11 +38,11 @@ public class ProfessionReview extends AbstractEntity {
 		this.reviewBy = reviewBy;
 	}
 
-	public Official getReviewAbout() {
+	public Professional getReviewAbout() {
 		return reviewAbout;
 	}
 
-	public void setReviewAbout(Official reviewAbout) {
+	public void setReviewAbout(Professional reviewAbout) {
 		this.reviewAbout = reviewAbout;
 	}
 

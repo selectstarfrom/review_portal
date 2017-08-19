@@ -7,7 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.slf4j.LoggerFactory;
 
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.impl.services.ProfessionReviewServicesImpl;
 import com.reviewportal.webclient.web.managedbeans.AbstractActionBean;
 
@@ -38,9 +38,9 @@ public class AddReviewPageActionBean extends AbstractActionBean {
 
     }
 
-    public List<OfficialDTO> autoCompleteProfessionals(String pInput) {
+    public List<ProfessionalDTO> autoCompleteProfessionals(String pInput) {
 
-        List<OfficialDTO> lProfessionals = getAccessor().getEmployeeMemberService().getByNameLike(pInput);
+        List<ProfessionalDTO> lProfessionals = getAccessor().getEmployeeMemberService().getByNameLike(pInput);
 
         getAccessor().setFilteredProfessionals(lProfessionals);
 

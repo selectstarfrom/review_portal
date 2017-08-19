@@ -5,19 +5,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.reviewportal.dao.dao.IOfficialsDao;
+import com.reviewportal.dao.dao.IProfessionalDao;
 import com.reviewportal.dao.dao.IProfessionReviewDao;
 import com.reviewportal.dao.dao.IReviewWriterDao;
-import com.reviewportal.model.entities.Official;
+import com.reviewportal.model.entities.Professional;
 import com.reviewportal.model.entities.ProfessionReview;
 import com.reviewportal.model.entities.ReviewWriter;
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ProfessionReviewDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.exceptions.SystemServiceException;
 import com.reviewportal.service.impl.converter.EmployeeConverter;
 import com.reviewportal.service.impl.converter.EntityTOConverterFactory;
-import com.reviewportal.service.impl.converter.OfficialConverter;
+import com.reviewportal.service.impl.converter.ProfessionalConverter;
 import com.reviewportal.service.impl.converter.ProfessionReviewConverter;
 import com.reviewportal.service.impl.converter.ReviewWriterConverter;
 import com.reviewportal.service.services.IProfessionReviewServices;
@@ -33,7 +33,7 @@ public class ProfessionReviewServicesImpl extends AbstractCommonServiceImpl<Prof
 	private IReviewWriterDao reviewWriterDao;
 
 	@Autowired
-	private IOfficialsDao officialsDao;
+	private IProfessionalDao professionalDao;
 
 	@Autowired
 	public ProfessionReviewServicesImpl(IProfessionReviewDao pDao, ProfessionReviewConverter pConverter) {
@@ -52,12 +52,12 @@ public class ProfessionReviewServicesImpl extends AbstractCommonServiceImpl<Prof
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void save(ProfessionReviewDTO pDto) throws SystemServiceException {
 
-		OfficialDTO lReviewAbout = pDto.getReviewAbout();
+		ProfessionalDTO lReviewAbout = pDto.getReviewAbout();
 		Long lReviewAboutId = lReviewAbout.getId();
-		Official lReviewAboutEntity = getOfficialsDao().findOne(lReviewAboutId);
+		Professional lReviewAboutEntity = getProfessionalDao().findOne(lReviewAboutId);
 
-		OfficialConverter lOfficialConverter = converterFactory.getMapper(OfficialConverter.class);
-		lReviewAbout = lOfficialConverter.getDto(lReviewAboutEntity);
+		ProfessionalConverter lProfessionalConverter = converterFactory.getMapper(ProfessionalConverter.class);
+		lReviewAbout = lProfessionalConverter.getDto(lReviewAboutEntity);
 
 		ReviewWriterDTO lReviewBy = pDto.getReviewBy();
 		Long lReviewById = lReviewBy.getId();
@@ -75,8 +75,8 @@ public class ProfessionReviewServicesImpl extends AbstractCommonServiceImpl<Prof
 		return reviewWriterDao;
 	}
 
-	protected IOfficialsDao getOfficialsDao() {
-		return officialsDao;
+	protected IProfessionalDao getProfessionalDao() {
+		return professionalDao;
 	}
 
 }

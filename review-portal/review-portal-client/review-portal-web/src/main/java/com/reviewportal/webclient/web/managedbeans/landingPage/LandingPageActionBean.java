@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.reviewportal.model.enums.MembershipType;
 import com.reviewportal.service.dto.AbstractMemberDTO;
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.service.impl.services.member.EmployeeMemberServicesImpl;
@@ -49,10 +49,10 @@ public class LandingPageActionBean extends AbstractActionBean {
     public void registerUser() {
         AbstractMemberDTO lSignupUser = getAccessor().getSignupUser();
 
-        if (lSignupUser instanceof OfficialDTO) {
+        if (lSignupUser instanceof ProfessionalDTO) {
             EmployeeMemberServicesImpl lEmployeeMemberServicesImpl = getAccessor().getEmployeeMemberService();
 
-            lEmployeeMemberServicesImpl.save((OfficialDTO) lSignupUser);
+            lEmployeeMemberServicesImpl.save((ProfessionalDTO) lSignupUser);
         } else {
             ReviewWriterMemberServicesImpl lReviewWriterMemberService = getAccessor().getReviewWriterMemberService();
 
@@ -78,7 +78,7 @@ public class LandingPageActionBean extends AbstractActionBean {
         String lMembershipType = getAccessor().getMembershipType();
 
         if (MembershipType.PROFESSIONAL.name().equals(lMembershipType)) {
-            getAccessor().setSignupUser(getParent().getNewSignupOfficialInstance());
+            getAccessor().setSignupUser(getParent().getNewSignupProfessionalInstance());
         } else {
             getAccessor().setSignupUser(getParent().getNewSignupReviewWriterInstance());
         }

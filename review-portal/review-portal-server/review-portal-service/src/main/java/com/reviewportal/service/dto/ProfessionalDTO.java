@@ -6,11 +6,11 @@ import com.reviewportal.model.enums.MembershipType;
  * @author imfroz
  *
  */
-public class OfficialDTO extends AbstractMemberDTO {
+public class ProfessionalDTO extends AbstractMemberDTO {
 
     private ProfessionDTO profession;
 
-    public OfficialDTO() {
+    public ProfessionalDTO() {
         super();
         setMembershipType(MembershipType.PROFESSIONAL);
         profession = new ProfessionDTO();

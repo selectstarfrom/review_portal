@@ -7,36 +7,36 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.reviewportal.dao.dao.IOfficialsDao;
-import com.reviewportal.model.entities.Official;
+import com.reviewportal.dao.dao.IProfessionalDao;
+import com.reviewportal.model.entities.Professional;
 import com.reviewportal.model.enums.UserType;
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ProfessionDTO;
 import com.reviewportal.service.dto.UserRoleDTO;
-import com.reviewportal.service.impl.converter.OfficialConverter;
+import com.reviewportal.service.impl.converter.ProfessionalConverter;
 
 /**
  * @author imfroz
  *
  */
 @Service
-public class EmployeeMemberServicesImpl extends AbstractMemberServicesImpl<Official, OfficialDTO> {
+public class EmployeeMemberServicesImpl extends AbstractMemberServicesImpl<Professional, ProfessionalDTO> {
 
     @Autowired
-    public EmployeeMemberServicesImpl(IOfficialsDao pDao, OfficialConverter pConverter) {
+    public EmployeeMemberServicesImpl(IProfessionalDao pDao, ProfessionalConverter pConverter) {
         super(pDao, pConverter);
     }
 
-    public IOfficialsDao getDao() {
-        return (IOfficialsDao) super.getDao();
+    public IProfessionalDao getDao() {
+        return (IProfessionalDao) super.getDao();
     }
 
-    public OfficialConverter getConverter() {
-        return (OfficialConverter) super.getConverter();
+    public ProfessionalConverter getConverter() {
+        return (ProfessionalConverter) super.getConverter();
     }
 
     @Override
-    protected void doMemberSpecificLogics(OfficialDTO pDto) {
+    protected void doMemberSpecificLogics(ProfessionalDTO pDto) {
 
         ProfessionDTO lDto = getCommonServices().getProfessionByName(pDto.getProfession().getTitle());
         pDto.setProfession(lDto);
@@ -44,12 +44,12 @@ public class EmployeeMemberServicesImpl extends AbstractMemberServicesImpl<Offic
     }
 
     protected Set<UserRoleDTO> getDefaultRolesBasedOnMemberType() {
-        return getCommonServices().getDefaultUserRolesForOfficials();
+        return getCommonServices().getDefaultUserRolesForProfessionals();
     }
 
-    public List<OfficialDTO> getByNameLike(String pInput) {
-        List<Official> lResult = getDao().getByNameLike(StringUtils.lowerCase(pInput));
-        List<OfficialDTO> lDtos = getConverter().getDtos(lResult);
+    public List<ProfessionalDTO> getByNameLike(String pInput) {
+        List<Professional> lResult = getDao().getByNameLike(StringUtils.lowerCase(pInput));
+        List<ProfessionalDTO> lDtos = getConverter().getDtos(lResult);
         return lDtos;
     }
 

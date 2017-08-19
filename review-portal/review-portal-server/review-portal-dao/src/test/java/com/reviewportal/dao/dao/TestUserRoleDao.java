@@ -24,7 +24,7 @@ public class TestUserRoleDao {
 	@Autowired
 	private IUserRoleDao repository;
 
-	private static List<String> USER_ROLES = Arrays.asList("ADMIN", "USER_MEMBER_OFFICIAL",
+	private static List<String> USER_ROLES = Arrays.asList("ADMIN", "USER_MEMBER_PROFESSIONAL",
 			"USER_MEMBER_REVIEW_WRITER");
 
 	@Test

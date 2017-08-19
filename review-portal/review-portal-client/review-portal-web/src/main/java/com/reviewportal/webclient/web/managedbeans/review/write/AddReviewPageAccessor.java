@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ProfessionReviewDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.impl.services.ProfessionReviewServicesImpl;
@@ -32,7 +32,7 @@ public class AddReviewPageAccessor extends AbstractMBean implements IPropertyAcc
 
     private ProfessionReviewDTO review;
 
-    private List<OfficialDTO> filteredProfessionals;
+    private List<ProfessionalDTO> filteredProfessionals;
 
     @Autowired
     protected transient EmployeeMemberServicesImpl employeeMemberService;
@@ -71,11 +71,11 @@ public class AddReviewPageAccessor extends AbstractMBean implements IPropertyAcc
         review = pReview;
     }
 
-    public List<OfficialDTO> getFilteredProfessionals() {
+    public List<ProfessionalDTO> getFilteredProfessionals() {
         return filteredProfessionals;
     }
 
-    public void setFilteredProfessionals(List<OfficialDTO> pFilteredProfessionals) {
+    public void setFilteredProfessionals(List<ProfessionalDTO> pFilteredProfessionals) {
         filteredProfessionals = pFilteredProfessionals;
     }
 

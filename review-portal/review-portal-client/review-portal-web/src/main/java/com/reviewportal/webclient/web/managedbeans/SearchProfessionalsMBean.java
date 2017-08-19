@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ProfessionDTO;
 import com.reviewportal.service.dto.UserDTO;
 
@@ -15,7 +15,7 @@ public class SearchProfessionalsMBean extends AbstractMBean {
 
     private static final long serialVersionUID = -2350610396008037477L;
 
-    private List<OfficialDTO> searchResult;
+    private List<ProfessionalDTO> searchResult;
 
     @PostConstruct
     public void init() {
@@ -25,24 +25,24 @@ public class SearchProfessionalsMBean extends AbstractMBean {
     private void mock() {
         searchResult = new ArrayList<>();
         for (int lI = 0; lI < 15; lI++) {
-            OfficialDTO lOfficialDTO = new OfficialDTO();
-            lOfficialDTO.setName("Professional" + "-" + lI);
-            lOfficialDTO.setProfession(new ProfessionDTO());
-            lOfficialDTO.getProfession().setTitle("Lawyer");
-            lOfficialDTO.setUser(new UserDTO());
-            lOfficialDTO.getUser().setEmail("prof" + "-" + lI + "@gmail.com");
-            lOfficialDTO.getUser().setDisplayPicture("images/avatar" + lI % 5 + ".png");
-            searchResult.add(lOfficialDTO);
+            ProfessionalDTO lProfessionalDTO = new ProfessionalDTO();
+            lProfessionalDTO.setName("Professional" + "-" + lI);
+            lProfessionalDTO.setProfession(new ProfessionDTO());
+            lProfessionalDTO.getProfession().setTitle("Lawyer");
+            lProfessionalDTO.setUser(new UserDTO());
+            lProfessionalDTO.getUser().setEmail("prof" + "-" + lI + "@gmail.com");
+            lProfessionalDTO.getUser().setDisplayPicture("images/avatar" + lI % 5 + ".png");
+            searchResult.add(lProfessionalDTO);
 
         }
 
     }
 
-    public List<OfficialDTO> getSearchResult() {
+    public List<ProfessionalDTO> getSearchResult() {
         return searchResult;
     }
 
-    public void setSearchResult(List<OfficialDTO> pSearchResult) {
+    public void setSearchResult(List<ProfessionalDTO> pSearchResult) {
         searchResult = pSearchResult;
     }
 

@@ -7,7 +7,7 @@ import javax.faces.bean.ViewScoped;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.reviewportal.service.dto.AbstractMemberDTO;
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.service.impl.services.UserServicesImpl;
@@ -32,7 +32,7 @@ public class LandingPageAccessor extends AbstractMBean implements IPropertyAcces
     private AbstractMemberDTO signupUser;
     private UserDTO signInUser;
 
-    private OfficialDTO signupOfficial;
+    private ProfessionalDTO signupProfessional;
     private ReviewWriterDTO signupReviewWriter;
 
     @PostConstruct
@@ -67,12 +67,12 @@ public class LandingPageAccessor extends AbstractMBean implements IPropertyAcces
         signupUser = pSignupUser;
     }
 
-    public OfficialDTO getSignupOfficial() {
-        return signupOfficial;
+    public ProfessionalDTO getSignupProfessional() {
+        return signupProfessional;
     }
 
-    public void setSignupOfficial(OfficialDTO pSignupOfficial) {
-        signupOfficial = pSignupOfficial;
+    public void setSignupProfessional(ProfessionalDTO pSignupProfessional) {
+        signupProfessional = pSignupProfessional;
     }
 
     public ReviewWriterDTO getSignupReviewWriter() {

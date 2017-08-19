@@ -5,5 +5,5 @@ package com.reviewportal.model.enums;
  *
  */
 public enum UserRoleEnums {
-	ADMIN, USER_MEMBER_OFFICIAL, USER_MEMBER_REVIEW_WRITER
+	ADMIN, USER_MEMBER_PROFESSIONAL, USER_MEMBER_REVIEW_WRITER
 }

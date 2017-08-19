@@ -16,7 +16,7 @@ import org.primefaces.model.DefaultStreamedContent;
 
 import com.reviewportal.model.enums.MembershipType;
 import com.reviewportal.service.dto.AbstractMemberDTO;
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.webclient.web.core.PropertyAccessor;
@@ -45,8 +45,8 @@ public class UserProfilePageViewBean extends AbstractViewBean {
         Long lLoggedInUserId = lLoggedInUser.getId();
         String lUserTypeName = lLoggedInUser.getUserType().name();
         if (lUserTypeName.equals(MembershipType.PROFESSIONAL.name())) {
-            OfficialDTO lOfficialDTO = getAccessor().getEmployeeMemberService().getByUserId(lLoggedInUserId);
-            getAccessor().setMember(lOfficialDTO);
+            ProfessionalDTO lProfessionalDTO = getAccessor().getEmployeeMemberService().getByUserId(lLoggedInUserId);
+            getAccessor().setMember(lProfessionalDTO);
         } else if (lUserTypeName.equals(MembershipType.REVIEW_WRITER.name())) {
             ReviewWriterDTO lReviewWriterDTO = getAccessor().getReviewWriterMemberService()
                     .getByUserId(lLoggedInUserId);
@@ -67,9 +67,9 @@ public class UserProfilePageViewBean extends AbstractViewBean {
         return lInstance;
     }
 
-    public AbstractMemberDTO getNewSignupOfficialInstance() {
+    public AbstractMemberDTO getNewSignupProfessionalInstance() {
 
-        OfficialDTO lInstance = new OfficialDTO();
+        ProfessionalDTO lInstance = new ProfessionalDTO();
 
         return lInstance;
     }

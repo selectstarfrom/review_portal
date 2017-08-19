@@ -14,7 +14,7 @@ public class ProfessionReviewDTO extends AbstractDTO {
 
 	protected ReviewWriterDTO reviewBy;
 
-	protected OfficialDTO reviewAbout;
+	protected ProfessionalDTO reviewAbout;
 
 	protected Long views;
 
@@ -42,11 +42,11 @@ public class ProfessionReviewDTO extends AbstractDTO {
 		this.reviewBy = reviewBy;
 	}
 
-	public OfficialDTO getReviewAbout() {
+	public ProfessionalDTO getReviewAbout() {
 		return reviewAbout;
 	}
 
-	public void setReviewAbout(OfficialDTO reviewAbout) {
+	public void setReviewAbout(ProfessionalDTO reviewAbout) {
 		this.reviewAbout = reviewAbout;
 	}
 

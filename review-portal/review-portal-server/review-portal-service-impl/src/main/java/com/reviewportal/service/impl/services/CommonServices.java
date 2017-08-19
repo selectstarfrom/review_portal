@@ -34,8 +34,8 @@ public class CommonServices {
 	@Autowired
 	private EntityTOConverterFactory converterFactory;
 
-	public Set<UserRoleDTO> getDefaultUserRolesForOfficials() throws SystemServiceException {
-		return getRoles(UserRoleEnums.USER_MEMBER_OFFICIAL);
+	public Set<UserRoleDTO> getDefaultUserRolesForProfessionals() throws SystemServiceException {
+		return getRoles(UserRoleEnums.USER_MEMBER_PROFESSIONAL);
 	}
 
 	public Set<UserRoleDTO> getDefaultUserRolesForReviewWriters() throws SystemServiceException {

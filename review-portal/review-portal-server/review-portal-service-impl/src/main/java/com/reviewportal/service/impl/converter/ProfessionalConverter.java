@@ -10,7 +10,7 @@ import com.reviewportal.service.dto.ProfessionalDTO;
  *
  */
 @Component
-public class EmployeeConverter extends AbstractEntityTOConverter<Professional, ProfessionalDTO> {
+public class ProfessionalConverter extends AbstractEntityTOConverter<Professional, ProfessionalDTO> {
 
 	@Override
 	ProfessionalDTO getNewDtoInstance() {
@@ -24,7 +24,7 @@ public class EmployeeConverter extends AbstractEntityTOConverter<Professional, P
 
 	@Override
 	public String[] getComplexTypes() {
-		return new String[] { "profession" };
+		return new String[] { "address", "profession", "user" };
 	}
 
 }

@@ -8,7 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 
 @FacesConverter("professionalConverter")
 public class ProfessionalConverter implements Converter {
@@ -20,10 +20,10 @@ public class ProfessionalConverter implements Converter {
     @SuppressWarnings({ "unchecked", "null" })
     public Object getAsObject(FacesContext fc, UIComponent uic, String pValue) {
 
-        List<OfficialDTO> lOfficials = (List<OfficialDTO>) uic.getAttributes().get("filteredProfessionals");
-        if (lOfficials != null && pValue != null && !"".equals(pValue)) {
+        List<ProfessionalDTO> lProfessionals = (List<ProfessionalDTO>) uic.getAttributes().get("filteredProfessionals");
+        if (lProfessionals != null && pValue != null && !"".equals(pValue)) {
             Long lLong = Long.parseLong(pValue);
-            List<OfficialDTO> lCollect = lOfficials.stream().filter(p -> p.getId().equals(lLong))
+            List<ProfessionalDTO> lCollect = lProfessionals.stream().filter(p -> p.getId().equals(lLong))
                     .collect(Collectors.toList());
             if (lCollect != null) {
                 return lCollect.get(0);
@@ -34,8 +34,8 @@ public class ProfessionalConverter implements Converter {
 
     public String getAsString(FacesContext fc, UIComponent uic, Object object) {
         if (object != null) {
-            if (object instanceof OfficialDTO) {
-                return String.valueOf(((OfficialDTO) object).getId());
+            if (object instanceof ProfessionalDTO) {
+                return String.valueOf(((ProfessionalDTO) object).getId());
             }
             return String.valueOf(object);
         } else {

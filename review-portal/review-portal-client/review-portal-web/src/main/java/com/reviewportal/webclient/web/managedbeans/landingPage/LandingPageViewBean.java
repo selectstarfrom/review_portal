@@ -5,7 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.reviewportal.service.dto.AbstractMemberDTO;
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.webclient.web.core.PropertyAccessor;
@@ -42,9 +42,9 @@ public class LandingPageViewBean extends AbstractViewBean {
         return lInstance;
     }
 
-    public AbstractMemberDTO getNewSignupOfficialInstance() {
+    public AbstractMemberDTO getNewSignupProfessionalInstance() {
 
-        OfficialDTO lInstance = new OfficialDTO();
+        ProfessionalDTO lInstance = new ProfessionalDTO();
 
         return lInstance;
     }

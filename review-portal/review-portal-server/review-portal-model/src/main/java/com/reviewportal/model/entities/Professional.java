@@ -11,17 +11,17 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "OFFICIAL")
-public class Official extends AbstractMember {
+@Table(name = "PROFESSIONAL")
+public class Professional extends AbstractMember {
 
     @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
     private Profession profession;
 
-    public Official() {
+    public Professional() {
         super();
     }
 
-    public Official(Long pId, String pName, String pProfessionTitle) {
+    public Professional(Long pId, String pName, String pProfessionTitle) {
         super();
         this.id = pId;
         this.name = pName;

@@ -63,10 +63,10 @@ public class EntityTOConverterFactory {
 		case "com.reviewportal.model.entities.Address":
 			return getMapper(AddressConverter.class);
 
-		case "com.reviewportal.service.dto.OfficialDTO":
+		case "com.reviewportal.service.dto.ProfessionalDTO":
 			return getMapper(EmployeeConverter.class);
 
-		case "com.reviewportal.model.entities.Official":
+		case "com.reviewportal.model.entities.Professional":
 			return getMapper(EmployeeConverter.class);
 
 		case "com.reviewportal.service.dto.ProfessionDTO":

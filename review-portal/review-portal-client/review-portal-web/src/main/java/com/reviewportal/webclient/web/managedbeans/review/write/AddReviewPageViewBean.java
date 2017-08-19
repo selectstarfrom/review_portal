@@ -5,7 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.reviewportal.service.dto.AbstractMemberDTO;
-import com.reviewportal.service.dto.OfficialDTO;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.ProfessionReviewDTO;
 import com.reviewportal.service.dto.ReviewWriterDTO;
 import com.reviewportal.service.dto.UserDTO;
@@ -39,12 +39,12 @@ public class AddReviewPageViewBean extends AbstractViewBean {
 
     public ProfessionReviewDTO getNewReviewInstance() {
         ProfessionReviewDTO lInstance = new ProfessionReviewDTO();
-        lInstance.setReviewAbout(new OfficialDTO());
+        lInstance.setReviewAbout(new ProfessionalDTO());
         return lInstance;
     }
 
-    public AbstractMemberDTO getNewSignupOfficialInstance() {
-        OfficialDTO lInstance = new OfficialDTO();
+    public AbstractMemberDTO getNewSignupProfessionalInstance() {
+        ProfessionalDTO lInstance = new ProfessionalDTO();
         return lInstance;
     }
 
