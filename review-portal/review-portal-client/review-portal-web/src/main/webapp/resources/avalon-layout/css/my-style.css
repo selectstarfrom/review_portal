@@ -1,5 +1,39 @@
 @charset "UTF-8";
 
+.txt_pink{
+	color: #e91e63 !important;
+}
+.txt_red{
+	color: #d32f2f !important;
+}
+.txt_purple{
+	color: #7b1fa2 !important;
+}
+.txt_purple_deep{
+	color: #651ff !important;
+}
+.txt_indigo{
+	color: #304ffe !important;
+}
+.txt_blue{
+	color: #1e88e5 !important;
+}
+.txt_cyan{
+	color: #009688 !important;
+}
+.txt_yellow{
+	color: #ffd600 !important;
+}
+.txt_green{
+	color: #388e3c !important;
+}
+.txt_cyan{
+	color: #009688 !important;
+}
+.txt_cyan{
+	color: #009688 !important;
+}
+
 .img-circle {
     border-radius: 50%;
 }

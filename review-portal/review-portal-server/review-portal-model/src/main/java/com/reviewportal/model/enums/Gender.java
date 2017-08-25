@@ -23,4 +23,8 @@ public enum Gender {
         return label;
     }
 
+    boolean equals(String pValue) {
+        return getValue().equals(pValue);
+    }
+
 }

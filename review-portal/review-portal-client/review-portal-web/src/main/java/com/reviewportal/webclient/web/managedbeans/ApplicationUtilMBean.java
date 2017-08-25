@@ -43,7 +43,9 @@ public class ApplicationUtilMBean extends AbstractBaseBean {
             String lUserId = context.getExternalContext().getRequestParameterMap().get("id");
             if (lUserId != null && !lUserId.isEmpty()) {
                 byte[] lBytes = userServices.getDisplayPicture(Long.valueOf(lUserId));
-                return new DefaultStreamedContent(new ByteArrayInputStream(lBytes));
+                if (lBytes != null) {
+                    return new DefaultStreamedContent(new ByteArrayInputStream(lBytes));
+                }
             }
             byte[] lBytes = userServices.getDisplayPicture(-1L);
             InputStream lResourceAsStream = StyleImages.class.getResourceAsStream("profile_pic.png");

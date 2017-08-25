@@ -2,17 +2,61 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 
-	<div class="card card-w-title">
-		<h1>Search Filter</h1>
-		<div class="ui-sm-12 ui-md-12 ui-g-16 ui-lg-6">
-			<p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank form-group">
-				<p:inputText placeholder="Name" />
-				<p:inputText placeholder="Profession" />
-				<p:inputText placeholder="City" />
-				<p:commandButton type="button" value="Search" style="margin-bottom:10px;" />
-			</p:panelGrid>
+	<p:fieldset id="frg-search-filter" legend="Filter">
+
+		<div class="ui-grid-row">
+
+			<h:panelGroup styleClass="form-group ui-panelgrid-blank" layout="block">
+
+				<div class="ui-sm-12 ui-md-12 ui-g-4 ui-lg-2" style="padding-left: 0px">
+					<p:outputLabel value="Name" for="professionals-search-name" styleClass="text-gray" />
+					<p:inputText id="professionals-search-name" placeholder="Name"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchName}" />
+
+				</div>
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-4 ui-lg-2" style="padding-left: 0px">
+					<p:outputLabel value="Profession" for="professionals-search-prof-title" styleClass="text-gray" />
+					<p:autoComplete id="professionals-search-prof-title"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchProfessionTitle}"
+						label="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchProfessionTitle}"
+						completeMethod="#{searchProfessionalsPageViewBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item}" itemValue="#{item}"
+						forceSelection="true" dropdown="true">
+					</p:autoComplete>
+
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-4 ui-lg-2" style="padding-left: 0px">
+					<p:outputLabel value="City" for="professionals-search-city" styleClass="text-gray" />
+					<p:inputText id="professionals-search-city" placeholder="City"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchCity}" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-4 ui-lg-2" style="padding-left: 0px">
+					<p:outputLabel value="City" for="professionals-search-state" styleClass="text-gray" />
+					<p:inputText id="professionals-search-state" placeholder="State"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchState}" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-4 ui-lg-2" style="padding-left: 0px">
+					<p:outputLabel value="City" for="professionals-search-zip" styleClass="text-gray" />
+					<p:inputText id="professionals-search-zip" placeholder="Zip"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchZip}" />
+				</div>
+
+				<div class="ui-sm-12 ui-md-12 ui-g-4 ui-lg-3" style="padding-left: 0px; margin-top: 15px;">
+
+					<p:commandButton value="Search" actionListener="#{searchProfessionalsPageViewBean.actions.searchAction}" process="@form"
+						style="margin-bottom:10px; width:100px;" styleClass="blue-btn raised-btn" update="frg-search-result" />
+
+					<p:commandButton value="Reset" style="width:100px;" update="frg-search-filter" process="@this" type="reset" />
+				</div>
+			</h:panelGroup>
 		</div>
-	</div>
+	</p:fieldset>
 
 
 </ui:composition>
+
+
