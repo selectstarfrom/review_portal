@@ -23,7 +23,7 @@ public class TestUserDao {
 	@Test
 	public void testSave() throws Exception {
 		User lUser = new User();
-		lUser.setDisplayPicture("test-photo");
+		lUser.setDisplayPicture("test-photo".getBytes());
 		this.repository.save(lUser);
 	}
 
