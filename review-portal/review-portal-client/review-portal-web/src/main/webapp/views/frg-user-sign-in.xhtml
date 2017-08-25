@@ -34,7 +34,8 @@
 					</div>
 
 					<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-8 contact-info" style="padding: 0px 0px 0px 0px">
-						<p:password id="sign-in-password" value="#{landingPageBean.accessor.signInUser.password}" />
+						<p:password id="sign-in-password" value="#{landingPageBean.accessor.signInUser.password}"
+							onkeypress="if (event.keyCode == 13) {do_sign_in(); return false; }" />						
 					</div>
 
 				</div>
@@ -43,6 +44,8 @@
 					<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-3 user-sign-in-lbl" style="padding: 0px 0px 0px 0px">
 						<p:commandButton outcome="/dashboard" value="Sign In" action="#{landingPageBean.actions.signInUser}" process="grp-user-sign-in"
 							styleClass="blue-btn raised-btn" update="user-singin-msg-error" />
+						<p:remoteCommand name="do_sign_in" action="#{landingPageBean.actions.signInUser}" update="user-singin-msg-error"
+							process="grp-user-sign-in" />
 					</div>
 				</div>
 			</h:panelGroup>
