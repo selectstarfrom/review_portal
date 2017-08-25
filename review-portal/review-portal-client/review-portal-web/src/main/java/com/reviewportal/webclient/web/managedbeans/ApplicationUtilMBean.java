@@ -47,7 +47,7 @@ public class ApplicationUtilMBean extends AbstractBaseBean {
                     return new DefaultStreamedContent(new ByteArrayInputStream(lBytes));
                 }
             }
-            byte[] lBytes = userServices.getDisplayPicture(-1L);
+            //byte[] lBytes = userServices.getDisplayPicture(-1L);
             InputStream lResourceAsStream = StyleImages.class.getResourceAsStream("profile_pic.png");
             return new DefaultStreamedContent(lResourceAsStream);
         }
