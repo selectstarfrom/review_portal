@@ -2,6 +2,7 @@ package com.reviewportal.webclient.web.managedbeans;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
@@ -13,6 +14,7 @@ import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.reviewportal.service.impl.services.UserServicesImpl;
+import com.reviewportal.webclient.web.images.StyleImages;
 
 /**
  * @author imfroz
@@ -44,7 +46,8 @@ public class ApplicationUtilMBean extends AbstractBaseBean {
                 return new DefaultStreamedContent(new ByteArrayInputStream(lBytes));
             }
             byte[] lBytes = userServices.getDisplayPicture(-1L);
-            return new DefaultStreamedContent(new ByteArrayInputStream(lBytes));
+            InputStream lResourceAsStream = StyleImages.class.getResourceAsStream("profile_pic.png");
+            return new DefaultStreamedContent(lResourceAsStream);
         }
     }
 

@@ -8,8 +8,11 @@
 					<ui:fragment
 						rendered="#{guestPreferences.profileMode == 'inline' and guestPreferences.menuLayout != 'menu-layout-static menu-layout-horizontal'}">
 						<div class="profile">
-							<a id="profile-options" href="#"> <p:graphicImage name="images/avatar1.png" library="avalon-layout" styleClass="profile-image"
-									style="border: 0 none" /> <span class="profile-name">Syed Firoze</span> <i class="fa fa-fw fa-caret-down"></i> <span
+							<a id="profile-options" href="#">								
+								<p:graphicImage value="#{appUtil.profileImage}" width="65" styleClass="profile-image img-circle" style="border: 0 none" cache="false">
+											<f:param name="id" value="#{sessionCache.loggedInUser.id}" />
+								</p:graphicImage>
+								<span class="profile-name">Syed Firoze</span> <i class="fa fa-fw fa-caret-down"></i> <span
 								class="profile-role">Accountant</span>
 							</a>
 						</div>

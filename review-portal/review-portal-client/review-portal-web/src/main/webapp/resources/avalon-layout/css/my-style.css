@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.img-circle {
+    border-radius: 50%;
+}
+
 .inline_rating .ui-rating-star {
 	display: inline-table !important;
 }
