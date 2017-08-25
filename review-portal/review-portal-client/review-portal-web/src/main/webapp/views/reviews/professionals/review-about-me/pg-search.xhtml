@@ -5,16 +5,35 @@
 
 	<ui:define name="content">
 
-		<div class="ui-g ui-fluid">
+		<h:form id="form-search-review" prependId="false">
 
-			<div class="ui-g-12 dashboard">
+			<p:panel header="Reviews about Me" id="panel-search" style="width:100%">
 
-				<ui:include src="frg-search.xhtml" />
+				<p:panelGrid styleClass="ui-panelgrid-blank form-group">
 
-				<ui:include src="frg-search-result.xhtml" />
-				
-			</div>
-		</div>
+					<div class="ui-g ui-fluid">
+
+						<h:panelGroup layout="block" class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 dashboard" id="frg-search-review">
+
+							<div class="ui-grid-row" style="padding-bottom: 20px;">
+
+								<ui:include src="frg-search.xhtml" />
+
+							</div>
+
+							<div class="ui-grid-row">
+
+								<ui:include src="frg-search-result.xhtml" />
+
+							</div>
+
+						</h:panelGroup>
+
+					</div>
+				</p:panelGrid>
+
+			</p:panel>
+		</h:form>
 	</ui:define>
 
 </ui:composition>
