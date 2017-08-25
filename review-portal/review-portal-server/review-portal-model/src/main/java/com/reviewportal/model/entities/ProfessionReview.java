@@ -12,46 +12,56 @@ import javax.persistence.Table;
 @Table(name = "PROFESSION_REVIEW")
 public class ProfessionReview extends AbstractEntity {
 
-	private String review;
+    private String review;
 
-	@ManyToOne
-	private ReviewWriter reviewBy;
+    @ManyToOne
+    private ReviewWriter reviewBy;
 
-	@ManyToOne
-	private Professional reviewAbout;
+    @ManyToOne
+    private Professional reviewAbout;
 
-	private Long views;
+    private Long views;
 
-	public String getReview() {
-		return review;
-	}
+    private Integer rating;
 
-	public void setReview(String review) {
-		this.review = review;
-	}
+    public String getReview() {
+        return review;
+    }
 
-	public ReviewWriter getReviewBy() {
-		return reviewBy;
-	}
+    public void setReview(String review) {
+        this.review = review;
+    }
 
-	public void setReviewBy(ReviewWriter reviewBy) {
-		this.reviewBy = reviewBy;
-	}
+    public ReviewWriter getReviewBy() {
+        return reviewBy;
+    }
 
-	public Professional getReviewAbout() {
-		return reviewAbout;
-	}
+    public void setReviewBy(ReviewWriter reviewBy) {
+        this.reviewBy = reviewBy;
+    }
 
-	public void setReviewAbout(Professional reviewAbout) {
-		this.reviewAbout = reviewAbout;
-	}
+    public Professional getReviewAbout() {
+        return reviewAbout;
+    }
 
-	public Long getViews() {
-		return views;
-	}
+    public void setReviewAbout(Professional reviewAbout) {
+        this.reviewAbout = reviewAbout;
+    }
 
-	public void setViews(Long views) {
-		this.views = views;
-	}
+    public Long getViews() {
+        return views;
+    }
+
+    public void setViews(Long views) {
+        this.views = views;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer pRating) {
+        rating = pRating;
+    }
 
 }

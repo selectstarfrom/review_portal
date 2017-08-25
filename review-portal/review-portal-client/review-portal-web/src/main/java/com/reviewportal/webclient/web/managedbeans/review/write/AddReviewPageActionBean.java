@@ -32,6 +32,7 @@ public class AddReviewPageActionBean extends AbstractActionBean {
         ProfessionReviewServicesImpl lReviewServices = getAccessor().getReviewServices();
         getAccessor().getReview().setReviewBy(getAccessor().getReviewWriter());
         lReviewServices.save(getAccessor().getReview());
+        lReviewServices.updateAvgRatingOfProfessional(getAccessor().getReview().getReviewAbout().getId());
 
         info(getMessage("review.professional.save.success"), "review-save-msg-success");
         

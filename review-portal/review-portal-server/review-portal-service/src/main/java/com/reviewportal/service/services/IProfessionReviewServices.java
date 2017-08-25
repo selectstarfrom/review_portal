@@ -5,4 +5,6 @@ import com.reviewportal.service.dto.ProfessionReviewDTO;
 
 public interface IProfessionReviewServices extends ICommonService<ProfessionReview, ProfessionReviewDTO> {
 
+    void updateAvgRatingOfProfessional(Long pId);
+
 }

@@ -75,6 +75,12 @@ public class ProfessionReviewServicesImpl extends AbstractCommonServiceImpl<Prof
         super.save(pDto);
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateAvgRatingOfProfessional(Long pId) {
+        getDao().updateAvgRatingById(pId);
+    }
+
     protected IReviewWriterDao getReviewWriterDao() {
         return reviewWriterDao;
     }

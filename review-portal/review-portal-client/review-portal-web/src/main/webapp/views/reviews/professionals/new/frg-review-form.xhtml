@@ -101,7 +101,14 @@
 					</h:panelGroup>
 				</div>
 
-
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-3 contact-info">
+						<p:outputLabel value="Rating" />
+					</div>
+					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-9 contact-info">
+						<p:rating value="#{addReviewPageViewBean.accessor.review.rating}" readonly="false" styleClass="inline_rating" cancel="false" />
+					</div>
+				</div>
 
 				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
 					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-3 contact-info">

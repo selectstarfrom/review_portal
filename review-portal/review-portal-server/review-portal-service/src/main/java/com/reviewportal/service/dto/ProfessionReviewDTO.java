@@ -18,6 +18,8 @@ public class ProfessionReviewDTO extends AbstractDTO {
 
     protected Long views;
 
+    private Integer rating;
+
     public String getReview() {
         return review;
     }
@@ -48,6 +50,14 @@ public class ProfessionReviewDTO extends AbstractDTO {
 
     public void setReviewAbout(ProfessionalDTO reviewAbout) {
         this.reviewAbout = reviewAbout;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer pRating) {
+        rating = pRating;
     }
 
     @Override
