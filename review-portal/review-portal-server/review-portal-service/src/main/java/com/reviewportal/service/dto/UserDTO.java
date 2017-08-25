@@ -24,7 +24,7 @@ public class UserDTO extends AbstractDTO {
 
     private String telephone;
 
-    private String displayPicture;
+    private byte[] displayPicture;
 
     private Set<UserRoleDTO> userRoles;
 
@@ -35,7 +35,7 @@ public class UserDTO extends AbstractDTO {
     }
 
     public UserDTO(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy, String name,
-            String username, String email, String password, UserStatus status, String telephone, String displayPicture,
+            String username, String email, String password, UserStatus status, String telephone, byte[] displayPicture,
             UserType pUserType, Set<UserRoleDTO> userRoles) {
         super(pId, pCreatedDate, pCreatedBy, pModifiedDate, pModifiedBy);
         this.name = name;
@@ -89,14 +89,6 @@ public class UserDTO extends AbstractDTO {
         telephone = pTelephone;
     }
 
-    public String getDisplayPicture() {
-        return displayPicture;
-    }
-
-    public void setDisplayPicture(String pDisplayPicture) {
-        displayPicture = pDisplayPicture;
-    }
-
     public Set<UserRoleDTO> getUserRoles() {
         return userRoles;
     }
@@ -119,6 +111,14 @@ public class UserDTO extends AbstractDTO {
 
     public void setUserType(UserType pUserType) {
         userType = pUserType;
+    }
+
+    public byte[] getDisplayPicture() {
+        return displayPicture;
+    }
+
+    public void setDisplayPicture(byte[] pDisplayPicture) {
+        displayPicture = pDisplayPicture;
     }
 
     @Override

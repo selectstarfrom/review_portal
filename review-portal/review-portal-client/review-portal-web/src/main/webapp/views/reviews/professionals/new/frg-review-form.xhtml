@@ -38,7 +38,11 @@
 								<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px; border: none">
 
 									<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info">
-										<p:graphicImage name="images/avatar1.png" library="avalon-layout" width="65" styleClass="profile-image" />
+										<p:graphicImage value="#{appUtil.profileImage}" width="65" styleClass="profile-image" cache="false">
+											<f:param name="id" value="#{addReviewPageViewBean.accessor.review.reviewAbout.user.id}" />
+										</p:graphicImage>
+
+
 									</div>
 
 									<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px">
@@ -86,7 +90,7 @@
 										<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px">
 											<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px">
 												<p:outputLabel value="Rating" for="prof-state" styleClass="text-gray inline_lbl" />
-												<p:rating value="#{addReviewPageViewBean.accessor.review.reviewAbout.rating}" readonly="true" styleClass="inline_rating"/>
+												<p:rating value="#{addReviewPageViewBean.accessor.review.reviewAbout.rating}" readonly="true" styleClass="inline_rating" />
 											</div>
 
 										</div>

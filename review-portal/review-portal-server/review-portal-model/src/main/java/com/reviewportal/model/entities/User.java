@@ -3,7 +3,9 @@ package com.reviewportal.model.entities;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +14,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -27,114 +30,116 @@ import com.reviewportal.model.enums.UserType;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User extends AbstractEntity {
 
-	private String name;
+    private String name;
 
-	private String username;
+    private String username;
 
-	private String email;
+    private String email;
 
-	private String password;
+    private String password;
 
-	@Enumerated(EnumType.STRING)
-	private UserStatus status;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
 
-	private String telephone;
+    private String telephone;
 
-	private String displayPicture;
-	
-	@Enumerated(EnumType.STRING)
-	private UserType userType;
+    @Lob
+    @Column(name = "displayPicture")
+    private byte[] displayPicture;
 
-	// @Column(name = "ID")
-	@ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
-	@JoinTable(name = "MAP_USER_USER_ROLES", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "USER_ROLE_ID") })
-	private Set<UserRole> userRoles;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
-	public User() {
-		super();
-	}
+    // @Column(name = "ID")
+    @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER)
+    @JoinTable(name = "MAP_USER_USER_ROLES", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
+            @JoinColumn(name = "USER_ROLE_ID") })
+    private Set<UserRole> userRoles;
 
-	public User(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy, String name,
-			String username, String email, String password, UserStatus status, String telephone, String displayPicture, UserType pUserType,
-			Set<UserRole> userRoles) {
-		super(pId, pCreatedDate, pCreatedBy, pModifiedDate, pModifiedBy);
-		this.name = name;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.status = status;
-		this.telephone = telephone;
-		this.displayPicture = displayPicture;
-		this.userType = pUserType;
-		this.userRoles = userRoles;
-	}
+    public User() {
+        super();
+    }
 
-	public String getName() {
-		return name;
-	}
+    public User(Long pId, Date pCreatedDate, String pCreatedBy, Date pModifiedDate, String pModifiedBy, String name,
+            String username, String email, String password, UserStatus status, String telephone, byte[] displayPicture,
+            UserType pUserType, Set<UserRole> userRoles) {
+        super(pId, pCreatedDate, pCreatedBy, pModifiedDate, pModifiedBy);
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.telephone = telephone;
+        this.displayPicture = displayPicture;
+        this.userType = pUserType;
+        this.userRoles = userRoles;
+    }
 
-	public void setName(String pName) {
-		name = pName;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setName(String pName) {
+        name = pName;
+    }
 
-	public void setUsername(String pUsername) {
-		username = pUsername;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setUsername(String pUsername) {
+        username = pUsername;
+    }
 
-	public void setPassword(String pPassword) {
-		password = pPassword;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public UserStatus getStatus() {
-		return status;
-	}
+    public void setPassword(String pPassword) {
+        password = pPassword;
+    }
 
-	public void setStatus(UserStatus pStatus) {
-		status = pStatus;
-	}
+    public UserStatus getStatus() {
+        return status;
+    }
 
-	public String getTelephone() {
-		return telephone;
-	}
+    public void setStatus(UserStatus pStatus) {
+        status = pStatus;
+    }
 
-	public void setTelephone(String pTelephone) {
-		telephone = pTelephone;
-	}
+    public String getTelephone() {
+        return telephone;
+    }
 
-	public String getDisplayPicture() {
-		return displayPicture;
-	}
+    public void setTelephone(String pTelephone) {
+        telephone = pTelephone;
+    }
 
-	public void setDisplayPicture(String pDisplayPicture) {
-		displayPicture = pDisplayPicture;
-	}
+    public byte[] getDisplayPicture() {
+        return displayPicture;
+    }
 
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
-	}
+    public void setDisplayPicture(byte[] pDisplayPicture) {
+        displayPicture = pDisplayPicture;
+    }
 
-	public void setUserRoles(Set<UserRole> pUserRoles) {
-		userRoles = pUserRoles;
-	}
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setUserRoles(Set<UserRole> pUserRoles) {
+        userRoles = pUserRoles;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public UserType getUserType() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public UserType getUserType() {
         return userType;
     }
 

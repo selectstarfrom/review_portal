@@ -15,4 +15,6 @@ public interface IUserServices extends ICommonService<User, UserDTO> {
 
     boolean checkPassword(String pRawPassword, UserDTO pUser);
 
+    byte[] getDisplayPicture(Long pId);
+
 }

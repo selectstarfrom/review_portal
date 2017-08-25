@@ -49,7 +49,7 @@ public class TestUserMapper {
         String lUsername = "test_user";
         String lPassword = "12345";
         String lPhone = "223213";
-        String lPhoto = "pic_1";
+        byte[] lPhoto = "pic_1".getBytes();
         Long lId = 101L;
         String lCreatedBy = "admin";
         String lModifiedBy = "admin";
@@ -88,7 +88,7 @@ public class TestUserMapper {
         String lEmail = "test_user@testmail.com";
         String lPassword = "12345";
         String lPhone = "223213";
-        String lPhoto = "pic_1";
+        byte[] lPhoto = "pic_1".getBytes();
         Long lId = 101L;
         String lCreatedBy = "admin";
         String lModifiedBy = "admin";
@@ -127,7 +127,7 @@ public class TestUserMapper {
         String lEmail1 = "test_user1@testmail.com";
         String lPassword1 = "pass111";
         String lPhone1 = "1111";
-        String lPhoto1 = "pic_1";
+        byte[] lPhoto1 = "pic_1".getBytes();
         Long lId1 = 101L;
         String lCreatedBy1 = "admin";
         String lModifiedBy1 = "admin";
@@ -147,7 +147,7 @@ public class TestUserMapper {
         String lUsername2 = "test_user_1";
         String lPassword2 = "pass222";
         String lPhone2 = "2222";
-        String lPhoto2 = "pic_2";
+        byte[] lPhoto2 = "pic_2".getBytes();
         Long lId2 = 101L;
         String lCreatedBy2 = "admin2";
         String lModifiedBy2 = "admin2";

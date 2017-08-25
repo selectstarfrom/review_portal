@@ -13,10 +13,13 @@ import com.reviewportal.model.entities.User;
 @Repository
 public interface IUserDao extends ICommonDao<User> {
 
-	@Query("SELECT count(*) FROM User u WHERE LOWER(u.username) = LOWER(:pUsername)")
-	int getCount(String pUsername);
+    @Query("SELECT count(*) FROM User u WHERE LOWER(u.username) = LOWER(:pUsername)")
+    int getCount(String pUsername);
 
-	@Query("SELECT u FROM User u WHERE LOWER(u.username) = LOWER(:pUsername)")
+    @Query("SELECT u FROM User u WHERE LOWER(u.username) = LOWER(:pUsername)")
     User getByUsername(@Param("pUsername") String pString);
+
+    @Query("SELECT u.displayPicture FROM User u WHERE u.id = :pId)")
+    byte[] getDisplayPicture(@Param("pId") Long pId);
 
 }

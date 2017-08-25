@@ -60,4 +60,10 @@ public class UserServicesImpl extends AbstractCommonServiceImpl<User, UserDTO> i
         return false;
     }
 
+    @Override
+    public byte[] getDisplayPicture(Long pId) {
+        byte[] lDisplayPicture = getDao().getDisplayPicture(pId);
+        return lDisplayPicture;
+    }
+
 }
