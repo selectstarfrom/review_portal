@@ -86,7 +86,7 @@ public abstract class AbstractMemberServicesImpl<E extends AbstractMember, D ext
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public D getByUserId(Long pId) {
         E lEntity = getDao().getByUserId(pId);
-        return getConverter().getDto(lEntity);
+        return getConverter().getDto(lEntity, true);
     }
 
 }

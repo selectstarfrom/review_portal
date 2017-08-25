@@ -24,7 +24,7 @@ public class ProfessionalConverter extends AbstractEntityTOConverter<Professiona
 
 	@Override
 	public String[] getComplexTypes() {
-		return new String[] { "address", "profession", "user" };
+		return new String[] { "address", "profession", "user", "reviews" };
 	}
 
 }

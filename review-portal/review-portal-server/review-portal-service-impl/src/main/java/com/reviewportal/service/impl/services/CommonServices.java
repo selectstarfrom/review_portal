@@ -67,7 +67,7 @@ public class CommonServices {
 		Example<Profession> lExample = Example.of(lProfession);
 		Profession lFindOne = professionDao.findOne(lExample);
 		ProfessionConverter lConverter = converterFactory.getCoverter(Profession.class);
-		ProfessionDTO lDto = lConverter.getDto(lFindOne);
+		ProfessionDTO lDto = lConverter.getDto(lFindOne, true);
 		return lDto;
 	}
 }

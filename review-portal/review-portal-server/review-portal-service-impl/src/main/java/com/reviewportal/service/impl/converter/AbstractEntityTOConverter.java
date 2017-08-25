@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
+import org.hibernate.collection.internal.PersistentBag;
 import org.hibernate.collection.internal.PersistentSet;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,284 +25,307 @@ import com.reviewportal.service.exceptions.SystemServiceException;
  */
 public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D extends AbstractDTO> {
 
-	Class<?> entityClass;
-	Class<?> dtoClass;
+    Class<?> entityClass;
+    Class<?> dtoClass;
 
-	@Autowired
-	protected EntityTOConverterFactory converterFactory;
+    @Autowired
+    protected EntityTOConverterFactory converterFactory;
 
-	@Deprecated
-	public D getDtoDeprecated(E pEntity) {
+    @Deprecated
+    public D getDtoDeprecated(E pEntity) {
 
-		D lTarget = getNewDtoInstance();
-		BeanUtils.copyProperties(pEntity, lTarget);
-		return lTarget;
-	}
+        D lTarget = getNewDtoInstance();
+        BeanUtils.copyProperties(pEntity, lTarget);
+        return lTarget;
+    }
 
-	@SuppressWarnings("unchecked")
-	public Collection<D> getDtos(Iterable<E> pEntities, Class<?> pTargetType) throws Exception {
-		Object lNewInstance = pTargetType.newInstance();
-		Collection<D> lTargets = (Collection<D>) lNewInstance;
+    @SuppressWarnings("unchecked")
+    public Collection<D> getDtos(Iterable<E> pEntities, Class<?> pTargetType, boolean pRecursive) throws Exception {
+        Object lNewInstance = pTargetType.newInstance();
+        Collection<D> lTargets = (Collection<D>) lNewInstance;
 
-		for (E lEntity : pEntities) {
-			D lTo = getDto(lEntity);
-			try {
-				lTargets.add(lTo);
-			} catch (Exception lE) {
-				System.out.println();
-			}
-		}
+        for (E lEntity : pEntities) {
+            D lTo = getDto(lEntity, pRecursive);
+            try {
+                lTargets.add(lTo);
+            } catch (Exception lE) {
+                System.out.println();
+            }
+        }
 
-		return lTargets;
-	}
+        return lTargets;
+    }
 
-	public List<D> getDtos(List<E> pEntity) throws SystemServiceException {
+    public List<D> getDtos(List<E> pEntity) throws SystemServiceException {
 
-		// if(pEntity==null){
-		// throw new SystemServiceException("Argument cannot be NULL");
-		// }
+        // if(pEntity==null){
+        // throw new SystemServiceException("Argument cannot be NULL");
+        // }
 
-		List<D> lTargets = new ArrayList<>();
+        List<D> lTargets = new ArrayList<>();
 
-		for (E lEntity : pEntity) {
-			D lTo = getDto(lEntity);
-			lTargets.add(lTo);
-		}
+        for (E lEntity : pEntity) {
+            D lTo = getDto(lEntity, true);
+            lTargets.add(lTo);
+        }
 
-		return lTargets;
-	}
+        return lTargets;
+    }
 
-	@SuppressWarnings("unchecked")
-	public D getDto(E pEntity) throws SystemServiceException {
-		D lTarget = getNewDtoInstance();
-		BeanUtils.copyProperties(pEntity, lTarget, getComplexTypes());
-		for (String lFieldName : getComplexTypes()) {
+    @SuppressWarnings("unchecked")
+    public D getDto(E pEntity, boolean pRecursive) throws SystemServiceException {
+        D lTarget = getNewDtoInstance();
+        BeanUtils.copyProperties(pEntity, lTarget, getComplexTypes());
+        for (String lFieldName : getComplexTypes()) {
 
-			Field lField;
-			try {
+            Field lEntityField;
+            try {
 
-				try {
-					lField = pEntity.getClass().getDeclaredField(lFieldName);
-				} catch (NoSuchFieldException e) {
-					lField = pEntity.getClass().getSuperclass().getDeclaredField(lFieldName);
-				}
-				lField.setAccessible(true);
-				Object lObject = lField.get(pEntity);
-				lField.setAccessible(false);
-				if (lObject == null) {
-					continue;
-				}
-				Class<? extends Object> lCollectionType = lObject.getClass();
-				if (lObject instanceof Iterable) {
-					ParameterizedType lParameterizedType = (ParameterizedType) lField.getGenericType();
-					Class<?> lClass = (Class<?>) lParameterizedType.getActualTypeArguments()[0];
-					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = this.getMapper(lClass);
-					Iterable<AbstractEntity> lObject2 = (Iterable<AbstractEntity>) lObject;
-					Collection<AbstractDTO> lDtos = null;
-					if (lObject instanceof PersistentSet) {
-						lDtos = lMapper.getDtos(lObject2, HashSet.class);
-					} else {
-						lDtos = lMapper.getDtos(lObject2, lCollectionType);
-					}
-					Field lEntityField = null;
-					try {
-						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
-					} catch (NoSuchFieldException e) {
-						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
-					}
-					lEntityField.setAccessible(true);
-					lEntityField.set(lTarget, lDtos);
-					lEntityField.setAccessible(false);
-				} else {
-					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lCollectionType);
-					AbstractDTO lDto = lMapper.getDto((AbstractEntity) lObject);
-					Field lEntityField = null;
-					try {
-						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
-					} catch (NoSuchFieldException e) {
-						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
-					}
-					lEntityField.setAccessible(true);
+                try {
+                    lEntityField = pEntity.getClass().getDeclaredField(lFieldName);
+                } catch (NoSuchFieldException e) {
+                    lEntityField = pEntity.getClass().getSuperclass().getDeclaredField(lFieldName);
+                }
+                lEntityField.setAccessible(true);
 
-					lEntityField.set(lTarget, lDto);
-					lEntityField.setAccessible(false);
-				}
+                Object lEntityFieldObject = lEntityField.get(pEntity);
 
-				System.out.println();
-			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException
-					| InstantiationException pException0) {
-				throw new SystemServiceException("Error occure while converting Entity to DTO: " + getClass().getName(),
-						pException0);
-			} catch (Exception pException1) {
-				throw new SystemServiceException("Error occure while converting Entity to DTO: " + getClass().getName(),
-						pException1);
-			}
+                lEntityField.setAccessible(false);
 
-		}
-		return lTarget;
-	}
+                if (lEntityFieldObject == null) {
+                    continue;
+                }
 
-	@Deprecated
-	public E getEnityDeprecated(D pDto) {
-		E lTarget = getNewEntityInstance();
-		BeanUtils.copyProperties(pDto, lTarget);
-		return lTarget;
-	}
+                Class<? extends Object> lSourceCollectionType = lEntityFieldObject.getClass();
 
-	@SuppressWarnings("unchecked")
-	public E getEnity(D pDto) throws SystemServiceException {
-		E lTarget = getNewEntityInstance();
-		BeanUtils.copyProperties(pDto, lTarget, getComplexTypes());
-		for (String lFieldName : getComplexTypes()) {
+                if (lEntityFieldObject instanceof Iterable) {
 
-			Field lField;
-			try {
+                    if (pRecursive) {
+                        ParameterizedType lParameterizedType = (ParameterizedType) lEntityField.getGenericType();
+                        Class<?> lClass = (Class<?>) lParameterizedType.getActualTypeArguments()[0];
+                        AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = this.getMapper(lClass);
+                        Iterable<AbstractEntity> lObject2 = (Iterable<AbstractEntity>) lEntityFieldObject;
 
-				try {
-					lField = pDto.getClass().getDeclaredField(lFieldName);
-				} catch (NoSuchFieldException e) {
-					lField = pDto.getClass().getSuperclass().getDeclaredField(lFieldName);
-				}
-				lField.setAccessible(true);
-				Object lObject = lField.get(pDto);
-				if (lObject == null) {
-					continue;
-				}
-				lField.setAccessible(false);
-				Class<? extends Object> lCollectionType = lObject.getClass();
-				if (lObject instanceof Iterable) {
-					ParameterizedType lParameterizedType = (ParameterizedType) lField.getGenericType();
-					Class<?> lClass = (Class<?>) lParameterizedType.getActualTypeArguments()[0];
-					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lClass);
-					Iterable<AbstractDTO> lObject2 = (Iterable<AbstractDTO>) lObject;
-					Collection<AbstractEntity> lEnities = lMapper.getEnities(lObject2, lCollectionType);
-					Field lEntityField = null;
-					try {
-						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
-					} catch (NoSuchFieldException e) {
-						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
-					}
-					lEntityField.setAccessible(true);
-					lEntityField.set(lTarget, lEnities);
-					lEntityField.setAccessible(false);
-				} else {
-					AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lCollectionType);
-					AbstractEntity lEnity = lMapper.getEnity((AbstractDTO) lObject);
-					Field lEntityField = null;
-					try {
-						lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
-					} catch (NoSuchFieldException e) {
-						lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
-					}
-					lEntityField.setAccessible(true);
+                        Collection<AbstractDTO> lDtos = null;
 
-					lEntityField.set(lTarget, lEnity);
-					lEntityField.setAccessible(false);
-				}
+                        if (lEntityFieldObject instanceof PersistentSet) {
+                            lDtos = lMapper.getDtos(lObject2, HashSet.class, true);
+                        } else if (lEntityFieldObject instanceof PersistentBag) {
+                            Field lBagField = lEntityFieldObject.getClass().getDeclaredField("bag");
+                            lBagField.setAccessible(true);
+                            Class<? extends Object> lTargetCollectionType = lBagField.get(lEntityFieldObject)
+                                    .getClass();
+                            lDtos = lMapper.getDtos(lObject2, lTargetCollectionType, false);
+                        } else {
+                            lDtos = lMapper.getDtos(lObject2, lSourceCollectionType, false);
+                        }
 
-				System.out.println();
-			} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException
-					| InstantiationException pException0) {
-				throw new SystemServiceException("Error occure while converting Entity to DTO: " + getClass().getName(),
-						pException0);
-			} catch (Exception pException1) {
-				throw new SystemServiceException("Error occure while converting Entity to DTO: " + getClass().getName(),
-						pException1);
-			}
+                        Field lDtoField = null;
 
-		}
-		return lTarget;
-	}
+                        try {
+                            lDtoField = lTarget.getClass().getDeclaredField(lFieldName);
+                        } catch (NoSuchFieldException e) {
+                            lDtoField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+                        }
+                        lDtoField.setAccessible(true);
+                        lDtoField.set(lTarget, lDtos);
+                        lDtoField.setAccessible(false);
+                    }
 
-	public List<E> getEnities(Iterable<D> pDtos) throws SystemServiceException {
-		List<E> lTargets = new ArrayList<>();
+                } else {
 
-		for (D lDto : pDtos) {
-			E lTo = getEnity(lDto);
-			lTargets.add(lTo);
-		}
+                    if (pRecursive) {
+                        AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(
+                                lSourceCollectionType);
+                        AbstractDTO lDto = lMapper.getDto((AbstractEntity) lEntityFieldObject, false);
+                        Field lDtoField = null;
+                        try {
+                            lDtoField = lTarget.getClass().getDeclaredField(lFieldName);
+                        } catch (NoSuchFieldException e) {
+                            lDtoField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+                        }
+                        lDtoField.setAccessible(true);
 
-		return lTargets;
-	}
+                        lDtoField.set(lTarget, lDto);
+                        lDtoField.setAccessible(false);
+                    }
+                }
 
-	@SuppressWarnings("unchecked")
-	public Collection<E> getEnities(Iterable<D> pDtos, Class<?> pTargetType) throws Exception {
-		Object lNewInstance = pTargetType.newInstance();
-		Collection<E> lTargets = (Collection<E>) lNewInstance;
+                System.out.println();
+            } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException
+                    | InstantiationException pException0) {
+                throw new SystemServiceException("Error occure while converting Entity to DTO: " + getClass().getName(),
+                        pException0);
+            } catch (Exception pException1) {
+                throw new SystemServiceException("Error occure while converting Entity to DTO: " + getClass().getName(),
+                        pException1);
+            }
 
-		for (D lDto : pDtos) {
-			E lTo = getEnity(lDto);
-			lTargets.add(lTo);
-		}
+        }
+        return lTarget;
+    }
 
-		return lTargets;
-	}
+    @Deprecated
+    public E getEnityDeprecated(D pDto) {
+        E lTarget = getNewEntityInstance();
+        BeanUtils.copyProperties(pDto, lTarget);
+        return lTarget;
+    }
 
-	abstract D getNewDtoInstance();
+    @SuppressWarnings("unchecked")
+    public E getEnity(D pDto) throws SystemServiceException {
+        E lTarget = getNewEntityInstance();
+        BeanUtils.copyProperties(pDto, lTarget, getComplexTypes());
+        for (String lFieldName : getComplexTypes()) {
 
-	abstract E getNewEntityInstance();
+            Field lField;
+            try {
 
-	public String[] getComplexTypes() {
-		return new String[] {};
-	}
+                try {
+                    lField = pDto.getClass().getDeclaredField(lFieldName);
+                } catch (NoSuchFieldException e) {
+                    lField = pDto.getClass().getSuperclass().getDeclaredField(lFieldName);
+                }
+                lField.setAccessible(true);
+                Object lObject = lField.get(pDto);
+                if (lObject == null) {
+                    continue;
+                }
+                lField.setAccessible(false);
+                Class<? extends Object> lCollectionType = lObject.getClass();
+                if (lObject instanceof Iterable) {
+                    ParameterizedType lParameterizedType = (ParameterizedType) lField.getGenericType();
+                    Class<?> lClass = (Class<?>) lParameterizedType.getActualTypeArguments()[0];
+                    AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lClass);
+                    Iterable<AbstractDTO> lObject2 = (Iterable<AbstractDTO>) lObject;
+                    Collection<AbstractEntity> lEnities = lMapper.getEnities(lObject2, lCollectionType);
+                    Field lEntityField = null;
+                    try {
+                        lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+                    } catch (NoSuchFieldException e) {
+                        lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+                    }
+                    lEntityField.setAccessible(true);
+                    lEntityField.set(lTarget, lEnities);
+                    lEntityField.setAccessible(false);
+                } else {
+                    AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lCollectionType);
+                    AbstractEntity lEnity = lMapper.getEnity((AbstractDTO) lObject);
+                    Field lEntityField = null;
+                    try {
+                        lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+                    } catch (NoSuchFieldException e) {
+                        lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+                    }
+                    lEntityField.setAccessible(true);
 
-	protected <T extends AbstractEntityTOConverter<AbstractEntity, AbstractDTO>> T getMapper(Class<?> pClass)
-			throws Exception {
+                    lEntityField.set(lTarget, lEnity);
+                    lEntityField.setAccessible(false);
+                }
 
-		UserRoleDTO.class.getName();
+                System.out.println();
+            } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException
+                    | InstantiationException pException0) {
+                throw new SystemServiceException("Error occure while converting Entity to DTO: " + getClass().getName(),
+                        pException0);
+            } catch (Exception pException1) {
+                throw new SystemServiceException("Error occure while converting Entity to DTO: " + getClass().getName(),
+                        pException1);
+            }
 
-		switch (pClass.getName()) {
+        }
+        return lTarget;
+    }
 
-		case "com.reviewportal.service.dto.UserDTO":
-			return converterFactory.getMapper(UserConverter.class);
+    public List<E> getEnities(Iterable<D> pDtos) throws SystemServiceException {
+        List<E> lTargets = new ArrayList<>();
 
-		case "com.reviewportal.model.entities.User":
-			return converterFactory.getMapper(UserConverter.class);
+        for (D lDto : pDtos) {
+            E lTo = getEnity(lDto);
+            lTargets.add(lTo);
+        }
 
-		case "com.reviewportal.service.dto.UserRoleDTO":
-			return converterFactory.getMapper(UserRoleConverter.class);
+        return lTargets;
+    }
 
-		case "com.reviewportal.model.entities.UserRole":
-			return converterFactory.getMapper(UserRoleConverter.class);
+    @SuppressWarnings("unchecked")
+    public Collection<E> getEnities(Iterable<D> pDtos, Class<?> pTargetType) throws Exception {
+        Object lNewInstance = pTargetType.newInstance();
+        Collection<E> lTargets = (Collection<E>) lNewInstance;
 
-		case "com.reviewportal.service.dto.ProfessionReviewDTO":
-			return converterFactory.getMapper(ProfessionReviewConverter.class);
+        for (D lDto : pDtos) {
+            E lTo = getEnity(lDto);
+            lTargets.add(lTo);
+        }
 
-		case "com.reviewportal.model.entities.ProfessionReview":
-			return converterFactory.getMapper(UserRoleConverter.class);
+        return lTargets;
+    }
 
-		case "com.reviewportal.service.dto.ReviewWriterDTO":
-			return converterFactory.getMapper(ReviewWriterConverter.class);
+    abstract D getNewDtoInstance();
 
-		case "com.reviewportal.model.entities.ReviewWriter":
-			return converterFactory.getMapper(ReviewWriterConverter.class);
+    abstract E getNewEntityInstance();
 
-		case "com.reviewportal.service.dto.AddressDTO":
-			return converterFactory.getMapper(AddressConverter.class);
+    public String[] getComplexTypes() {
+        return new String[] {};
+    }
 
-		case "com.reviewportal.model.entities.Address":
-			return converterFactory.getMapper(AddressConverter.class);
+    protected <T extends AbstractEntityTOConverter<AbstractEntity, AbstractDTO>> T getMapper(Class<?> pClass)
+            throws Exception {
 
-		case "com.reviewportal.service.dto.ProfessionalDTO":
-			return converterFactory.getMapper(ProfessionalConverter.class);
+        UserRoleDTO.class.getName();
 
-		case "com.reviewportal.model.entities.Professional":
-			return converterFactory.getMapper(ProfessionalConverter.class);
+        switch (pClass.getName()) {
 
-		case "com.reviewportal.service.dto.ProfessionDTO":
-			return converterFactory.getMapper(ProfessionConverter.class);
+        case "com.reviewportal.service.dto.UserDTO":
+            return converterFactory.getMapper(UserConverter.class);
 
-		case "com.reviewportal.model.entities.Profession":
-			return converterFactory.getMapper(ProfessionConverter.class);
+        case "com.reviewportal.model.entities.User":
+            return converterFactory.getMapper(UserConverter.class);
 
-		default:
-			throw new Exception("No AbstractEntityTOConverter found for class: " + pClass.getName());
-		}
+        case "com.reviewportal.service.dto.UserRoleDTO":
+            return converterFactory.getMapper(UserRoleConverter.class);
 
-	}
+        case "com.reviewportal.model.entities.UserRole":
+            return converterFactory.getMapper(UserRoleConverter.class);
 
-	public EntityTOConverterFactory getConverterFactory() {
-		return converterFactory;
-	}
+        case "com.reviewportal.service.dto.ProfessionReviewDTO":
+            return converterFactory.getMapper(ProfessionReviewConverter.class);
+
+        case "com.reviewportal.model.entities.ProfessionReview":
+            return converterFactory.getMapper(ProfessionReviewConverter.class);
+
+        case "com.reviewportal.service.dto.ReviewWriterDTO":
+            return converterFactory.getMapper(ReviewWriterConverter.class);
+
+        case "com.reviewportal.model.entities.ReviewWriter":
+            return converterFactory.getMapper(ReviewWriterConverter.class);
+
+        case "com.reviewportal.service.dto.AddressDTO":
+            return converterFactory.getMapper(AddressConverter.class);
+
+        case "com.reviewportal.model.entities.Address":
+            return converterFactory.getMapper(AddressConverter.class);
+
+        case "com.reviewportal.service.dto.ProfessionalDTO":
+            return converterFactory.getMapper(ProfessionalConverter.class);
+
+        case "com.reviewportal.model.entities.Professional":
+            return converterFactory.getMapper(ProfessionalConverter.class);
+
+        case "com.reviewportal.service.dto.ProfessionDTO":
+            return converterFactory.getMapper(ProfessionConverter.class);
+
+        case "com.reviewportal.model.entities.Profession":
+            return converterFactory.getMapper(ProfessionConverter.class);
+
+        default:
+            throw new Exception("No AbstractEntityTOConverter found for class: " + pClass.getName());
+        }
+
+    }
+
+    public EntityTOConverterFactory getConverterFactory() {
+        return converterFactory;
+    }
 
 }

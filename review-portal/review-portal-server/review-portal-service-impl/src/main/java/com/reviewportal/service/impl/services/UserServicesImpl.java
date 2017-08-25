@@ -45,7 +45,7 @@ public class UserServicesImpl extends AbstractCommonServiceImpl<User, UserDTO> i
     public UserDTO getByUsername(String pString) {
         User lUser = getDao().getByUsername(pString);
         if (lUser != null) {
-            UserDTO lDto = getConverter().getDto(lUser);
+            UserDTO lDto = getConverter().getDto(lUser, true);
             return lDto;
         }
         return null;

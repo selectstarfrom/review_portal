@@ -61,7 +61,7 @@ public class AbstractCommonServiceImpl<E extends AbstractEntity, D extends Abstr
         try {
             E lEnity = converter.getEnity(pDto);
             lEnity = dao.save(lEnity);
-            D lDto = converter.getDto(lEnity);
+            D lDto = converter.getDto(lEnity, true);
             return lDto;
         } catch (Exception pException) {
             throw new SystemServiceException("Error occured in update service", pException);
@@ -97,7 +97,7 @@ public class AbstractCommonServiceImpl<E extends AbstractEntity, D extends Abstr
     public D getById(Long pId) throws SystemServiceException {
         try {
             E lFind = dao.findOne(pId);
-            return converter.getDto(lFind);
+            return converter.getDto(lFind, true);
         } catch (Exception pException) {
             throw new SystemServiceException("Error occured in getById service", pException);
         }

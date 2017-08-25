@@ -61,13 +61,13 @@ public class ProfessionReviewServicesImpl extends AbstractCommonServiceImpl<Prof
         Professional lReviewAboutEntity = getProfessionalDao().findOne(lReviewAboutId);
 
         ProfessionalConverter lProfessionalConverter = converterFactory.getMapper(ProfessionalConverter.class);
-        lReviewAbout = lProfessionalConverter.getDto(lReviewAboutEntity);
+        lReviewAbout = lProfessionalConverter.getDto(lReviewAboutEntity, true);
 
         ReviewWriterDTO lReviewBy = pDto.getReviewBy();
         Long lReviewById = lReviewBy.getId();
         ReviewWriter lReviewByEntity = getReviewWriterDao().findOne(lReviewById);
         ReviewWriterConverter lReviewWriterConverter = converterFactory.getMapper(ReviewWriterConverter.class);
-        lReviewBy = lReviewWriterConverter.getDto(lReviewByEntity);
+        lReviewBy = lReviewWriterConverter.getDto(lReviewByEntity, true);
 
         pDto.setReviewAbout(lReviewAbout);
         pDto.setReviewBy(lReviewBy);

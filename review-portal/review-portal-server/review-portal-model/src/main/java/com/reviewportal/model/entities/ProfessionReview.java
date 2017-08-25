@@ -1,6 +1,8 @@
 package com.reviewportal.model.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -17,7 +19,8 @@ public class ProfessionReview extends AbstractEntity {
     @ManyToOne
     private ReviewWriter reviewBy;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PROFESSIONAL_ID")
     private Professional reviewAbout;
 
     private Long views;

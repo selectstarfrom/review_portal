@@ -18,12 +18,15 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.reviewportal.dao.dao.IProfessionalDao;
 import com.reviewportal.model.entities.UserRole;
 import com.reviewportal.model.enums.UserStatus;
 import com.reviewportal.model.enums.UserType;
+import com.reviewportal.service.dto.ProfessionalDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.service.dto.UserRoleDTO;
 import com.reviewportal.service.impl.config.ServiceApplication;
+import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
 import com.reviewportal.service.services.IUserServices;
 
 /**
@@ -40,7 +43,17 @@ public class TestUserService {
 
     @Autowired
     private IUserServices userServices;
+    
+    @Autowired
+    private ProfessionalMemberServicesImpl professionalMemberService; 
 
+    @Test
+    public void testGetUser1s() throws Exception {
+        System.out.println("----");
+        ProfessionalDTO lById = professionalMemberService.getById(1L);
+        System.out.println(lById);
+    }
+    
     @Test
     public void testGetUser1() throws Exception {
         System.out.println("----");

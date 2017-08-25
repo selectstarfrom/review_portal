@@ -108,7 +108,7 @@ public class TestUserMapper {
 
         UserConverter lConverter = new UserConverter();
 
-        UserDTO lUserDto = lConverter.getDto(lUser);
+        UserDTO lUserDto = lConverter.getDto(lUser, true);
 
         LOGGER.debug("testUserEntityToUserTO: UserTO: " + lUserDto);
 
