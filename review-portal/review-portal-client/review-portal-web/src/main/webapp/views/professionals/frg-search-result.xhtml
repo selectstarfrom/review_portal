@@ -9,8 +9,7 @@
 
 
 
-				<p:dataList value="#{searchProfessionalsPageViewBean.accessor.professionals}" var="item" type="unordered" itemType="none"
-					paginator="true" rows="7" styleClass="cars-datalist" paginatorPosition="bottom">
+				<p:dataScroller value="#{searchProfessionalsPageViewBean.accessor.professionals}" var="item" chunkSize="10" mode="inline">
 
 
 					<div class="clearfix">
@@ -121,7 +120,7 @@
 
 					</div>
 
-				</p:dataList>
+				</p:dataScroller>
 			</h:panelGroup>
 		</div>
 	</p:fieldset>
