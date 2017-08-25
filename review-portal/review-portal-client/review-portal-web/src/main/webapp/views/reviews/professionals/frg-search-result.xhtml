@@ -9,72 +9,72 @@
 
 
 
-				<p:dataList value="#{searchReviewPageViewBean.accessor.reviews}" var="item" type="unordered" itemType="none" paginator="true" rows="7"
-					styleClass="cars-datalist" paginatorPosition="bottom">
+				<p:dataTable styleClass="borderless-data-table" value="#{searchReviewPageViewBean.accessor.reviews}" var="item">
+
+					<p:column>
+						<div class="clearfix">
 
 
-					<div class="clearfix">
+							<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+								<!-- review-about -->
+								<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+									<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:outputLabel value="Review about:" for="review-about" styleClass="text-gray" />
+									</div>
 
-
-						<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-							<!-- review-about -->
-							<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-								<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
-									<p:outputLabel value="Review about:" for="review-about" styleClass="text-gray" />
+									<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:outputLabel class="name" id="review-about" value="#{item.reviewAbout.name}" style="color:#147df0" />
+									</div>
 								</div>
+								<!-- review-about -->
 
-								<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
-									<p:outputLabel class="name" id="review-about" value="#{item.reviewAbout.name}" style="color:#147df0" />
+
+								<!-- review-by -->
+								<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+									<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:outputLabel value="Review by:" for="review-by" styleClass="text-gray" />
+									</div>
+									<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:outputLabel class="name" id="review-by" value="#{item.reviewBy.name}" style="color:#147df0" />
+									</div>
+								</div>
+								<!-- review-by -->
+
+								<!-- review-date -->
+								<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+									<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:outputLabel value="Review date" for="review-date" styleClass="text-gray" />
+									</div>
+									<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:outputLabel class="name" id="review-date" value="#{item.createdDate}" style="color:#3e9018" />
+									</div>
+								</div>
+								<!-- review-date -->
+
+
+								<!-- review -->
+								<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+									<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:outputLabel value="Review" for="review" styleClass="text-gray" />
+									</div>
+									<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:outputLabel class="name" id="review" value="#{item.review}" style="color:#ed3c76" />
+									</div>
+								</div>
+								<!-- review -->
+							</div>
+
+							<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
+								<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
+									<div class="">
+										<p:commandLink value="View more" />
+									</div>
 								</div>
 							</div>
-							<!-- review-about -->
-
-
-							<!-- review-by -->
-							<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-								<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
-									<p:outputLabel value="Review by:" for="review-by" styleClass="text-gray" />
-								</div>
-								<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
-									<p:outputLabel class="name" id="review-by" value="#{item.reviewBy.name}" style="color:#147df0" />
-								</div>
-							</div>
-							<!-- review-by -->
-
-							<!-- review-date -->
-							<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-								<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
-									<p:outputLabel value="Review date" for="review-date" styleClass="text-gray" />
-								</div>
-								<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
-									<p:outputLabel class="name" id="review-date" value="#{item.createdDate}" style="color:#3e9018" />
-								</div>
-							</div>
-							<!-- review-date -->
-
-
-							<!-- review -->
-							<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-								<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
-									<p:outputLabel value="Review" for="review" styleClass="text-gray" />
-								</div>
-								<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px 0px 0px 0px">
-									<p:outputLabel class="name" id="review" value="#{item.review}" style="color:#ed3c76" />
-								</div>
-							</div>
-							<!-- review -->
 						</div>
+					</p:column>
 
-						<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
-							<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-6 contact-info" style="padding: 0px 0px 0px 0px">
-								<div class="">
-									<p:commandLink value="View more" />
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</p:dataList>
+				</p:dataTable>
 			</h:panelGroup>
 		</div>
 	</p:fieldset>
