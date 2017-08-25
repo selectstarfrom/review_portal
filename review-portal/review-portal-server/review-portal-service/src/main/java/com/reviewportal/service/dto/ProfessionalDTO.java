@@ -8,6 +8,8 @@ public class ProfessionalDTO extends AbstractMemberDTO {
 
     private ProfessionDTO profession;
 
+    private Integer rating;
+
     public ProfessionalDTO() {
         super();
         profession = new ProfessionDTO();
@@ -24,6 +26,14 @@ public class ProfessionalDTO extends AbstractMemberDTO {
     @Override
     public String toString() {
         return "ProfessionalDTO [profession=" + profession + "]";
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer pRating) {
+        rating = pRating;
     }
 
 }

@@ -1,5 +1,25 @@
 @charset "UTF-8";
 
+.inline_rating .ui-rating-star {
+	display: inline-table !important;
+}
+
+.inline_rating {
+	display: inline-block;
+}
+
+.inline_lbl {
+	padding-right: 10px;
+}
+
+.panel_wb {
+	border: 1px solid #DCE1E7 !important;
+}
+
+.panel_wb .ui-widget-content {
+	border: none !important;
+}
+
 .text-gray {
 	color: #777777;
 	font-size: 0.9em;

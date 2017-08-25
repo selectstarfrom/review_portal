@@ -21,10 +21,83 @@
 							completeMethod="#{addReviewPageViewBean.actions.autoCompleteProfessionals}" var="item" itemLabel="#{item.name}"
 							itemValue="#{item.id}" forceSelection="true" requiredMessage="#{msg['review.professional.required.review.reviewabout']}"
 							dropdown="true" required="true">
+							<p:ajax event="itemSelect" listener="#{addReviewPageViewBean.actions.professionalSelectionAction}" update="prof_details" />
 							<f:attribute name="filteredProfessionals" value="#{addReviewPageViewBean.accessor.filteredProfessionals}" />
 						</p:autoComplete>
 					</div>
 				</div>
+
+
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-3 contact-info">
+						<p:outputLabel value="Details" />
+					</div>
+					<h:panelGroup layout="block" class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-9 contact-info" id="prof_details">
+						<p:panel styleClass="panel_wb">
+							<div class="ui-grid-row" style="border: none">
+								<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px; border: none">
+
+									<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info">
+										<p:graphicImage name="images/avatar1.png" library="avalon-layout" width="65" styleClass="profile-image" />
+									</div>
+
+									<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-10 contact-info" style="padding: 0px">
+
+										<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-6 contact-info" style="padding: 0px">
+											<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px">
+												<p:outputLabel value="Name" for="prof-name" styleClass="text-gray inline_lbl" />
+												<p:outputLabel class="name" id="prof-name" value="#{addReviewPageViewBean.accessor.review.reviewAbout.name}"
+													style="color:#147df0" />
+											</div>
+
+											<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px">
+												<p:outputLabel value="Email" for="prof-email" styleClass="text-gray inline_lbl" />
+												<p:outputLabel class="name" id="prof-email" value="#{addReviewPageViewBean.accessor.review.reviewAbout.user.email}"
+													style="color:#3e9018" />
+											</div>
+
+											<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px">
+												<p:outputLabel value="Profession" for="prof-prof-title" styleClass="text-gray inline_lbl" />
+												<p:outputLabel class="name" id="prof-prof-title" value="#{addReviewPageViewBean.accessor.review.reviewAbout.profession.title}"
+													style="color:#ed3c76" />
+											</div>
+										</div>
+
+										<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-6 contact-info" style="padding: 0px">
+											<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px">
+												<p:outputLabel value="Address" for="prof-address" styleClass="text-gray inline_lbl" />
+												<p:outputLabel class="name" id="prof-address" value="#{addReviewPageViewBean.accessor.review.reviewAbout.address.address}"
+													style="color:#147df0" />
+											</div>
+
+											<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px">
+												<p:outputLabel value="City" for="prof-city" styleClass="text-gray inline_lbl" />
+												<p:outputLabel class="name" id="prof-city" value="#{addReviewPageViewBean.accessor.review.reviewAbout.address.city}"
+													style="color:#3e9018" />
+											</div>
+
+											<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px">
+												<p:outputLabel value="State" for="prof-state" styleClass="text-gray inline_lbl" />
+												<p:outputLabel class="name" id="prof-state" value="#{addReviewPageViewBean.accessor.review.reviewAbout.address.state}"
+													style="color:#ed3c76" />
+											</div>
+										</div>
+
+										<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px">
+											<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px">
+												<p:outputLabel value="Rating" for="prof-state" styleClass="text-gray inline_lbl" />
+												<p:rating value="#{addReviewPageViewBean.accessor.review.reviewAbout.rating}" readonly="true" styleClass="inline_rating"/>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</p:panel>
+					</h:panelGroup>
+				</div>
+
+
 
 				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
 					<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-3 contact-info">

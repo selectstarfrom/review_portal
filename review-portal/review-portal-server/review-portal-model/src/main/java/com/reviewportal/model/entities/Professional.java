@@ -16,6 +16,8 @@ public class Professional extends AbstractMember {
 
     @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
     private Profession profession;
+    
+    private Integer rating;
 
     public Professional() {
         super();
@@ -36,5 +38,15 @@ public class Professional extends AbstractMember {
     public void setProfession(Profession pProfession) {
         profession = pProfession;
     }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer pRating) {
+        rating = pRating;
+    }
+    
+    
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.SelectEvent;
 import org.slf4j.LoggerFactory;
 
 import com.reviewportal.service.dto.ProfessionalDTO;
@@ -36,6 +37,18 @@ public class AddReviewPageActionBean extends AbstractActionBean {
         
         getAccessor().setReview(getParent().getNewReviewInstance());
 
+    }
+    
+    public void professionalSelectionAction(SelectEvent pEvent) {
+        ProfessionalDTO lObject = (ProfessionalDTO) pEvent.getObject();
+        
+        Long lId = lObject.getId();
+        
+        ProfessionalDTO lById = getAccessor().getProfessionalMemberService().getById(lId);
+        
+        getAccessor().getReview().setReviewAbout(lById);
+
+        System.out.println("---------------------");
     }
 
     public List<ProfessionalDTO> autoCompleteProfessionals(String pInput) {
