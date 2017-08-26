@@ -5,4 +5,8 @@
 		<welcome-file>views/pg-landing.xhtml</welcome-file>
 	</welcome-file-list>
 
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/views/pg-landing.xhtml</location>
+	</error-page>
 </web-app>

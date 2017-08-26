@@ -82,6 +82,7 @@ public class TestProfessionalService {
             String lMobile = "+" + lNextLong;
 
             ProfessionalDTO lDto = new ProfessionalDTO();
+            lUser.setEmail(lName.replaceAll(" ", "").toLowerCase()+"gmail.com");
 
             lDto.setAddress(lAddress);
             lDto.setProfession(lProfession);
