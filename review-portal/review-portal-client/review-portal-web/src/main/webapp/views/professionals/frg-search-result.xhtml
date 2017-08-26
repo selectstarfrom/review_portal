@@ -9,129 +9,131 @@
 
 
 
-				<p:dataTable styleClass="borderless-data-table" value="#{searchProfessionalsPageViewBean.accessor.professionals}" var="item">
+				<p:dataTable styleClass="borderless-data-table" value="#{searchProfessionalsPageViewBean.accessor.professionals}" var="item"
+					id="search_result_table" widgetVar="search_result_table" paginator="true" rows="10" rowsPerPageTemplate="5,10,15" lazy="true"
+					reflow="true" paginatorPosition="bottom" scrollable="true" scrollHeight="450" style="margin-top: 10px;margin-bottom: 10px;"
+					emptyMessage="No Professionals found matching the selected filter criteria" rowExpandMode="single"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 
 					<p:column>
-						<div class="clearfix">
 
 
-							<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-								<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-1 contact-info" style="padding: 0px 0px 0px 0px">
-									<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-										<p:graphicImage value="#{appUtil.profileImage}" width="65" styleClass="profile-image" cache="false">
-											<f:param name="id" value="#{item.user.id}" />
-										</p:graphicImage>
-									</div>
-									<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-										<p:rating value="#{item.rating}" readonly="true" styleClass="inline_rating" />
-									</div>
+						<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+							<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-1 contact-info" style="padding: 0px 0px 0px 0px">
+								<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+									<p:graphicImage value="#{appUtil.profileImage}" width="65" styleClass="profile-image" cache="false">
+										<f:param name="id" value="#{item.user.id}" />
+									</p:graphicImage>
 								</div>
-								<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-7 contact-info" style="padding: 0px 0px 0px 0px">
-
-									<div class="ui-sm-12 ui-md-12 ui-g-5 ui-lg-5 contact-info" style="padding: 0px 0px 0px 0px">
-										<!-- STAR:name -->
-										<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel value="Name:" for="prof-name" styleClass="text-gray" />
-											</div>
-
-											<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel class="name txt_blue" id="prof-name" value="#{item.name}" style="color:#147df0" />
-											</div>
-										</div>
-										<!-- END:name -->
-
-										<!-- STAR:prof-title -->
-										<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel value="Profession" for="prof-title" styleClass="text-gray" />
-											</div>
-
-											<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel class="name txt_purple" id="prof-title" value="#{item.profession.title}" style="color:#147df0" />
-											</div>
-										</div>
-										<!-- END:prof-title -->
-
-										<!-- STAR:email -->
-										<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel value="Email" for="prof-email" styleClass="text-gray" />
-											</div>
-
-											<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel class="name txt_cyan" id="prof-email" value="#{item.user.email}" style="color:#147df0" />
-											</div>
-										</div>
-										<!-- END:prof-title -->
-										
-										<!-- STAR:reviews -->
-										<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel value="#Reviews" for="prof-reviews" styleClass="text-gray" />
-											</div>
-
-											<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel class="name txt_cyan" id="prof-reviews" value="#{item.reviewCount}"/>
-											</div>
-										</div>
-										<!-- END:reviews -->
-									</div>
-
-									<div class="ui-sm-12 ui-md-12 ui-g-5 ui-lg-5 contact-info" style="padding: 0px 0px 0px 0px">
-										<!-- STAR:City -->
-										<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel value="City" for="prof-city" styleClass="text-gray" />
-											</div>
-
-											<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel class="name txt_green" id="prof-city" value="#{item.address.city}" style="color:#147df0" />
-											</div>
-										</div>
-										<!-- END:City -->
-
-										<!-- STAR:State -->
-										<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel value="State" for="prof-state" styleClass="text-gray" />
-											</div>
-
-											<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel class="name txt_indigo" id="prof-state" value="#{item.address.state}" style="color:#147df0" />
-											</div>
-										</div>
-										<!-- END:State -->
-
-										<!-- STAR:zip -->
-										<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel value="Zip" for="prof-zip" styleClass="text-gray" />
-											</div>
-
-											<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
-												<p:outputLabel class="name txt_red" id="prof-zip" value="#{item.address.zip}" style="color:#147df0" />
-											</div>
-										</div>
-										<!-- END:zip -->
-									</div>
-
-									<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
-										<div class="ui-sm-4 ui-md-4 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<p:commandLink value="View more" />
-										</div>
-										<div class="ui-sm-4 ui-md-4 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
-											<p:commandLink value="View Reviews" />
-										</div>
-									</div>
-
-
+								<div class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+									<p:rating value="#{item.rating}" readonly="true" styleClass="inline_rating" />
 								</div>
 							</div>
+							<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-7 contact-info" style="padding: 0px 0px 0px 0px">
+
+								<div class="ui-sm-12 ui-md-12 ui-g-5 ui-lg-5 contact-info" style="padding: 0px 0px 0px 0px">
+									<!-- STAR:name -->
+									<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel value="Name:" for="prof-name" styleClass="text-gray" />
+										</div>
+
+										<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel class="name txt_blue" id="prof-name" value="#{item.name}" style="color:#147df0" />
+										</div>
+									</div>
+									<!-- END:name -->
+
+									<!-- STAR:prof-title -->
+									<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel value="Profession" for="prof-title" styleClass="text-gray" />
+										</div>
+
+										<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel class="name txt_purple" id="prof-title" value="#{item.profession.title}" style="color:#147df0" />
+										</div>
+									</div>
+									<!-- END:prof-title -->
+
+									<!-- STAR:email -->
+									<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel value="Email" for="prof-email" styleClass="text-gray" />
+										</div>
+
+										<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel class="name txt_cyan" id="prof-email" value="#{item.user.email}" style="color:#147df0" />
+										</div>
+									</div>
+									<!-- END:prof-title -->
+
+									<!-- STAR:reviews -->
+									<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel value="#Reviews" for="prof-reviews" styleClass="text-gray" />
+										</div>
+
+										<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel class="name txt_cyan" id="prof-reviews" value="#{item.reviewCount}" />
+										</div>
+									</div>
+									<!-- END:reviews -->
+								</div>
+
+								<div class="ui-sm-12 ui-md-12 ui-g-5 ui-lg-5 contact-info" style="padding: 0px 0px 0px 0px">
+									<!-- STAR:City -->
+									<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel value="City" for="prof-city" styleClass="text-gray" />
+										</div>
+
+										<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel class="name txt_green" id="prof-city" value="#{item.address.city}" style="color:#147df0" />
+										</div>
+									</div>
+									<!-- END:City -->
+
+									<!-- STAR:State -->
+									<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel value="State" for="prof-state" styleClass="text-gray" />
+										</div>
+
+										<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel class="name txt_indigo" id="prof-state" value="#{item.address.state}" style="color:#147df0" />
+										</div>
+									</div>
+									<!-- END:State -->
+
+									<!-- STAR:zip -->
+									<div class="grp_1 ui-sm-12 ui-md-12 ui-g-10 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<div class="div-lbl ui-sm-4 ui-md-4 ui-g-3 ui-lg-3 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel value="Zip" for="prof-zip" styleClass="text-gray" />
+										</div>
+
+										<div class="div-val ui-sm-8 ui-md-8 ui-g-9 ui-lg-9 contact-info" style="padding: 0px 0px 0px 0px">
+											<p:outputLabel class="name txt_red" id="prof-zip" value="#{item.address.zip}" style="color:#147df0" />
+										</div>
+									</div>
+									<!-- END:zip -->
+								</div>
+
+								<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-2 contact-info" style="padding: 0px 0px 0px 0px">
+									<div class="ui-sm-4 ui-md-4 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:commandLink value="View more" />
+									</div>
+									<div class="ui-sm-4 ui-md-4 ui-g-12 ui-lg-12 contact-info" style="padding: 0px 0px 0px 0px">
+										<p:commandLink value="View Reviews" />
+									</div>
+								</div>
 
 
+							</div>
 						</div>
+
+
 					</p:column>
 
 				</p:dataTable>
