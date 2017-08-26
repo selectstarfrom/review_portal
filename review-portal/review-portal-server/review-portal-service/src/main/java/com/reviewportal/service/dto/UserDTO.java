@@ -20,7 +20,7 @@ public class UserDTO extends AbstractDTO {
 
     private String password;
 
-    private UserStatus status = UserStatus.NEW;
+    private UserStatus status;// = UserStatus.NEW;
 
     private String telephone;
 

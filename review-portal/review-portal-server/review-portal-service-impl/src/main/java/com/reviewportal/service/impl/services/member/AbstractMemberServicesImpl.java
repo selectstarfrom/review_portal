@@ -1,5 +1,7 @@
 package com.reviewportal.service.impl.services.member;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.reviewportal.dao.dao.IMemberDao;
 import com.reviewportal.model.entities.AbstractMember;
+import com.reviewportal.model.enums.UserStatus;
 import com.reviewportal.service.dto.AbstractMemberDTO;
 import com.reviewportal.service.dto.UserDTO;
 import com.reviewportal.service.dto.UserRoleDTO;
@@ -46,6 +49,7 @@ public abstract class AbstractMemberServicesImpl<E extends AbstractMember, D ext
         pDto.getAddress().setId(null);
 
         UserDTO lUser = pDto.getUser();
+        lUser.setStatus(UserStatus.NEW);
         lUser.setId(null);
         String lEncodedPassword = getCommonServices().getEncodedPassword(lUser.getPassword(), lUser.getUsername());
         Set<UserRoleDTO> lUserRoles;
@@ -61,6 +65,38 @@ public abstract class AbstractMemberServicesImpl<E extends AbstractMember, D ext
         doMemberSpecificLogics(pDto);
 
         super.save(pDto);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void save(List<D> pDtos) throws SystemServiceException {
+        List<D> lDtos = new ArrayList<>();
+        try {
+            for (D lDto : pDtos) {
+                lDto.setId(null);
+                lDto.getAddress().setId(null);
+
+                UserDTO lUser = lDto.getUser();
+                lUser.setId(null);
+                String lEncodedPassword = getCommonServices().getEncodedPassword(lUser.getPassword(),
+                        lUser.getUsername());
+                Set<UserRoleDTO> lUserRoles;
+                try {
+                    lUserRoles = getDefaultRolesBasedOnMemberType();
+                } catch (SystemServiceException pServiceException) {
+                    throw pServiceException;
+                }
+
+                lUser.setPassword(lEncodedPassword);
+                lUser.setUserRoles(lUserRoles);
+
+                doMemberSpecificLogics(lDto);
+                lDtos.add(lDto);
+            }
+            super.save(lDtos);
+        } catch (Exception pException) {
+            throw new SystemServiceException("Error occured in save service", pException);
+        }
     }
 
     @Override
