@@ -17,6 +17,21 @@
 
 
 					<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-4 user-signup-lbl " style="padding: 0px 0px 0px 0px">
+						<p:outputLabel value="Name" for="user-name" styleClass="user-singup-lbl" />
+					</div>
+
+					<div class="ui-sm-12 ui-md-12 ui-g-10 ui-lg-8 sign-up-value" style="padding: 0px 0px 0px 0px">
+						<p:inputText id="user-name" value="#{landingPageBean.accessor.signupUser.name}" required="true"
+							requiredMessage="#{msg['user-signup.required.username']}" widgetVar="user-name" />
+						<p:message for="user-username" showSummary="false" />
+					</div>
+
+				</div>
+				
+				<div class="ui-sm-12 ui-md-12 ui-g-6 ui-lg-12" style="padding-left: 0px">
+
+
+					<div class="ui-sm-12 ui-md-12 ui-g-2 ui-lg-4 user-signup-lbl " style="padding: 0px 0px 0px 0px">
 						<p:outputLabel value="Username:" for="user-username" styleClass="user-singup-lbl" />
 					</div>
 
