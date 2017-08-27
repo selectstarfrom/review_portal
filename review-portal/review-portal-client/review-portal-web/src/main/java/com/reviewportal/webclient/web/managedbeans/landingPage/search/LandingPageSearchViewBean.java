@@ -20,7 +20,7 @@ import com.reviewportal.webclient.web.managedbeans.AbstractViewBean;
 @ViewScoped
 @PropertyAccessor(className = LandingPageSearchAccessor.class)
 @ViewAction(className = LandingPageSearchActionBean.class)
-public class LandingPageViewBean extends AbstractViewBean {
+public class LandingPageSearchViewBean extends AbstractViewBean {
 
 	private static final long serialVersionUID = 5610163128120651427L;
 

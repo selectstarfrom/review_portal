@@ -28,7 +28,7 @@ public class LandingPageSearchActionBean extends AbstractActionBean {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public LandingPageViewBean getParent() {
+	public LandingPageSearchViewBean getParent() {
 		return super.getParent();
 	}
 

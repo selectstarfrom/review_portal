@@ -6,12 +6,13 @@
 
 	<div>
 		<div class="ui-inputgroup">
-			<p:outputLabel styleClass="hybrid-left-end" value="Find" style="background:#337ab7;padding-top:5px;" />
+			<p:outputLabel styleClass="hybrid-left-end" value="Find" style="background:#337ab7;padding:5px 10px;" />
 			<p:autoComplete styleClass="hybrid-inner" id="professionals-search-prof-title" value="#{landingPageSearchBean.accessor.searchProfession}"
 				label="#{landingPageSearchBean.accessor.searchProfession}" completeMethod="#{landingPageSearchBean.actions.autoCompleteProfession}"
-				var="item" itemLabel="#{item}" itemValue="#{item}" forceSelection="true">
+				var="item" itemLabel="#{item}" itemValue="#{item}" forceSelection="true" placeholder="Profession">
 			</p:autoComplete>
-			<p:commandButton icon="fa fa-search" styleClass="hybrid-right-end" style="width:30px;background-color:#337ab7" />
+			<p:button icon="fa fa-search" styleClass="hybrid-right-end" style="width:30px;background-color:#337ab7"
+				outcome="/searchProfessionals" process="@form" update="@form"/>
 		</div>
 	</div>
 </ui:composition>
