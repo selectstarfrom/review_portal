@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+	<h2>Search</h2>
+
+	<div>
+		<div class="ui-inputgroup">
+			<span class="ui-inputgroup-addon">Find</span>
+			<p:autoComplete styleClass="form-control" id="professionals-search-prof-title" value="#{landingPageSearchBean.accessor.searchProfession}"
+				label="#{landingPageSearchBean.accessor.searchProfession}" completeMethod="#{landingPageSearchBean.actions.autoCompleteProfession}"
+				var="item" itemLabel="#{item}" itemValue="#{item}" forceSelection="true">
+			</p:autoComplete>
+			<p:commandButton icon="fa fa-search" styleClass="green-button"/>
+		</div>
+	</div>
+</ui:composition>
