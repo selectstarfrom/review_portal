@@ -2,16 +2,16 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 
-	<h2>Search</h2>
+
 
 	<div>
 		<div class="ui-inputgroup">
-			<span class="ui-inputgroup-addon">Find</span>
-			<p:autoComplete styleClass="form-control" id="professionals-search-prof-title" value="#{landingPageSearchBean.accessor.searchProfession}"
+			<p:outputLabel styleClass="hybrid-left-end" value="Find" style="background:#337ab7;padding-top:5px;" />
+			<p:autoComplete styleClass="hybrid-inner" id="professionals-search-prof-title" value="#{landingPageSearchBean.accessor.searchProfession}"
 				label="#{landingPageSearchBean.accessor.searchProfession}" completeMethod="#{landingPageSearchBean.actions.autoCompleteProfession}"
 				var="item" itemLabel="#{item}" itemValue="#{item}" forceSelection="true">
 			</p:autoComplete>
-			<p:commandButton icon="fa fa-search" styleClass="green-button"/>
+			<p:commandButton icon="fa fa-search" styleClass="hybrid-right-end" style="width:30px;background-color:#337ab7" />
 		</div>
 	</div>
 </ui:composition>
