@@ -13,7 +13,7 @@ import com.reviewportal.dao.config.DaoApplication;
 @EnableJpaRepositories(basePackages = "com.reviewportal")
 @EntityScan(basePackages = "com.reviewportal")
 @ComponentScan(basePackages = { "com.reviewportal" })
-//@EnableAutoConfiguration(exclude = { org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class, })
+@EnableAutoConfiguration//(exclude = { org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class, })
 @Import({ DaoApplication.class })
 public class ServiceApplication {
 }

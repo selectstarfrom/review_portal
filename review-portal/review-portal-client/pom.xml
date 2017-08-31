@@ -9,5 +9,6 @@
 	<description>review-portal-client ui</description>
 	<modules>
 		<module>review-portal-web</module>
+		<module>review-portal-webapp</module>
 	</modules>
 </project>

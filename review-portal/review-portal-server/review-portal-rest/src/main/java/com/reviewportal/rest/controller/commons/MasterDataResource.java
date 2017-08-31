@@ -32,7 +32,7 @@ public class MasterDataResource extends AbstractBaseResource {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ApiOperation(value = "Get all Profession Titles", notes = "Get all Profession Titles")
 	public ResponseEntity<List<String>> getAllProfessions() {
-		List<String> lList = masterDataServices.getAllProfessions();
+		List<String> lList = masterDataServices.getAllProfessionTitles();
 		return new ResponseEntity<List<String>>(lList, HttpStatus.OK);
 	}
 

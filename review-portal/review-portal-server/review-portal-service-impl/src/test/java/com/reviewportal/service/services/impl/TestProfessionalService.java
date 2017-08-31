@@ -56,7 +56,7 @@ public class TestProfessionalService {
     @Autowired
     private ProfessionalMemberServicesImpl professionalMemberService;
 
-    @Test
+    //@Test
     public void testGetProfessional1() throws Exception {
         System.out.println("----");
         ProfessionalDTO lById = professionalMemberService.getById(1L);

@@ -15,9 +15,16 @@ public class MasterDataReadDaoImpl {
 	EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
-	public List<String> getAllProfessions() {
+	public List<String> getAllProfessionTitles() {
 		Query lCreateQuery = entityManager.createQuery("SELECT p.title FROM Profession as p");
 		List<String> lResultList = lCreateQuery.getResultList();
 		return lResultList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String[]> getAllProfessions() {
+	    Query lCreateQuery = entityManager.createQuery("SELECT p.title, p.description FROM Profession as p");
+	    List<String[]> lResultList = lCreateQuery.getResultList();
+	    return lResultList;
 	}
 }

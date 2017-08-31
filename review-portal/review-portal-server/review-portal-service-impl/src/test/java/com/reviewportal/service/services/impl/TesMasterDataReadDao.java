@@ -24,7 +24,7 @@ public class TesMasterDataReadDao {
 
 	@Test
 	public void testSave() throws Exception {
-		List<String> lProfessions = repository.getAllProfessions();
+		List<String> lProfessions = repository.getAllProfessionTitles();
 		for (String lString : lProfessions) {
 			System.out.println(lString);
 		}

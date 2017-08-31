@@ -17,13 +17,23 @@ public class MasterDataServices {
 	private MasterDataReadDaoImpl dao;
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<String> getAllProfessions() throws SystemServiceException {
+	public List<String> getAllProfessionTitles() throws SystemServiceException {
 		try {
-			List<String> lFindAll = dao.getAllProfessions();
+			List<String> lFindAll = dao.getAllProfessionTitles();
 			return lFindAll;
 		} catch (Exception pException) {
 			throw new SystemServiceException("Error occured in getAllProfessions service", pException);
 		}
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<String[]> getAllProfessions() throws SystemServiceException {
+	    try {
+	        List<String[]> lFindAll = dao.getAllProfessions();
+	        return lFindAll;
+	    } catch (Exception pException) {
+	        throw new SystemServiceException("Error occured in getAllProfessions service", pException);
+	    }
 	}
 
 }
