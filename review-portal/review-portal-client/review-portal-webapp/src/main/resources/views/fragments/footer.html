@@ -1,8 +1,8 @@
 <div th:fragment="footer" th:align="center">
-	&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span> <span>My Awesome App</span>
+	&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span> <span>Review Hub</span>
 </div>
 <div th:fragment="footer-admin" th:align="center">
-	&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span> <span>My Awesome App </span><span
+	&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span> <span>Review Hub</span><span
 		th:text="${@environment.getProperty('app.version')}"></span>
 </div>
 
