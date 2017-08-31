@@ -34,9 +34,10 @@ public class ApplicationCacheMBean extends AbstractBaseBean {
 
     private List<SelectItem> membershipTypes;
     private List<SelectItem> genders;
+    private List<String> professionsTitles;
     private List<SelectItem> professions;
 
-    //private UserDTO loggedInUser;
+    // private UserDTO loggedInUser;
 
     @PostConstruct
     public void init() {
@@ -52,17 +53,20 @@ public class ApplicationCacheMBean extends AbstractBaseBean {
             genders.add(new SelectItem(lEnum.name(), lEnum.getLabel()));
         }
 
-        List<String> lAllProfessions = masterDataService.getAllProfessions();
+        List<String> lAllProfessionTitles = masterDataService.getAllProfessionTitles();
+        professionsTitles = lAllProfessionTitles;
+
+        List<String[]> lAllProfessions = masterDataService.getAllProfessions();
         professions = new ArrayList<>();
-        for (String lValueObject : lAllProfessions) {
-            professions.add(new SelectItem(lValueObject, lValueObject));
+        for (Object[] lObjects : lAllProfessions) {
+            professions.add(new SelectItem((String)lObjects[0], (String)lObjects[1]));
         }
     }
 
     private void testUser() {
         try {
             UserDTO lDemoUser = userServices.getByUsername("demo_prof");
-            //setLoggedInUser(lDemoUser);
+            // setLoggedInUser(lDemoUser);
         } catch (Exception pException) {
 
         }
@@ -84,20 +88,12 @@ public class ApplicationCacheMBean extends AbstractBaseBean {
         genders = pGenders;
     }
 
+    public List<String> getProfessionsTitles() {
+        return professionsTitles;
+    }
+
     public List<SelectItem> getProfessions() {
         return professions;
     }
-
-    public void setProfessions(List<SelectItem> pProfessions) {
-        professions = pProfessions;
-    }
-
-//    public UserDTO getLoggedInUser() {
-//        return loggedInUser;
-//    }
-//
-//    public void setLoggedInUser(UserDTO pLoggedInUser) {
-//        loggedInUser = pLoggedInUser;
-//    }
 
 }

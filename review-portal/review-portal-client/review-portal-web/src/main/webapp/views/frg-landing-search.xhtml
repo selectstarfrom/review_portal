@@ -9,7 +9,7 @@
 			<p:outputLabel styleClass="hybrid-left-end" value="Find" style="background:#337ab7;padding:5px 10px;" />
 			<p:autoComplete styleClass="hybrid-inner" id="professionals-search-prof-title" value="#{landingPageSearchBean.accessor.searchProfession}"
 				label="#{landingPageSearchBean.accessor.searchProfession}" completeMethod="#{landingPageSearchBean.actions.autoCompleteProfession}"
-				var="item" itemLabel="#{item}" itemValue="#{item}" forceSelection="true" placeholder="Profession">
+				var="item" itemLabel="#{item.label}" itemValue="#{item.value}" forceSelection="true" placeholder="Profession">
 			</p:autoComplete>
 			<p:button icon="fa fa-search" styleClass="hybrid-right-end" style="width:30px;background-color:#337ab7"
 				outcome="/searchProfessionals" process="@form" update="@form"/>

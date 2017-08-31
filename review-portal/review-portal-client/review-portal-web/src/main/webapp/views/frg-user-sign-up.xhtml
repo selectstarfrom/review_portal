@@ -126,7 +126,7 @@
 
 							<p:autoComplete id="user-member-profession" value="#{landingPageBean.accessor.signupUser.profession.title}"
 								label="#{landingPageBean.accessor.signupUser.profession.title}"
-								completeMethod="#{landingPageBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item}" itemValue="#{item}"
+								completeMethod="#{landingPageBean.actions.autoCompleteProfessionTitle}" var="item" itemLabel="#{item}" itemValue="#{item}"
 								forceSelection="true" required="true" requiredMessage="#{msg['profile.required.profession']}" dropdown="true">
 							</p:autoComplete>
 

@@ -22,7 +22,7 @@ public abstract class AbstractActionBean extends AbstractMBean {
         this.parent = parent;
     }
 
-    public List<String> autoCompleteProfession(String pInput) {
+    public List<String> autoCompleteProfessionTitle(String pInput) {
 
         List<SelectItem> lProfessions = getAppCacheBean().getProfessions();
         List<SelectItem> lFiltered = lProfessions.stream()
@@ -30,6 +30,15 @@ public abstract class AbstractActionBean extends AbstractMBean {
 
         List<String> lMapped = lFiltered.stream().map(sc -> sc.getLabel()).collect(Collectors.toList());
         return lMapped;
+    }
+    
+    public List<SelectItem> autoCompleteProfession(String pInput) {
+
+        List<SelectItem> lProfessions = getAppCacheBean().getProfessions();
+        List<SelectItem> lFiltered = lProfessions.stream()
+                .filter(p -> StringUtils.containsIgnoreCase(p.getLabel(), pInput)).collect(Collectors.toList());
+        
+        return lFiltered;
     }
 
 }

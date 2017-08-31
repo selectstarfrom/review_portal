@@ -52,7 +52,7 @@
 
 					<p:autoComplete id="basic-prof" value="#{userProfilePageViewBean.accessor.member.profession.title}"
 						label="#{userProfilePageViewBean.accessor.member.profession.title}"
-						completeMethod="#{userProfilePageViewBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item}" itemValue="#{item}"
+						completeMethod="#{userProfilePageViewBean.actions.autoCompleteProfessionTitle}" var="item" itemLabel="#{item}" itemValue="#{item}"
 						forceSelection="true" required="true" requiredMessage="#{msg['profile.required.profession']}" dropdown="true"
 						rendered="#{userProfilePageViewBean.accessor.editProfileEnabled}">
 					</p:autoComplete>

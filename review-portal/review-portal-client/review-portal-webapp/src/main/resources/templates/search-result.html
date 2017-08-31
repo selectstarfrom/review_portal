@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Review Hub</title>
+
+<!-- START:VENDOR-STYLESHEET -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- END:VENDOR-STYLESHEET -->
+
+<!-- START:STYLESHEET -->
+<link rel="stylesheet" type="text/css" th:href="@{/style/css/main.css}" />
+<!-- END:STYLESHEET -->
+
+<!-- START:VENDOR-JAVASCRIPT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/vendor/jquery.autocomplete.min.js"></script>
+<!-- END:VENDOR-JAVASCRIPT -->
+
+<!-- START:JAVASCRIPT -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- END:JAVASCRIPT -->
+
+</head>
+
+<body>
+<body>
+	<h1>Professionals Table</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				
+				<th>Name</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="prof : ${list}">
+				<td th:text="${prof.name}"></td>
+			</tr>
+
+		</tbody>
+	</table>
+	
+	
+	
+	<div class="container">
+
+        <article class="search-result row" th:each="prof : ${list}">
+			<div class="col-xs-7 col-sm-5 col-md-3 col-lg-3">
+				<a href="#" title="Lorem ipsum" class="thumbnail">
+<!-- 				<img th:src="data:image/png;base64," + ${prof.user.displayPicture}; alt="Lorem ipsum" /> -->
+				<img th:src="${imageGen.getProfileImage(prof.user.displayPicture)}" />				 
+				</a>
+			</div>
+            
+			<div class="col-xs-5 col-sm-7 col-md-9 col-lg-9">
+				<ul class="meta-search">
+                    <li><span><h4>Product Title has a very long name for no fucking reason</h4></span></li>
+					<li></i> <span th:text="${prof.name}"></span></li>
+                    <li></li>
+				</ul>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-7">
+                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+			</div>
+			<span class="clearfix borda"></span>
+		</article>
+        
+</div>
+
+</body>
+</body>
+</html>

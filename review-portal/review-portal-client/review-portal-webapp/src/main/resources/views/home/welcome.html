@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+
+<head>
+<title>Review Hub</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- START:VENDOR-STYLESHEET -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- END:VENDOR-STYLESHEET -->
+
+<!-- START:STYLESHEET -->
+<link rel="stylesheet" type="text/css" th:href="@{/style/css/main.css}" />
+<!-- END:STYLESHEET -->
+
+<!-- START:VENDOR-JAVASCRIPT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/vendor/jquery.autocomplete.min.js"></script>
+<!-- END:VENDOR-JAVASCRIPT -->
+
+<!-- START:JAVASCRIPT -->
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/home.js"></script>
+<!-- END:JAVASCRIPT -->
+
+</head>
+
+<body>
+
+	<div th:replace="~{fragments/header :: header}">Header</div>
+
+	<div class="container">
+		<div class="text-center ">
+
+			<h1>Review Hub</h1>
+
+			<div class="lead" th:insert="http://www.thymeleaf.org :: section.description">Welcome to Review Hub! Get to know all about the
+				professionals.</div>
+
+			<p>
+				<a id="signup" class="btn btn-success btn-lg">Sign up</a>
+			</p>
+
+			<div style="margin: 0 auto;">
+				<div th:replace="home/frg-home-search :: frg-home-search" /></div>
+			</div>
+			
+			<div th:insert="~{fragments/footer :: footer}">&copy; 2017 Review Hub</div>
+
+		</div>
+	</div>
+	<div th:replace="fragments/homeSignUp :: homeSignUp">homeSignUp</div>
+</body>
+</html>

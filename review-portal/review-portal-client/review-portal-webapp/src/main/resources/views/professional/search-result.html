@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+
+<head th:replace="professional/layout :: head(~{this :: title}, ~{this :: .custom-link})">
+<title>Task List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Custom links for this page only -->
+<link class="custom-link" th:href="@{/style/css/professional.css}" />
+
+<!-- Custom scripts for this page only -->
+<script class="custom-script" th:src="js/professional.js"></script>
+</head>
+
+<body>
+
+	<!--/* The element with breadcrumb class will be passed to the header fragment */-->
+	<header th:insert="professional/layout :: header(~{ :: .breadcrumb})">
+		<ol class="breadcrumb container">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Tasks</a></li>
+		</ol>
+	</header>
+
+	<!--/* Insert content fragment with content of the element with id = 'task-list' */-->
+
+	<div th:insert="professional/layout :: content(~{ :: #professional-list})">
+		<div id="professional-list">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Title</td>
+						<td>Text</td>
+						<td>Due to</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${professionals.empty}">
+						<td colspan="4">No professionals</td>
+					</tr>
+					<tr th:each="professional : ${professionals}">
+						<td th:text="${professional.id}">1</td>
+						<td><a href="#" th:href="@{/professional/{id}(id=${professional.id})}" th:text="${professional.name}">Title ...</a></td>
+						<td th:text="${professional.user.email}">Text ...</td>
+						<td th:text="${#calendars.format(professional.createdDate)}">July 11, 2017 2:17:16 PM CDT</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<footer th:replace="professional/layout :: footer">Footer</footer>
+
+</body>
+</html>

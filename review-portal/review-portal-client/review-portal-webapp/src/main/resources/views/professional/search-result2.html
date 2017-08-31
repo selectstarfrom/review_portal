@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title, links, scripts)">
+    
+    <title>Review Hub</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- START:VENDOR-STYLESHEET -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- END:VENDOR-STYLESHEET -->
+
+<!-- START:STYLESHEET -->
+<link rel="stylesheet" type="text/css" th:href="@{/style/css/main.css}" />
+<!-- END:STYLESHEET -->
+
+<!-- START:VENDOR-JAVASCRIPT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/vendor/jquery.autocomplete.min.js"></script>
+<!-- END:VENDOR-JAVASCRIPT -->
+
+<!-- START:JAVASCRIPT -->
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/home.js"></script>
+<!-- END:JAVASCRIPT -->
+
+    
+</head>
+
+<body>
+
+	<!--/* The element with breadcrumb class will be passed to the header fragment */-->
+	<header th:insert="professional/layout :: header(~{ :: .breadcrumb})">
+		<ol class="breadcrumb container">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Tasks</a></li>
+		</ol>
+	</header>
+
+	<!--/* Insert content fragment with content of the element with id = 'professional-list' */-->
+	<div th:insert="professional/layout :: content(~{ :: #professional-list})">
+		<div id="professional-list">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Title</td>
+						<td>Text</td>
+						<td>Due to</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${professionals.empty}">
+						<td colspan="4">No professionals</td>
+					</tr>
+					<tr th:each="professional : ${professionals}">
+						<td th:text="${professional.id}">1</td>
+						<td><a href="#" th:href="@{/professional/{id}(id=${professional.id})}" th:text="${professional.name}">Title ...</a></td>
+						<td th:text="${professional.user.email}">Text ...</td>
+						<td th:text="${#calendars.format(professional.createdDate)}">July 11, 2017 2:17:16 PM CDT</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<footer th:replace="professional/layout :: footer">Footer</footer>
+
+</body>
+</html>

@@ -25,7 +25,7 @@
 					<p:outputLabel value="Profession" for="user-member-profession" styleClass="text-gray" />
 					<p:autoComplete id="user-member-profession" value="#{searchReviewByMePageViewBean.accessor.searchCriteria.searchProfession}"
 						label="#{searchReviewByMePageViewBean.accessor.searchCriteria.searchProfession}"
-						completeMethod="#{searchReviewByMePageViewBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item}" itemValue="#{item}"
+						completeMethod="#{searchReviewByMePageViewBean.actions.autoCompleteProfessionTitle}" var="item" itemLabel="#{item}" itemValue="#{item}"
 						forceSelection="true" dropdown="true">
 					</p:autoComplete>
 				</div>

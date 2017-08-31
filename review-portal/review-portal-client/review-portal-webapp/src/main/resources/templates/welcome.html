@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Review Hub</title>
+
+<!-- START:VENDOR-STYLESHEET -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- END:VENDOR-STYLESHEET -->
+
+<!-- START:STYLESHEET -->
+<link rel="stylesheet" type="text/css" th:href="@{/style/css/main.css}" />
+<!-- END:STYLESHEET -->
+
+<!-- START:VENDOR-JAVASCRIPT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/vendor/jquery.autocomplete.min.js"></script>
+<!-- END:VENDOR-JAVASCRIPT -->
+
+<!-- START:JAVASCRIPT -->
+<script type="text/javascript" src="js/script.js"></script>
+<!-- END:JAVASCRIPT -->
+
+</head>
+
+<body>
+
+	<form th:action="@{/registration}" method="get">
+		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
+	</form>
+
+	<div class="container">
+		<!-- 		<img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" /> -->
+
+		<form th:action="@{/searchByProfession}" method="GET" class="form-signin">
+
+			<h3 class="form-signin-heading" th:text="Welcome"></h3>
+			<br />
+
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 input-group">
+				<span class="input-group-addon" id="basic-addon1">Find</span>
+				<input type="text" id="ac-professions" th:placeholder="Profession" class="form-control" th:value="${pSearchProfessionTitle}" name="pSearchProfessionTitle">
+				<span class="input-group-btn">
+				<button class="btn btn-primary btn-block" type="submit"><i class="fa fa-search"></i></button>				
+				</span>
+			</div>
+
+		</form>
+	</div>
+</body>
+</html>
