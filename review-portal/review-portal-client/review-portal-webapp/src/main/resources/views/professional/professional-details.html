@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="professional/layout :: head(~{this :: title}, ~{this :: .custom-link})">
+<title>Task List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link class="custom-link" th:href="@{/style/css/professional.css}" />
+
+<script class="custom-script" th:src="js/professional.js"></script>
+</head>
+
+<body>
+
+	<header th:insert="professional/layout :: header(~{ :: .breadcrumb})">
+		<ol class="breadcrumb container">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Professionals</a></li>
+			<li><a href="#">Write a Review</a></li>
+		</ol>
+	</header>
+
+	<div th:insert="professional/layout :: content(~{ :: #prof-detail})">
+
+
+
+		<div id="prof-detail" class="grid">
+
+			<div class="row">
+				<div id="prof-detail-x">
+
+					<div class="list-group">
+						<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+							<a href="#" th:title="${prof.name}"> <img class="thumbnail" th:src="${imageGen.getProfileImage(prof.user.displayPicture)}" />
+							</a>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+							<p>
+								<i class="fa fa-envelope"></i><span th:text="${prof.name}" class="text-primary thumbnail-main-label"></span><br> <i
+									class="fa fa-envelope"></i><span th:text="${prof.profession.title}"></span><br> <i class="fa fa-envelope"></i><a
+									href="mailto:${prof.user.email}" target="_top"><span th:text="${prof.user.email}"></span></a><br> <i
+									class="fa fa-phone-square"></i><a href="tel:${prof.mobile}" target="_top"><span th:text="${prof.mobile}"></span></a><br>
+
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="professional-list" class="stripped-data">
+
+
+				<article class="search-result row" th:each="review : ${prof.reviews}">
+
+					<div class="indent-1">
+						<a href="#" th:title="${prof.name}"> <img class="thumbnail"
+							th:src="${imageGen.getProfileImage(review.reviewBy.user.displayPicture)}" />
+						</a>
+					</div>
+					<div class="indent-1" style="margin-left:10px">
+						<ul class="meta-search">
+							<li><span class="thumbnail-main-label" th:text="${review.reviewBy.name}"></span></li>
+							<li><span th:text="${review.reviewAbout.reviewCount}"></span></li>
+						</ul>
+					</div>
+					<div class="indent-1" style="margin-left:20px">
+						<p th:text="${review.review}"></p>						
+					</div>
+					<span class="clearfix borda"></span>
+
+				</article>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="professional/layout :: footer">Footer</footer>
+</body>
+</html>

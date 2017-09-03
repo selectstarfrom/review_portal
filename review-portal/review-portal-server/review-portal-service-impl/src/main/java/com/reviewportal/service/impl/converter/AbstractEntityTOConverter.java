@@ -135,8 +135,7 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
                 } else {
 
                     if (pRecursive) {
-                        AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(
-                                lSourceCollectionType);
+                        AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lSourceCollectionType);
                         AbstractDTO lDto = lMapper.getDto((AbstractEntity) lEntityFieldObject, false);
                         Field lDtoField = null;
                         try {
@@ -148,6 +147,19 @@ public abstract class AbstractEntityTOConverter<E extends AbstractEntity, D exte
 
                         lDtoField.set(lTarget, lDto);
                         lDtoField.setAccessible(false);
+                    } else {
+                        AbstractEntityTOConverter<AbstractEntity, AbstractDTO> lMapper = getMapper(lSourceCollectionType);
+                        AbstractDTO lDto = lMapper.getDto((AbstractEntity) lEntityFieldObject, false);
+                        Field lDtoField = null;
+                        try {
+                            lEntityField = lTarget.getClass().getDeclaredField(lFieldName);
+                        } catch (NoSuchFieldException e) {
+                            lEntityField = lTarget.getClass().getSuperclass().getDeclaredField(lFieldName);
+                        }
+                        lEntityField.setAccessible(true);
+
+                        lEntityField.set(lTarget, lDto);
+                        lEntityField.setAccessible(false);
                     }
                 }
 

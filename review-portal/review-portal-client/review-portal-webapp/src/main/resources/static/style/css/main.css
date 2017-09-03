@@ -1,43 +1,144 @@
-.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
-.autocomplete-suggestion { padding: 5px 5px; white-space: nowrap; overflow: hidden; font-size:22px}
-.autocomplete-selected { background: #F0F0F0; }
-.autocomplete-suggestions strong { font-weight: bold; color: #3399FF; }
+.autocomplete-suggestions {
+	border: 1px solid #999;
+	background: #FFF;
+	overflow: auto;
+}
 
+.autocomplete-suggestion {
+	padding: 5px 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 22px
+}
 
-.search-result .thumbnail { border-radius: 0 !important; }
-.search-result ul { padding-left: 0 !important; list-style: none;  }
-.search-result ul li i { padding-right: 5px; }
+.autocomplete-selected {
+	background: #F0F0F0;
+}
 
-.search-result span.plus { position: absolute; right: 0; top: -30px; }
-.search-result span.plus a { background-color: #248dc1; padding: 5px 5px 3px 5px; }
-.search-result span.plus a:hover { background-color: #414141; }
-.search-result span.plus a i { color: #fff !important; }
+.autocomplete-suggestions strong {
+	font-weight: bold;
+	color: #3399FF;
+}
+
+.bordered-div {
+    outline: 1px solid;
+}
+.thumbnail-main-label {
+	font-weight: bold;
+	color: #0073bb;
+}
+
+.thumbnail {
+	border-radius: 4px !important;
+	padding: 0px !important;
+}
+
+.search-result .thumbnail {
+	border-radius: 4px !important;
+	padding: 0px !important;
+}
+
+.search-result ul {
+	padding-left: 0 !important;
+	list-style: none;
+}
+
+.search-result ul li i {
+	padding-right: 5px;
+}
+
+.search-result .options-btn {
+	position: absolute;
+	right: 0;
+	top: -30px;
+}
+
+.indent-1 {
+	float: left;
+}
+
+.indent-1 section {
+	width: 50%;
+	float: left;
+}
+
+.search-result span.plus a:hover {
+	background-color: #414141;
+}
+
+.search-result span.plus a i {
+	color: #fff !important;
+}
+
+.stripped-data > article:nth-of-type(odd) {
+    background: #e0e0e0;
+}
 
 body {
-    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-    padding-bottom: 40px;
-    background-color: #f5f5f5;
+	padding-top: 60px;
+	/* 60px to make the container go all the way to the bottom of the topbar */
+	padding-bottom: 40px;
+	background-color: #f5f5f5;
 }
 
 .form-narrow {
-    max-width: 490px;
-    padding: 19px 29px 29px;
-    margin: 0 auto 20px;
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	max-width: 490px;
+	padding: 19px 29px 29px;
+	margin: 0 auto 20px;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 
 .home-search-div {
 	padding-top: 100px;
 }
+
 .center-div {
-    position: absolute;    
-    left: 42%;    
-    margin-left: -50px;    
+	position: absolute;
+	left: 42%;
+	margin-left: -50px;
+}
+
+.wrapper {
+	width: 96%;
+	min-height: 200px;
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden;
+	/*   background: black; */
+}
+
+/*tablet */
+@media screen and (min-width: 500px) {
+	.wrapper {
+		width: 85%;
+		/*     background: pink; */
+	}
+}
+
+/* desktoppy */
+@media screen and (min-width: 700px) {
+	.wrapper {
+		max-width: 600px;
+		/*     background: blue; */
+	}
+}
+
+a.list-group-item {
+	height: auto;
+	min-height: 220px;
+}
+
+a.list-group-item.active small {
+	color: #fff;
+}
+
+.stars {
+	margin: 20px auto 1px;
 }

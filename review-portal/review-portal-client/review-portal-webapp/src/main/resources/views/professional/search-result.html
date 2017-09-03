@@ -19,37 +19,46 @@
 	<header th:insert="professional/layout :: header(~{ :: .breadcrumb})">
 		<ol class="breadcrumb container">
 			<li><a href="#">Home</a></li>
-			<li><a href="#">Tasks</a></li>
+			<li><a href="#">Professionals</a></li>
 		</ol>
 	</header>
 
 	<!--/* Insert content fragment with content of the element with id = 'task-list' */-->
 
-	<div th:insert="professional/layout :: content(~{ :: #professional-list})">
-		<div id="professional-list">
-			<table class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<td>Name</td>
-						<td>Title</td>
-						<td>Text</td>
-						<td>Due to</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:if="${professionals.empty}">
-						<td colspan="4">No professionals</td>
-					</tr>
-					<tr th:each="professional : ${professionals}">
-						<td th:text="${professional.id}">1</td>
-						<td><a href="#" th:href="@{/professional/{id}(id=${professional.id})}" th:text="${professional.name}">Title ...</a></td>
-						<td th:text="${professional.user.email}">Text ...</td>
-						<td th:text="${#calendars.format(professional.createdDate)}">July 11, 2017 2:17:16 PM CDT</td>
-					</tr>
-				</tbody>
-			</table>
+	<form th:fragment="frg-home-search" th:action="@{/searchByProfession}" method="GET" class="form-signin">
+		<div th:insert="professional/layout :: content(~{ :: #professional-list})">
+			<div id="professional-list">
+
+
+				<article class="search-result row indent-1" th:each="prof : ${professionals}">
+
+					<div class="col-xs-7 col-sm-5 col-md-3 col-lg-3">
+						<a th:href="@{/profDetail/__${prof.id}__}" th:title="${prof.name}"> <img class="thumbnail" th:src="${imageGen.getProfileImage(prof.user.displayPicture)}" />
+						</a>
+					</div>
+
+					<div class="col-xs-5 col-sm-7 col-md-9 col-lg-9">
+						<ul class="meta-search">
+							<li><span><h4 class="text-primary" th:text="${prof.id}" th:value="${prof.id}" name="pProfessionalId"></h4></span></li>
+							<li><span><h4 class="text-primary" th:text="${prof.name}"></h4></span></li>
+							<li></i> <span class="text-danger" th:text="${prof.user.email}"></span></li>
+							<li></i> <span style="padding-right: 2px">#Reviews</span><span th:text="${prof.reviewCount}"></span></li>
+							<li></li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-7">
+						<!-- 					<span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span> -->
+						
+<!-- 						<a th:href="@{/writeReview/${prof.id}}" type="button" class="options-btn btn btn-outline-secondary">Write a Review</a> -->
+						<a href="#" th:href="@{/writeReview/__${prof.id}__}" type="button" class="options-btn btn btn-outline-secondary">Write a Review</a>
+					</div>
+
+				</article>
+
+			</div>
 		</div>
-	</div>
+	</form>
+
 
 	<footer th:replace="professional/layout :: footer">Footer</footer>
 

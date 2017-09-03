@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
 
 <head>
@@ -34,23 +34,26 @@
 	<div th:replace="~{fragments/header :: header}">Header</div>
 
 	<div class="container">
-		<div class="text-center ">
+		<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="text-center">
 
-			<h1>Review Hub</h1>
+				<h1>Review Hub</h1>
 
-			<div class="lead">Welcome to Review Hub! Get to know all about the
-				professionals.</div>
+				<div class="lead">Welcome to Review Hub! Get to know all about the professionals.</div>
 
-			<p>
-				<a id="signup" class="btn btn-success btn-lg">Sign up</a>
-			</p>
+				<p>
+					<a id="signup" class="btn btn-success btn-lg">Sign up</a>
+				</p>
 
-			<div style="margin: 0 auto;">
-				<div th:replace="home/frg-home-search :: frg-home-search" /></div>
+				<div style="margin: 0 auto;">
+					<div th:replace="home/frg-home-search :: frg-home-search" /></div>
+				</div>
+
+				<div th:insert="~{fragments/footer :: footer}">&copy; 2017 Review Hub</div>
+
 			</div>
-			
-			<div th:insert="~{fragments/footer :: footer}">&copy; 2017 Review Hub</div>
-
+			</div>
 		</div>
 	</div>
 	<div th:replace="fragments/homeSignUp :: homeSignUp">homeSignUp</div>
