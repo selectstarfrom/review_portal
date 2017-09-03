@@ -24,42 +24,62 @@
 
 	<div th:insert="professional/layout :: content(~{::#page-content-root})">
 
-		<div id="page-content-root" class="page-content-root">
+		<div id="page-content-root" class="page-content-roots">
 
 			<form th:fragment="frg-home-search" th:action="@{/searchByProfession}" method="GET" class="form-signin">
 
-				<div class="search-items stripped-data">
-					<div class="search-item" th:each="prof, iter : ${professionals}">
 
-						<div class="thumbnail">
-							<img th:src="${imageGen.getProfileImage(prof.user.displayPicture)}" />
+
+				<ul class="rxlist rxlist-bordered search-results">
+					<li class="regular-search-result" th:each="prof, iter : ${professionals}">
+						<div class="search-result default-search-result">
+							<div class="rxh-listing-large">
+								<div class="main-attributes">
+									<div class="search-item-block">
+										<div class="r-avatar">
+											<div class="photo-box">
+												<img th:src="${imageGen.getProfileImage(prof.user.displayPicture)}" />
+											</div>
+										</div>
+										<div class="r-detail">
+											<h3 class="search-result-title">
+												<span class="indexed-rxh-name">1. <a class="rxh-name js-analytics-click"><span th:text="${prof.name}"></span></a>
+												</span>
+											</h3>
+											<div class="rxh-rating rxh-rating-large clearfix">
+												<div class="i-stars i-stars--regular-1 rating-large" title="4.0 star rating">
+													<img class="offscreen" height="303" width="84">
+												</div>
+												<span class="review-count rating-qualifier" th:text="${prof.reviewCount}"></span>
+
+											</div>
+
+											<div class="price-category">
+												<span class="contacts">
+													<i class="fa fa-envelope"></i><span class="text-danger" th:text="${prof.user.email}"></span><br/>
+													<i class="fa fa-phone-square"></i><span class="text-danger" th:text="${prof.mobile}"></span><br/>													
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="secondary-attributes">
+									<address>
+									<span class="r-address-bullets" th:text="${prof.address.address}"></span>												
+									<span class="r-address-bullets" th:text="${prof.address.city + ', ' + prof.address.state}"></span>									
+									<span class="r-address-bullets" th:text="${prof.address.zip}"></span>									
+										
+									</address>
+									
+								</div>
+							</div>
 						</div>
-
-						<div class="search-item-detail">
-
-							<ul class="">
-								<li><span th:text="${iter.index+1}"></span>
-									<h4 class="text-primary" th:text="${prof.name}"></h4></li>
-								<li><span class="text-danger" th:text="${prof.user.email}"></span></li>
-								<li><span th:text="${prof.reviewCount}"></span><span style="padding-right: 2px"> reviews</span></li>
-							</ul>
-						</div>
-
-						<div class="search-items-options">
-							<ul class="">
-								<li>
-									<a href="#" th:href="@{/writeReview/__${prof.id}__}" type="button" class="btn btn-xs btn-info" role="button">Write a Review</a>
-								</li>
-							</ul>
-						</div>
-
-					</div>
-				</div>
+					</li>
+				</ul>
 
 
-
-			</form>
-		</div>
+	</form>
+	</div>
 
 	</div>
 
