@@ -183,6 +183,10 @@ p.nobtm {
 	display: flex
 }
 
+.contacts-item {
+	padding-right: 5px;
+}
+
 .r-detail {
 	-webkit-box-flex: 1;
 	-moz-box-flex: 1;
@@ -2417,7 +2421,7 @@ body.responsive {
 	color: #999
 }
 
-.price-category {
+.contacts-items {
 	clear: both
 }
 
@@ -2440,7 +2444,7 @@ body.responsive {
 	max-width: 350px
 }
 
-.rxh-listing-medium .price-category, .rxh-listing-medium address {
+.rxh-listing-medium .contacts-items, .rxh-listing-medium address {
 	font-size: 12px;
 	line-height: 1.5em
 }
@@ -3424,6 +3428,30 @@ body.responsive {
 	.search-item-right-block {
 		float: right;
 		border-left: 1px solid #ccc;
-		padding-left: 10px;
+		padding-left: 20px;
 	}
+}
+
+.dark-green {
+	color: #388e3c;
+}
+
+.dark-blue {
+	color: #1565c0;
+}
+
+.dark-pink {
+	color: #c51162;
+}
+
+.dark-indigo {
+	color: #303f9f;
+}
+
+.dark-gray {
+	color: #757575;
+}
+
+.dark-red {
+	color: #d50000;
 }

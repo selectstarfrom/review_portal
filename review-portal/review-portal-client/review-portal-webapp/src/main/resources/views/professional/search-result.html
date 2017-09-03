@@ -55,10 +55,10 @@
 
 											</div>
 
-											<div class="price-category">
-												<span class="contacts">
-													<i class="fa fa-envelope"></i><span class="text-danger" th:text="${prof.user.email}"></span><br/>
-													<i class="fa fa-phone-square"></i><span class="text-danger" th:text="${prof.mobile}"></span><br/>													
+											<div class="contacts-items">
+												<span class="">
+													<i class="contacts-item fa fa-envelope dark-blue"></i><span class="dark-indigo" th:text="${prof.user.email}"></span><br/>
+													<i class="contacts-item fa fa-phone-square dark-green"></i><span class="dark-indigo" th:text="${prof.mobile}"></span><br/>													
 												</span>
 											</div>
 										</div>
@@ -67,12 +67,18 @@
 								
 								<div class="secondary-attributes search-item-right-block">
 									<address>
-									<span class="r-address-bullets" th:text="${prof.address.address}"></span><br/>												
-									<span class="r-address-bullets" th:text="${prof.address.city + ', ' + prof.address.state}"></span><br/>									
-									<span class="r-address-bullets" th:text="${prof.address.zip}"></span>									
+									<i class="fa fa-map-marker dark-pink"></i>
+									<span class="r-address-bullets dark-gray" th:text="${prof.address.address}"></span><br/>												
+									<span class="r-address-bullets dark-gray" th:text="${prof.address.city + ', ' + prof.address.state}"></span><br/>									
+									<span class="r-address-bullets dark-gray" th:text="${prof.address.zip}"></span>									
 										
 									</address>
 									
+								</div>
+								
+								<div class="secondary-attributes search-item-rights-block">
+									<button type="button" class="btn btn-sm btn-info">Write a Review</button>
+									<button type="button" class="btn btn-primary btn-sm">Details</button>
 								</div>
 							</div>
 						</div>
