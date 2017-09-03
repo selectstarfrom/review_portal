@@ -33,8 +33,9 @@
 				<ul class="rxlist rxlist-bordered search-results">
 					<li class="regular-search-result" th:each="prof, iter : ${professionals}">
 						<div class="search-result default-search-result">
-							<div class="rxh-listing-large">
-								<div class="main-attributes">
+							<div class="rxh-listing-large" style="display: inline-block;">
+								
+								<div class="main-attributes search-item-left-block">
 									<div class="search-item-block">
 										<div class="r-avatar">
 											<div class="photo-box">
@@ -43,7 +44,7 @@
 										</div>
 										<div class="r-detail">
 											<h3 class="search-result-title">
-												<span class="indexed-rxh-name">1. <a class="rxh-name js-analytics-click"><span th:text="${prof.name}"></span></a>
+												<span class="indexed-rxh-name"><span th:text="${iter.index+1 + '. '}"></span> <a class="rxh-name js-analytics-click"><span th:text="${prof.name}"></span></a>
 												</span>
 											</h3>
 											<div class="rxh-rating rxh-rating-large clearfix">
@@ -63,10 +64,11 @@
 										</div>
 									</div>
 								</div>
-								<div class="secondary-attributes">
+								
+								<div class="secondary-attributes search-item-right-block">
 									<address>
-									<span class="r-address-bullets" th:text="${prof.address.address}"></span>												
-									<span class="r-address-bullets" th:text="${prof.address.city + ', ' + prof.address.state}"></span>									
+									<span class="r-address-bullets" th:text="${prof.address.address}"></span><br/>												
+									<span class="r-address-bullets" th:text="${prof.address.city + ', ' + prof.address.state}"></span><br/>									
 									<span class="r-address-bullets" th:text="${prof.address.zip}"></span>									
 										
 									</address>

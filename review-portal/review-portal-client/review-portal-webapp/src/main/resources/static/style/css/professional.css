@@ -2450,9 +2450,12 @@ body.responsive {
 	line-height: 1.3125em
 }
 
+.rxh-listing-large {
+	display:
+}
+
 .rxh-listing-large .r-address-bullets, .rxh-listing-large .service-area
 	{
-	display: block;
 	margin-bottom: 6px
 }
 
@@ -2498,9 +2501,7 @@ body.responsive {
 }
 
 .i-stars {
-	background:
-		url(../images/stars.png)
-		no-repeat;
+	background: url(../images/stars.png) no-repeat;
 	background-size: 132px 560px;
 	display: inline-block;
 	vertical-align: middle
@@ -2910,15 +2911,12 @@ body.responsive {
 @media ( -webkit-min-device-pixel-ratio : 2) , ( min-resolution :
 	192dpi) {
 	.i-stars {
-		background-image:
-			url(../images/stars.png)
+		background-image: url(../images/stars.png)
 	}
 }
 
 .i-gray-stars {
-	background:
-		url(../images/gray_stars.png)
-		no-repeat;
+	background: url(../images/gray_stars.png) no-repeat;
 	background-size: 132px 560px;
 	display: inline-block;
 	vertical-align: middle
@@ -3328,8 +3326,7 @@ body.responsive {
 @media ( -webkit-min-device-pixel-ratio : 2) , ( min-resolution :
 	192dpi) {
 	.i-gray-stars {
-		background-image:
-			url(../images/gray_stars@2x.png)
+		background-image: url(../images/gray_stars@2x.png)
 	}
 }
 
@@ -3339,15 +3336,13 @@ body.responsive {
 }
 
 .filtered-reviews-content .i-stars {
-	background-image:
-		url(../images/gray_stars.png)
+	background-image: url(../images/gray_stars.png)
 }
 
 @media ( -webkit-min-device-pixel-ratio : 2) , ( min-resolution :
 	192dpi) {
 	.filtered-reviews-content .i-stars {
-		background-image:
-			url(../images/gray_stars.png)
+		background-image: url(../images/gray_stars.png)
 	}
 }
 
@@ -3419,4 +3414,15 @@ body.responsive {
 	padding: 18px 0;
 	border-bottom: 1px solid #e6e6e6;
 	padding-bottom: 17px
+}
+
+.search-item-left-block {
+	float: left;
+	padding-right: 20px;
+}
+
+.search-item-right-block {
+	float: right;
+	border-left: 1px solid #ccc;
+	padding-left: 10px;
 }
