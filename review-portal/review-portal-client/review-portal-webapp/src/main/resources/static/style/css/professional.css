@@ -1,0 +1,62 @@
+.page-content-root {
+	width: 100%;
+	margin: 0 auto;
+	background-color: none;
+}
+
+.search-items div {
+	position: relative;
+}
+
+.serach-item {
+	border-radius: 4px !important;
+	padding: 15px !important;
+	background-color: purple;
+}
+
+.thumbnail {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0px !important;	
+}
+
+.thumbnail>img {
+	border-radius: 4px !important;
+	padding: 0px !important;
+}
+
+.search-item .search-item-detail {
+	position: absolute;
+	left: 50px;
+	top: -5px;
+}
+
+.search-item .search-item-detail ul{
+	list-style: none;
+}
+.search-item .search-item-detail ul li span{
+	padding-right: 5px;
+}
+.search-item .search-item-detail ul li span, h4{
+    display: inline-block;
+}
+
+.search-item .rside-btn {
+	position: absolute;
+	left: 150px;
+}
+
+.stripped-data > div:nth-of-type(odd) {
+    background: #e0e0e0;
+}
+.search-item .search-items-options{
+	position: absolute;
+	left: 50px;
+	top: 10px;
+}
+.search-item .search-items-options ul li{
+	list-style: none;
+    position: absolute;
+	left: 350px;
+	top: 0px;
+}

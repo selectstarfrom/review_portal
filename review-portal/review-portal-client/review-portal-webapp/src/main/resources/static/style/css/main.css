@@ -1,3 +1,7 @@
+.app-wrapper{
+	width:500px;
+}
+/* ---------------------- */
 .autocomplete-suggestions {
 	border: 1px solid #999;
 	background: #FFF;
@@ -28,7 +32,7 @@
 	color: #0073bb;
 }
 
-.thumbnail {
+.thumbnailxx {
 	border-radius: 4px !important;
 	padding: 0px !important;
 }

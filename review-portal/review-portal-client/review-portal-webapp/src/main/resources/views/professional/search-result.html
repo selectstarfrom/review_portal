@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+
 
 <head th:replace="professional/layout :: head(~{this :: title}, ~{this :: .custom-link})">
 <title>Task List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<!-- Custom links for this page only -->
-<link class="custom-link" th:href="@{/style/css/professional.css}" />
+<link class="custom-link" rel="stylesheet" media="screen" th:href="@{/style/css/professional.css}" />
 
-<!-- Custom scripts for this page only -->
 <script class="custom-script" th:src="js/professional.js"></script>
 </head>
 
 <body>
 
-	<!--/* The element with breadcrumb class will be passed to the header fragment */-->
 	<header th:insert="professional/layout :: header(~{ :: .breadcrumb})">
 		<ol class="breadcrumb container">
 			<li><a href="#">Home</a></li>
@@ -23,44 +20,52 @@
 		</ol>
 	</header>
 
-	<!--/* Insert content fragment with content of the element with id = 'task-list' */-->
 
-	<form th:fragment="frg-home-search" th:action="@{/searchByProfession}" method="GET" class="form-signin">
-		<div th:insert="professional/layout :: content(~{ :: #professional-list})">
-			<div id="professional-list">
+	<div th:insert="professional/layout :: content(~{::#page-content-root})">
 
+		<div id="page-content-root" class="page-content-root">
 
-				<article class="search-result row indent-1" th:each="prof : ${professionals}">
+			<form th:fragment="frg-home-search" th:action="@{/searchByProfession}" method="GET" class="form-signin">
 
-					<div class="col-xs-7 col-sm-5 col-md-3 col-lg-3">
-						<a th:href="@{/profDetail/__${prof.id}__}" th:title="${prof.name}"> <img class="thumbnail" th:src="${imageGen.getProfileImage(prof.user.displayPicture)}" />
-						</a>
+				<div class="search-items stripped-data">
+					<div class="search-item" th:each="prof, iter : ${professionals}">
+
+						<div class="thumbnail">
+							<img th:src="${imageGen.getProfileImage(prof.user.displayPicture)}" />
+						</div>
+
+						<div class="search-item-detail">
+
+							<ul class="">
+								<li><span th:text="${iter.index+1}"></span>
+									<h4 class="text-primary" th:text="${prof.name}"></h4></li>
+								<li><span class="text-danger" th:text="${prof.user.email}"></span></li>
+								<li><span style="padding-right: 2px">#Reviews</span><span th:text="${prof.reviewCount}"></span></li>
+							</ul>
+						</div>
+
+						<div class="search-items-options">
+							<ul class="">
+								<li>
+									<a href="#" th:href="@{/writeReview/__${prof.id}__}" type="button" class="btn btn-xs btn-info" role="button">Write a Review</a>
+								</li>
+							</ul>
+						</div>
+
 					</div>
+				</div>
 
-					<div class="col-xs-5 col-sm-7 col-md-9 col-lg-9">
-						<ul class="meta-search">
-							<li><span><h4 class="text-primary" th:text="${prof.id}" th:value="${prof.id}" name="pProfessionalId"></h4></span></li>
-							<li><span><h4 class="text-primary" th:text="${prof.name}"></h4></span></li>
-							<li></i> <span class="text-danger" th:text="${prof.user.email}"></span></li>
-							<li></i> <span style="padding-right: 2px">#Reviews</span><span th:text="${prof.reviewCount}"></span></li>
-							<li></li>
-						</ul>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-7">
-						<!-- 					<span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span> -->
-						
-<!-- 						<a th:href="@{/writeReview/${prof.id}}" type="button" class="options-btn btn btn-outline-secondary">Write a Review</a> -->
-						<a href="#" th:href="@{/writeReview/__${prof.id}__}" type="button" class="options-btn btn btn-outline-secondary">Write a Review</a>
-					</div>
 
-				</article>
 
-			</div>
+			</form>
 		</div>
-	</form>
+
+	</div>
+
 
 
 	<footer th:replace="professional/layout :: footer">Footer</footer>
 
 </body>
+
 </html>
