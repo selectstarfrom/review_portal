@@ -5,6 +5,7 @@
 <head th:replace="professional/layout :: head(~{this :: title}, ~{this :: .custom-link})">
 <title>Task List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
 <link class="custom-link" rel="stylesheet" media="screen" th:href="@{/style/css/professional.css}" />
 
@@ -40,7 +41,7 @@
 								<li><span th:text="${iter.index+1}"></span>
 									<h4 class="text-primary" th:text="${prof.name}"></h4></li>
 								<li><span class="text-danger" th:text="${prof.user.email}"></span></li>
-								<li><span style="padding-right: 2px">#Reviews</span><span th:text="${prof.reviewCount}"></span></li>
+								<li><span th:text="${prof.reviewCount}"></span><span style="padding-right: 2px"> reviews</span></li>
 							</ul>
 						</div>
 
