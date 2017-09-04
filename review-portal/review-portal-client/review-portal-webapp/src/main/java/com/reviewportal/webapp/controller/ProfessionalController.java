@@ -19,7 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.reviewportal.model.enums.Gender;
 import com.reviewportal.service.dto.ProfessionReviewDTO;
 import com.reviewportal.service.dto.ProfessionalDTO;
+import com.reviewportal.service.dto.ReviewWriterDTO;
+import com.reviewportal.service.impl.services.ProfessionReviewServicesImpl;
 import com.reviewportal.service.impl.services.member.ProfessionalMemberServicesImpl;
+import com.reviewportal.service.impl.services.member.ReviewWriterMemberServicesImpl;
 import com.reviewportal.webapp.core.ImageGenerator;
 import com.reviewportal.webapp.core.PublicModelAndView;
 import com.reviewportal.webapp.core.SelectItem;
@@ -35,6 +38,12 @@ public class ProfessionalController {
 
     @Autowired
     private ProfessionalMemberServicesImpl professionalMemberService;
+    
+    @Autowired
+    private ReviewWriterMemberServicesImpl reviewWriterMemberService;
+    
+    @Autowired
+    private ProfessionReviewServicesImpl reviewService;
 
     @RequestMapping(value = "/getSelectItemProfessions", method = RequestMethod.GET)
     public @ResponseBody List<SelectItem> getProfessions(@RequestParam("pInput") String pInput) {
@@ -56,34 +65,22 @@ public class ProfessionalController {
     @RequestMapping(value = "/writeReview", method = RequestMethod.POST)
     public String writeReview(@ModelAttribute ProfessionReviewDTO pProfessionReviewDTO, BindingResult errors,
             Model model) {
-        // logic to process input data
-        return "result";
-    }
-
-    @RequestMapping(value = "/saveRevissew", method = RequestMethod.POST)
-    public ModelAndView writeReview(ModelAndView pModelAndView) {
-        ProfessionReviewDTO lProfessionReviewDTO = (ProfessionReviewDTO) pModelAndView.getModelMap().get("review");
-        // long lProfessionalId = Long.parseLong(pProfessionalId);
-        // ProfessionalDTO lById =
-        // professionalMemberService.getById(lProfessionalId);
-        // PublicModelAndView modelAndView = new PublicModelAndView();
-        // modelAndView.setViewName("professional/write-review");
-        // ProfessionReviewDTO lProfessionReviewDTO = new ProfessionReviewDTO();
-        // lProfessionReviewDTO.setReviewAbout(lById);
-        // modelAndView.addObject("review", lProfessionReviewDTO);
-        // modelAndView.addObject("imageGen", new ImageGenerator());
-
-        return pModelAndView;
+        reviewService.save(pProfessionReviewDTO);        
+        return "professional/write-review";
     }
 
     @RequestMapping(value = "/writeReview/{pProfessionalId}", method = RequestMethod.GET)
     public ModelAndView writeReview(@PathVariable("pProfessionalId") String pProfessionalId) {
         long lProfessionalId = Long.parseLong(pProfessionalId);
         ProfessionalDTO lById = professionalMemberService.getById(lProfessionalId);
+        
+        ReviewWriterDTO lById2 = reviewWriterMemberService.getById(1L);
+        
         PublicModelAndView modelAndView = new PublicModelAndView();
         modelAndView.setViewName("professional/write-review");
         ProfessionReviewDTO lProfessionReviewDTO = new ProfessionReviewDTO();
         lProfessionReviewDTO.setReviewAbout(lById);
+        lProfessionReviewDTO.setReviewBy(lById2);
         modelAndView.addObject("review", lProfessionReviewDTO);
         modelAndView.addObject("imageGen", new ImageGenerator());
 

@@ -24,7 +24,7 @@
 
 		<div id="page-content-root" class="page-content-roots">
 
-			<form th:fragment="frg-home-search" th:action="@{/searchByProfession}" method="GET" class="form-signin">
+			<form th:action="@{/writeReview}" method="POST" class="form-signin">
 
 
 
@@ -47,9 +47,8 @@
 										</div>
 										<div class="r-detail">
 											<h3 class="search-result-title">
-												<span class="indexed-rxh-name"><a class="rxh-name js-analytics-click"> <span th:text="${review.reviewAbout.name}"></span></a>
-												</span> <span class="indexed-rxh-name"><a class="rxh-prof-title js-analytics-click"><span
-														th:text="${review.reviewAbout.profession.title}"></span></a></span>
+												<span class="indexed-rxh-name"><a class="rxh-name"><span th:text="${review.reviewAbout.name}"></span></a></span>
+												<span class="indexed-rxh-name"><a class="rxh-prof-title"><span th:text="${review.reviewAbout.profession.title}"></span></a></span>
 											</h3>
 											<div class="rxh-rating rxh-rating-large clearfix">
 												<div class="i-stars i-stars--regular-1 rating-large" title="4.0 star rating">
@@ -81,6 +80,8 @@
 					<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6">
 						<label>Review</label>						
 						<textarea class="form-control" id="new-review-comments" rows="20" th:field="*{review.review}"></textarea>
+						<textarea style="display: none" th:text="${review.reviewAbout.id}" th:field="*{review.reviewAbout.id}"></textarea>
+						<textarea style="display: none" th:text="${review.reviewBy.id}" th:field="*{review.reviewBy.id}"></textarea>
 					</div>
 
 
