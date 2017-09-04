@@ -69,7 +69,7 @@ public class ReviewHubApplication extends SpringBootServletInitializer implement
             public void onStartup(ServletContext sc) throws ServletException {
 
                 sc.setInitParameter("javax.faces.FACELETS_LIBRARIES", "/WEB-INF/primefaces-avalon.taglib.xml");
-                sc.setInitParameter(Constants.ContextParams.THEME, "avalon-blue");
+                sc.setInitParameter(Constants.ContextParams.THEME, "avalon-firewatch");
                 sc.setInitParameter(Constants.ContextParams.FONT_AWESOME, "true");
                 sc.setInitParameter(ProjectStage.PROJECT_STAGE_PARAM_NAME, ProjectStage.Development.name());
                 sc.setInitParameter("com.sun.faces.injectionProvider", "com.softwood.SpringInjectionProvider");

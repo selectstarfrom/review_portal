@@ -6,20 +6,6 @@
 			<p:graphicImage name="images/logo.png" library="avalon-layout" styleClass="topbar-logo" />
 		</div>
 
-		<div class="topbar-middle">
-			<div>
-				<div class="ui-inputgroup">
-					<p:outputLabel styleClass="hybrid-left-end" value="Find" style="background:#337ab7;padding:5px 10px;" />
-					<p:autoComplete styleClass="hybrid-inner" id="professionals-search-prof-title"
-						value="#{landingPageSearchBean.accessor.searchProfession}" label="#{landingPageSearchBean.accessor.searchProfession}"
-						completeMethod="#{landingPageSearchBean.actions.autoCompleteProfession}" var="item" itemLabel="#{item.label}"
-						itemValue="#{item.value}" forceSelection="true" placeholder="Profession">
-					</p:autoComplete>
-					<p:button icon="fa fa-search" styleClass="hybrid-right-end" style="width:30px;background-color:#337ab7" outcome="/searchProfessionals"
-						process="@form" update="@form" />
-				</div>
-			</div>
-		</div>
 		<div class="topbar-right">
 			<a id="menu-button" href="#" class="menu-button"> <i class="fa fa-angle-left"></i>
 			</a> <a id="topbar-menu-button" href="#"> <i class="fa fa-bars"></i>
