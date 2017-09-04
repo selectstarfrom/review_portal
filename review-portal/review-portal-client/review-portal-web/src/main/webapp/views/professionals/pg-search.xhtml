@@ -3,6 +3,10 @@
 
 	<ui:define name="title">Search Review</ui:define>
 
+	<ui:define name="left-side-filter">
+
+		<ui:include src="frg-search-filter.xhtml" />
+	</ui:define>
 	<ui:define name="content">
 
 		<h:form id="form-search-professionals" prependId="false">
@@ -14,12 +18,6 @@
 					<div class="ui-g ui-fluid">
 
 						<h:panelGroup layout="block" class="ui-sm-12 ui-md-12 ui-g-12 ui-lg-12 dashboard" id="frg-search">
-
-							<div class="ui-grid-row" style="padding-bottom: 20px;">
-
-								<ui:include src="frg-search.xhtml" />
-
-							</div>
 
 							<div class="ui-grid-row">
 

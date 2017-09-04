@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+
+	<div class="left-side-filter">
+		<p:fieldset id="frg-search-filter-fieldset" legend="Filter">
+			<ul id="left-side-filter" class="layout-menu ">
+
+				<li role="menuitem"><p:inputText id="professionals-search-name" placeholder="Name"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchName}" /></li>
+
+				<li role="menuitem"><p:autoComplete id="professionals-search-prof-title"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchProfessionTitle}"
+						label="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchProfessionTitle}"
+						completeMethod="#{searchProfessionalsPageViewBean.actions.autoCompleteProfessionTitle}" var="item" itemLabel="#{item}"
+						itemValue="#{item}" forceSelection="true" dropdown="true" placeholder="Profession">
+					</p:autoComplete></li>
+
+				<li role="menuitem"><p:inputText id="professionals-search-city" placeholder="City"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchCity}" /></li>
+
+				<li role="menuitem"><p:inputText id="professionals-search-state" placeholder="State"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchState}" /></li>
+
+				<li role="menuitem"><p:inputText id="professionals-search-zip" placeholder="Zip"
+						value="#{searchProfessionalsPageViewBean.accessor.searchCriteria.searchZip}" /></li>
+
+				<li role="menuitem">
+					<p:commandButton value="Search" actionListener="#{searchProfessionalsPageViewBean.actions.searchAction}" process="@form" style="margin-bottom:10px; width:100px;" styleClass="ui-mini blue-btn" update="frg-search-result" />
+					<p:commandButton value="Reset" style="width:100px;" update="frg-search-filter" process="@this" type="reset" /></li>
+
+			</ul>
+
+		</p:fieldset>
+	</div>
+</ui:composition>
+
+

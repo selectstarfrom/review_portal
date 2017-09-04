@@ -1,3 +1,6 @@
+.left-side-filter ul:first-child{
+	padding-top: 10px !important;
+}
 .app-wrapper{
 	width:500px;
 }

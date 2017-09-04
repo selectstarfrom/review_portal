@@ -5,50 +5,13 @@
 		<div class="layout-menu-container #{guestPreferences.menuClass}">
 			<div class="nano">
 				<div class="nano-content menu-scroll-content">
-					<ui:fragment
-						rendered="#{guestPreferences.profileMode == 'inline' and guestPreferences.menuLayout != 'menu-layout-static menu-layout-horizontal'}">
-						<div class="profile">
-							<a id="profile-options" href="#">								
-								<p:graphicImage value="#{appUtil.profileImage}" width="65" styleClass="profile-image img-circle" style="border: 0 none" cache="false">
-											<f:param name="id" value="#{sessionCache.loggedInUser.id}" />
-								</p:graphicImage>
-								<span class="profile-name">Syed Firoze</span> <i class="fa fa-fw fa-caret-down"></i> <span
-								class="profile-role">Accountant</span>
-							</a>
-						</div>
+
+					<ui:fragment>
 
 
-						<ul id="profile-menu" class="layout-menu">
-							
-							<li role="menuitem">
-								<a href="#" onclick="gotoProfile();">
-									<i class="fa fa-fw fa-user"></i>
-									<span>Profile</span>
-									<p:remoteCommand name="gotoProfile" action="/profile"></p:remoteCommand>
-								</a>
-							</li>
-							
-							<li role="menuitem">
-								<a href="#">
-									<i class="fa fa-fw fa-user-secret"></i>
-									<span>Privacy</span>
-								</a>
-							</li>
-							
-							<li role="menuitem">
-								<a href="#">
-									<i class="fa fa-fw fa-cog"></i>
-									<span>Settings</span>
-								</a>
-							</li>
-							
-							<li role="menuitem">
-								<a href="#">
-									<i class="fa fa-fw fa-sign-out"></i>
-									<span>Logout</span>
-								</a>
-							</li>
-						</ul>
+						<ui:insert name="left-side-filter" />
+
+
 					</ui:fragment>
 
 					<pu:menu widgetVar="me">
