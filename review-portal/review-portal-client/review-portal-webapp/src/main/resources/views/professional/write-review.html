@@ -5,7 +5,7 @@
 <title>Task List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link class="custom-link" th:href="@{/style/css/professional.css}" />
+<link class="custom-link" rel="stylesheet" media="screen" th:href="@{/style/css/professional.css}" />
 
 <script class="custom-script" th:src="js/professional.js"></script>
 </head>
@@ -20,56 +20,78 @@
 		</ol>
 	</header>
 
-	<div th:insert="professional/layout :: content(~{ :: #new-review-form})">
+	<div th:insert="professional/layout :: content(~{::#page-content-root})">
 
-		<form action="#" th:action="@{/saveReview}" th:object="${review}" method="post">
+		<div id="page-content-root" class="page-content-roots">
 
-			<div id="new-review-form" class="grid">
+			<form th:fragment="frg-home-search" th:action="@{/searchByProfession}" method="GET" class="form-signin">
 
-				<div class="row">
+
+
+				<div id="new-review-form" class="grid">
+
+
+
+
 					<div id="new-review-prof-detail">
 
-						<div class="list-group">
-							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-								<a href="#" th:title="${review.reviewAbout.name}"> <img class="thumbnail"
-									th:src="${imageGen.getProfileImage(review.reviewAbout.user.displayPicture)}" />
-								</a>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-								<p>
-									<i class="fa fa-envelope"></i><span th:text="${review.reviewAbout.name}" class="text-primary thumbnail-main-label"></span><br>
-									<i class="fa fa-envelope"></i><span th:text="${review.reviewAbout.profession.title}"></span><br> <i class="fa fa-envelope"></i><a
-										href="mailto:${review.reviewAbout.user.email}" target="_top"><span th:text="${review.reviewAbout.user.email}"></span></a><br>
-									<i class="fa fa-phone-square"></i><a href="tel:${review.reviewAbout.mobile}" target="_top"><span
-										th:text="${review.reviewAbout.mobile}"></span></a><br>
+						<div class="search-result default-search-result">
+							<div class="rxh-listing-large" style="display: inline-block;">
 
-								</p>
+								<div class="main-attributes search-item-left-block">
+									<div class="search-item-block">
+										<div class="r-avatar">
+											<div class="photo-box">
+												<img th:src="${imageGen.getProfileImage(review.reviewAbout.user.displayPicture)}" />
+											</div>
+										</div>
+										<div class="r-detail">
+											<h3 class="search-result-title">
+												<span class="indexed-rxh-name"><a class="rxh-name js-analytics-click"> <span th:text="${review.reviewAbout.name}"></span></a>
+												</span> <span class="indexed-rxh-name"><a class="rxh-prof-title js-analytics-click"><span
+														th:text="${review.reviewAbout.profession.title}"></span></a></span>
+											</h3>
+											<div class="rxh-rating rxh-rating-large clearfix">
+												<div class="i-stars i-stars--regular-1 rating-large" title="4.0 star rating">
+													<img class="offscreen" height="303" width="84">
+												</div>
+												<span class="review-count rating-qualifier" th:text="${review.reviewAbout.reviewCount}"></span>
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="secondary-attributes search-item-right-block">
+									<div class="contacts-items">
+										<span class=""> <i class="contacts-item fa fa-envelope dark-blue"></i><span class="dark-indigo"
+											th:text="${review.reviewAbout.user.email}"></span><br /> <i class="contacts-item fa fa-phone-square dark-green"></i><span
+											class="dark-indigo" th:text="${review.reviewAbout.mobile}"></span><br />
+										</span>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="row">
 					<div id="new-review-rating"></div>
-				</div>
 
-				<div class="row">
 
-					<div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-						<label for="exampleTextarea">Review</label>
+					<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6">
+						<label>Review</label>						
 						<textarea class="form-control" id="new-review-comments" rows="20" th:field="*{review.review}"></textarea>
 					</div>
 
-				</div>
 
-				<div class="row">
-					<div id="review-form-ctrls form-group">
+					<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</div>
-			</div>
 
-		</form>
+			</form>
+
+		</div>
 
 	</div>
 
