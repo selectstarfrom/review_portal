@@ -66,7 +66,7 @@ public class ProfessionalController {
     public String writeReview(@ModelAttribute ProfessionReviewDTO pProfessionReviewDTO, BindingResult errors,
             Model model) {
         reviewService.save(pProfessionReviewDTO);
-        return "professional/write-review";
+        return "home/welcome";
     }
 
     @RequestMapping(value = "/writeReview/{pProfessionalId}", method = RequestMethod.GET)

@@ -13,7 +13,7 @@ $(document).ready(function() {
     });
 	
 	$('#ac-professions').autocomplete({
-		serviceUrl : '/getSelectItemProfessions',
+		serviceUrl : '/reviewhub/getSelectItemProfessions',
 		paramName : "pInput",
 		transformResult : function(response) {
 

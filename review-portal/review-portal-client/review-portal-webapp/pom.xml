@@ -16,17 +16,21 @@
 	<properties>
 		<nekohtml.versions>1.9.21</nekohtml.versions>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java-version>1.8</java-version>
-		<!-- Override Spring version -->
-		<!-- spring.version>4.3.3.RELEASE</spring.version -->
-		<!-- Thymeleaf 3 -->
 		<org.thymeleaf-version>3.0.7.RELEASE</org.thymeleaf-version>
 		<org.thymeleaf.extras.springsecurity4-version>3.0.2.RELEASE</org.thymeleaf.extras.springsecurity4-version>
 		<nz.net.ultraq.thymeleaflayout-version>2.2.1</nz.net.ultraq.thymeleaflayout-version>
 		<thymeleaf-extras-java8time-version>3.0.0.RELEASE</thymeleaf-extras-java8time-version>
-		<!-- AssertJ is not a part of Spring IO platform, so the version must be provided explicitly -->
 		<assertj-core-version>3.6.2</assertj-core-version>
+
+		<start-class>com.reviewportal.webapp.app.WebApplication</start-class>
+
+		<java.version>8</java.version>
+		<tomcat.version>8.5.16</tomcat.version>
+		<project.package>jar</project.package>
 	</properties>
+
+	<packaging>${project.package}</packaging>
+
 	<dependencies>
 
 		<!-- H2 Database -->
@@ -108,24 +112,107 @@
 			<artifactId>review-portal-service-impl</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-logging-juli</artifactId>
+			<version>7.0.56</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
+
 	<build>
+
+		<finalName>reviewhub</finalName>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<!-- compile for Java 1.8 -->
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<addResources>true</addResources>
+					<mainClass>${start-class}</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+
+		<profile>
+			<id>war</id>
+			<properties>
+				<project.package>war</project.package>
+			</properties>
+			<activation>
+				<property>
+					<name>tomcat</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>3.1.0</version>
+						<configuration>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>jar</id>
+			<properties>
+				<project.package>jar</project.package>
+			</properties>
+			<build>
+				<plugins>
+
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
 </project>

@@ -13,7 +13,7 @@ $(document).ready(function() {
     });
 	
 	$('#searchProfessionTitle').autocomplete({
-		serviceUrl : '/getSelectItemProfessions',
+		serviceUrl : '/reviewhub/getSelectItemProfessions',
 		paramName : "pInput",
 		transformResult : function(response) {
 
