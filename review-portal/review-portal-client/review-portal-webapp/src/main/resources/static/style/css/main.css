@@ -9,13 +9,14 @@
 	border: 1px solid #999;
 	background: #FFF;
 	overflow: auto;
+	border-radius: 5px
 }
 
 .autocomplete-suggestion {
 	padding: 5px 5px;
 	white-space: nowrap;
 	overflow: hidden;
-	font-size: 22px
+	font-size: 16px
 }
 
 .autocomplete-selected {
@@ -24,7 +25,7 @@
 
 .autocomplete-suggestions strong {
 	font-weight: bold;
-	color: #3399FF;
+	color: #b30000;
 }
 
 .bordered-div {

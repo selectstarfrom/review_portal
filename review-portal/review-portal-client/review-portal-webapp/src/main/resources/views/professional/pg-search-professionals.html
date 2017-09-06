@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="professional/layout :: head(~{this :: title}, ~{this :: .custom-link})">
+<title>Review Hub</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link class="custom-link" rel="stylesheet" media="screen" th:href="@{/style/css/professional.css}" />
+
+</head>
+
+<body>
+
+	<header th:insert="professional/layout :: header(~{ :: .breadcrumb})">
+		<ol class="breadcrumb container">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Professionals</a></li>
+			<li><a href="#">Search Professionals</a></li>
+		</ol>
+	</header>
+
+	<div th:insert="professional/layout :: content(~{::#page-content-root})">
+
+		<div id="page-content-root" class="page-content-roots">
+
+			<form th:object="${searchCriteria}" th:action="@{/searchProfessionals}" method="GET" class="form-search-professionals">
+
+
+
+				<div id="new-review-form" class="form-group">
+
+					<div id="searchName" class="form-group col-lg-3">
+						<input type="text" th:id="searchProfessionTitle" id="searchProfessionTitle" th:placeholder="Profession" class="form-control" th:value="${searchProfessionTitle}"
+							name="searchProfessionTitle">
+					</div>
+
+					<div id="searchName" class="form-group col-lg-3">
+						<input class="form-control" placeholder="Name" th:field=*{searchName}>
+					</div>
+
+					<div id="searchCity" class="form-group col-lg-3">
+						<input class="form-control" placeholder="Location" th:field=*{searchCity}>
+					</div>
+					<div id="searchProfessionBtn" class="form-group col-lg-3">
+						<button type="submit" class="btn btn-primary">Search</button>
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+	<footer th:replace="professional/layout :: footer">Footer</footer>
+</body>
+</html>

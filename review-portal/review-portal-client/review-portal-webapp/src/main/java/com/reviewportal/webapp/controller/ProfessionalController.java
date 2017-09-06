@@ -38,10 +38,10 @@ public class ProfessionalController {
 
     @Autowired
     private ProfessionalMemberServicesImpl professionalMemberService;
-    
+
     @Autowired
     private ReviewWriterMemberServicesImpl reviewWriterMemberService;
-    
+
     @Autowired
     private ProfessionReviewServicesImpl reviewService;
 
@@ -65,23 +65,84 @@ public class ProfessionalController {
     @RequestMapping(value = "/writeReview", method = RequestMethod.POST)
     public String writeReview(@ModelAttribute ProfessionReviewDTO pProfessionReviewDTO, BindingResult errors,
             Model model) {
-        reviewService.save(pProfessionReviewDTO);        
+        reviewService.save(pProfessionReviewDTO);
         return "professional/write-review";
     }
 
     @RequestMapping(value = "/writeReview/{pProfessionalId}", method = RequestMethod.GET)
-    public ModelAndView writeReview(@PathVariable("pProfessionalId") String pProfessionalId) {
+    public ModelAndView writeReviewAboutProfessional(@PathVariable("pProfessionalId") String pProfessionalId) {
         long lProfessionalId = Long.parseLong(pProfessionalId);
         ProfessionalDTO lById = professionalMemberService.getById(lProfessionalId);
-        
+
         ReviewWriterDTO lById2 = reviewWriterMemberService.getById(1L);
-        
+
         PublicModelAndView modelAndView = new PublicModelAndView();
-        modelAndView.setViewName("professional/write-review");
+        modelAndView.setViewName("professional/pg-write-review");
         ProfessionReviewDTO lProfessionReviewDTO = new ProfessionReviewDTO();
         lProfessionReviewDTO.setReviewAbout(lById);
         lProfessionReviewDTO.setReviewBy(lById2);
         modelAndView.addObject("review", lProfessionReviewDTO);
+        modelAndView.addObject("imageGen", new ImageGenerator());
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/writeReview", method = RequestMethod.GET)
+    public ModelAndView writeReviewBySearch() {
+
+        CriteriaSearchProfessionalDTO lSearch = new CriteriaSearchProfessionalDTO();
+
+        PublicModelAndView modelAndView = new PublicModelAndView();
+        modelAndView.setViewName("professional/pg-search-professionals.html");
+        modelAndView.addObject("searchCriteria", lSearch);
+        modelAndView.addObject("imageGen", new ImageGenerator());
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = { "/searchProfessionals" }, method = RequestMethod.GET)
+    public ModelAndView searchProfessionals(@ModelAttribute CriteriaSearchProfessionalDTO pCriteriaSearchProfessionalDTO, BindingResult errors,
+            Model model) {
+
+        CriteriaSearchProfessionalDTO lSearchCriteria = pCriteriaSearchProfessionalDTO;
+
+        ProfessionalMemberServicesImpl lServices = professionalMemberService;
+        ProfessionalDTO lProfessionalExample = new ProfessionalDTO();
+
+        String lSearchGender = lSearchCriteria.getSearchGender();
+        String lSearchName = lSearchCriteria.getSearchName();
+        String lSearchProfession = lSearchCriteria.getSearchProfessionTitle();
+
+        String lSearchRatingMax = lSearchCriteria.getSearchRatingMax();
+        String lSearchRatingMin = lSearchCriteria.getSearchRatingMin();
+
+        String lSearchCity = lSearchCriteria.getSearchCity();
+        String lSearchState = lSearchCriteria.getSearchState();
+        String lSearchZip = lSearchCriteria.getSearchZip();
+
+        String lName = StringUtils.isEmpty(lSearchName) ? null : lSearchName;
+        lProfessionalExample.setName(lName);
+
+        String lTitle = StringUtils.isEmpty(lSearchProfession) ? null : lSearchProfession;
+        lProfessionalExample.getProfession().setTitle(lTitle);
+
+        Gender lGender = StringUtils.isEmpty(lSearchGender) ? null : Gender.valueOf(lSearchGender);
+        lProfessionalExample.setGender(lGender);
+
+        String lCity = StringUtils.isEmpty(lSearchCity) ? null : lSearchCity;
+        lProfessionalExample.getAddress().setCity(lCity);
+
+        String lState = StringUtils.isEmpty(lSearchState) ? null : lSearchState;
+        lProfessionalExample.getAddress().setState(lState);
+
+        String lZip = StringUtils.isEmpty(lSearchZip) ? null : lSearchZip;
+        lProfessionalExample.getAddress().setZip(lZip);
+
+        List<ProfessionalDTO> lProfessionReviews = lServices.getByExample(lProfessionalExample);
+
+        PublicModelAndView modelAndView = new PublicModelAndView();
+        modelAndView.setViewName("professional/search-result");
+        modelAndView.addObject("professionals", lProfessionReviews);
         modelAndView.addObject("imageGen", new ImageGenerator());
 
         return modelAndView;
